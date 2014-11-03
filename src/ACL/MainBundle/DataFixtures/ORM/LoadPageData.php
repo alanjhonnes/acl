@@ -91,22 +91,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         return $site;
     }
 
-    public function createSubSite()
-    {
-        $site = $this->getSiteManager()->create();
-
-        $site->setHost('localhost');
-        $site->setEnabled(true);
-        $site->setName('sub site');
-        $site->setEnabledFrom(new \DateTime('now'));
-        $site->setEnabledTo(new \DateTime('+10 years'));
-        $site->setRelativePath("/sub-site");
-        $site->setIsDefault(false);
-
-        $this->getSiteManager()->save($site);
-
-        return $site;
-    }
 
     /**
      * @param SiteInterface $site

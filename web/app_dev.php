@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+use Symfony\Component\HttpFoundation\Request;
+
 require_once __DIR__ . '/../app/bootstrap.php.cache';
 require_once __DIR__ . '/../app/AppKernel.php';
 
@@ -23,7 +25,8 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 }
 
 
-$request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
+//$request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
+$request = Request::createFromGlobals();
 
 $kernel = new AppKernel('dev', true);
 

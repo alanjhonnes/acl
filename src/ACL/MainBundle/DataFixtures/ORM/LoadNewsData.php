@@ -83,7 +83,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
             $post->setTitle($faker->sentence(6));
             $post->setPublicationDateStart($faker->dateTimeBetween('-30 days', '-1 days'));
 
-            $id = $this->getReference('sonata-media-0')->getId();
+            //$id = $this->getReference('sonata-media-0')->getId();
 
             $raw =<<<RAW
 ### Gist Formatter
@@ -96,7 +96,6 @@ Now a specific gist from github
 
 Load a media from a <code>SonataMediaBundle</code> with a specific format
 
-<% media $id, 'big' %>
 
 RAW
 ;
@@ -110,24 +109,24 @@ RAW
 
             $post->setRawContent($raw);
             $post->setContentFormatter('markdown');
-
-            $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+            $post->setContent($raw);
+            //$post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
             $post->setCommentsDefaultStatus(CommentInterface::STATUS_VALID);
 
             foreach($tags as $tag) {
                 $post->addTags($tag);
             }
 
-            foreach(range(1, $faker->randomDigit + 2) as $commentId) {
-                $comment = $this->getCommentManager()->create();
-                $comment->setEmail($faker->email);
-                $comment->setName($faker->name);
-                $comment->setStatus(CommentInterface::STATUS_VALID);
-                $comment->setMessage($faker->sentence(25));
-                $comment->setUrl($faker->url);
-
-                $post->addComments($comment);
-            }
+//            foreach(range(1, $faker->randomDigit + 2) as $commentId) {
+//                $comment = $this->getCommentManager()->create();
+//                $comment->setEmail($faker->email);
+//                $comment->setName($faker->name);
+//                $comment->setStatus(CommentInterface::STATUS_VALID);
+//                $comment->setMessage($faker->sentence(25));
+//                $comment->setUrl($faker->url);
+//
+//                $post->addComments($comment);
+//            }
 
             $postManager->save($post);
         }
