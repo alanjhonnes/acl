@@ -5,7 +5,7 @@ sonata_seo:
     encoding:             UTF-8
     page:
         default:          sonata.seo.page.default
-        title:            Sonata Project
+        title:            ACL Security
         metas:
             name:
                 keywords:             foo bar
@@ -19,12 +19,12 @@ sonata_seo:
 
                 # Open Graph information
                 # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-                'og:site_name':       Sonata Project Sandbox
+                'og:site_name':       ACL Security
                 'og:description':     A demo of the some rich bundles for your Symfony2 projects
 
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
-                #'X-Ua-Compatible':      IE=EmulateIE7
+                'X-Ua-Compatible':      IE=Edge,chrome=1
 
         head:
             'xmlns':              http://www.w3.org/1999/xhtml

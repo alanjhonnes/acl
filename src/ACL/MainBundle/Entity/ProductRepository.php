@@ -8,6 +8,8 @@
 
 namespace ACL\MainBundle\Entity;
 
-class ProductRepository {
+use Doctrine\ORM\EntityRepository;
+
+class ProductRepository extends EntityRepository {
 
 } 

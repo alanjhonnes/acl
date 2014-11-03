@@ -43,6 +43,8 @@ sonata_admin:
                 icon:            '<i class="fa fa-th"></i>'
                 items:
 #                    - sonata.news.admin.comment
+                    - acl_main.admin.product
+                    - acl_main.admin.partner
                     - sonata.news.admin.post
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery

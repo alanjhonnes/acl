@@ -1,5 +1,12 @@
+html,
 body {
+  width: 100%;
+}
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
   background-image: url(../img/site-background.jpg);
   background-position: center top;
   background-size: cover;
+  background-attachment: fixed;
+  color: #111111;
 }

@@ -96,6 +96,6 @@ class PartnersBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Newsletter Block (fake)';
+        return 'Bloco Parceiros ()';
     }
 }

@@ -10,3 +10,16 @@ services:
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+    acl_main.admin.product:
+        class: ACL\MainBundle\Admin\ProductAdmin
+        arguments: [~, ACL\MainBundle\Entity\Product, ACLMainBundle:ProductAdmin]
+        calls:
+            - [setPoolFormatter, [@sonata.formatter.pool]]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Produto}
+
+    acl_main.admin.partner:
+        class: ACL\MainBundle\Admin\PartnerAdmin
+        arguments: [~, ACL\MainBundle\Entity\Partner, ACLMainBundle:PartnerAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Parceiro}

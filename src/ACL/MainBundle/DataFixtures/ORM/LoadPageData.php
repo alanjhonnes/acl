@@ -82,7 +82,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site->setEnabled(true);
         $site->setName('localhost');
         $site->setEnabledFrom(new \DateTime('now'));
-        $site->setEnabledTo(new \DateTime('+10 years'));
+        $site->setEnabledTo(new \DateTime('+20 years'));
         $site->setRelativePath("");
         $site->setIsDefault(true);
 
@@ -115,107 +115,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $pageManager->save($blogIndex);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
-    public function createGalleryIndex(SiteInterface $site)
-    {
-        $pageManager = $this->getPageManager();
-        $blockManager = $this->getBlockManager();
-        $blockInteractor = $this->getBlockInteractor();
-
-        $galleryIndex = $pageManager->create();
-        $galleryIndex->setSlug('gallery');
-        $galleryIndex->setUrl('/media/gallery');
-        $galleryIndex->setName('Gallery');
-        $galleryIndex->setTitle('Gallery');
-        $galleryIndex->setEnabled(true);
-        $galleryIndex->setDecorate(1);
-        $galleryIndex->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $galleryIndex->setTemplateCode('default');
-        $galleryIndex->setRouteName('sonata_media_gallery_index');
-        $galleryIndex->setParent($this->getReference('page-homepage'));
-        $galleryIndex->setSite($site);
-
-        // CREATE A HEADER BLOCK
-        $galleryIndex->addBlocks($content = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $galleryIndex,
-            'code' => 'content_top',
-        )));
-
-        $content->setName('The content_top container');
-
-        // add the breadcrumb
-        $content->addChildren($breadcrumb = $blockManager->create());
-        $breadcrumb->setType('sonata.page.block.breadcrumb');
-        $breadcrumb->setPosition(0);
-        $breadcrumb->setEnabled(true);
-        $breadcrumb->setPage($galleryIndex);
-
-        // add a block text
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-
-<h1>Gallery List</h1>
-
-<p>
-    This current text is defined in a <code>text block</code> linked to a custom symfony action <code>GalleryController::indexAction</code>
-    the SonataPageBundle can encapsulate an action into a dedicated template. <br /><br />
-
-    If you are connected as an admin you can click on <code>Show Zone</code> to see the different editable areas. Once
-    areas are displayed, just double click on one to edit it.
-</p>
-
-CONTENT
-        );
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($galleryIndex);
-
-        $pageManager->save($galleryIndex);
-    }
-
-    /**
-     * @param SiteInterface $site
-     */
-    public function createTermsPage(SiteInterface $site)
-    {
-        $pageManager = $this->getPageManager();
-        $blockManager = $this->getBlockManager();
-        $blockInteractor = $this->getBlockInteractor();
-
-        $terms = $pageManager->create();
-        $terms->setSlug('shop-payment-terms-and-conditions');
-        $terms->setUrl('/shop/payment/terms-and-conditions');
-        $terms->setName('Terms and conditions');
-        $terms->setTitle('Terms and conditions');
-        $terms->setEnabled(true);
-        $terms->setDecorate(1);
-        $terms->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $terms->setTemplateCode('default');
-        $terms->setRouteName('sonata_payment_terms');
-        $terms->setParent($this->getReference('page-homepage'));
-        $terms->setSite($site);
-
-        // CREATE A HEADER BLOCK
-        $terms->addBlocks($content = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $terms,
-            'code' => 'content_top',
-        )));
-        $content->setName('The content_top container');
-
-        // add the breadcrumb
-        $content->addChildren($breadcrumb = $blockManager->create());
-        $breadcrumb->setType('sonata.page.block.breadcrumb');
-        $breadcrumb->setPosition(0);
-        $breadcrumb->setEnabled(true);
-        $breadcrumb->setPage($terms);
-
-        $pageManager->save($terms);
-    }
 
     /**
      * @param SiteInterface $site
@@ -282,15 +181,15 @@ CONTENT
         $content->setName('The content container');
         $blockManager->save($content);
 
-        // Add media gallery block
-        $content->addChildren($gallery = $blockManager->create());
-        $gallery->setType('sonata.media.block.gallery');
-        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
-        $gallery->setSetting('context', 'default');
-        $gallery->setSetting('format', 'big');
-        $gallery->setPosition(1);
-        $gallery->setEnabled(true);
-        $gallery->setPage($homepage);
+//        // Add media gallery block
+//        $content->addChildren($gallery = $blockManager->create());
+//        $gallery->setType('sonata.media.block.gallery');
+//        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
+//        $gallery->setSetting('context', 'default');
+//        $gallery->setSetting('format', 'big');
+//        $gallery->setPosition(1);
+//        $gallery->setEnabled(true);
+//        $gallery->setPage($homepage);
 
 	    //TODO add ACL categories block
 
@@ -394,40 +293,6 @@ CONTENT
     }
 
     /**
-     * Creates the "Press" content page (link available in footer)
-     *
-     * @param SiteInterface $site
-     *
-     * @return void
-     */
-    public function createPressPage(SiteInterface $site)
-    {
-        $this->createTextContentPage($site, 'press', 'Press', <<<CONTENT
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
-<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
-CONTENT
-        );
-    }
-
-    /**
-     * Creates the "FAQ" content page (link available in footer)
-     *
-     * @param SiteInterface $site
-     *
-     * @return void
-     */
-    public function createFAQPage(SiteInterface $site)
-    {
-        $this->createTextContentPage($site, 'faq', 'FAQ', <<<CONTENT
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
-<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
-CONTENT
-        );
-    }
-
-    /**
      * Creates the "Contact us" content page (link available in footer)
      *
      * @param SiteInterface $site
@@ -481,12 +346,12 @@ CONTENT
             'code'    => 'content_top',
         )));
 
-        // add the breadcrumb
-        $block->addChildren($breadcrumb = $blockManager->create());
-        $breadcrumb->setType('sonata.page.block.breadcrumb');
-        $breadcrumb->setPosition(0);
-        $breadcrumb->setEnabled(true);
-        $breadcrumb->setPage($page);
+//        // add the breadcrumb
+//        $block->addChildren($breadcrumb = $blockManager->create());
+//        $breadcrumb->setType('sonata.page.block.breadcrumb');
+//        $breadcrumb->setPosition(0);
+//        $breadcrumb->setEnabled(true);
+//        $breadcrumb->setPage($page);
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());
@@ -522,11 +387,11 @@ CONTENT
         )));
 
         // add the breadcrumb
-        $block->addChildren($breadcrumb = $blockManager->create());
-        $breadcrumb->setType('sonata.page.block.breadcrumb');
-        $breadcrumb->setPosition(0);
-        $breadcrumb->setEnabled(true);
-        $breadcrumb->setPage($page);
+//        $block->addChildren($breadcrumb = $blockManager->create());
+//        $breadcrumb->setType('sonata.page.block.breadcrumb');
+//        $breadcrumb->setPosition(0);
+//        $breadcrumb->setEnabled(true);
+//        $breadcrumb->setPage($page);
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());
@@ -562,11 +427,11 @@ CONTENT
         )));
 
         // add the breadcrumb
-        $block->addChildren($breadcrumb = $blockManager->create());
-        $breadcrumb->setType('sonata.page.block.breadcrumb');
-        $breadcrumb->setPosition(0);
-        $breadcrumb->setEnabled(true);
-        $breadcrumb->setPage($page);
+//        $block->addChildren($breadcrumb = $blockManager->create());
+//        $breadcrumb->setType('sonata.page.block.breadcrumb');
+//        $breadcrumb->setPosition(0);
+//        $breadcrumb->setEnabled(true);
+//        $breadcrumb->setPage($page);
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());

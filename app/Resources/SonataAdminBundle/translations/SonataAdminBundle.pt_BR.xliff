@@ -6,6 +6,14 @@
                 <source>sonata_ecommerce</source>
                 <target>E-Commerce</target>
             </trans-unit>
+            <trans-unit id="Product">
+                <source>Product</source>
+                <target>Produto</target>
+            </trans-unit>
+            <trans-unit id="Partner">
+                <source>Partner</source>
+                <target>Parceiro</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

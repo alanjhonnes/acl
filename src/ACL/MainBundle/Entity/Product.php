@@ -41,11 +41,29 @@ class Product {
 	 */
 	protected $description;
 
+    /**
+     * @var
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $contentFormatter;
+
+    /**
+     * @var
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $rawContent;
+
+    /**
+     * @var
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $content;
+
 	/**
 	 * @var
 	 * @ORM\Column(type="smallint")
 	 */
-	protected $order;
+	protected $position;
 
 	/**
 	 * @var
@@ -61,30 +79,30 @@ class Product {
 
     /**
      * @var
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
+     */
+    protected $gallery;
+
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
+     * @ORM\JoinTable(name="product_downloads",
+     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="downloads_id", referencedColumnName="id")}
+     * )
      */
     protected $downloads;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
-     * @ORM\JoinTable(name="product_video",
+     * @var
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
+     * @ORM\JoinTable(name="product_videos",
      *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="video_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="videos_id", referencedColumnName="id")}
      * )
      */
     protected $videos;
 
-
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->downloads = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->videos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -143,26 +161,95 @@ class Product {
     }
 
     /**
-     * Set order
+     * Set contentFormatter
      *
-     * @param integer $order
+     * @param string $contentFormatter
      * @return Product
      */
-    public function setOrder($order)
+    public function setContentFormatter($contentFormatter)
     {
-        $this->order = $order;
+        $this->contentFormatter = $contentFormatter;
 
         return $this;
     }
 
     /**
-     * Get order
+     * Get contentFormatter
+     *
+     * @return string 
+     */
+    public function getContentFormatter()
+    {
+        return $this->contentFormatter;
+    }
+
+    /**
+     * Set rawContent
+     *
+     * @param string $rawContent
+     * @return Product
+     */
+    public function setRawContent($rawContent)
+    {
+        $this->rawContent = $rawContent;
+
+        return $this;
+    }
+
+    /**
+     * Get rawContent
+     *
+     * @return string 
+     */
+    public function getRawContent()
+    {
+        return $this->rawContent;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Product
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Product
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
      *
      * @return integer 
      */
-    public function getOrder()
+    public function getPosition()
     {
-        return $this->order;
+        return $this->position;
     }
 
     /**
@@ -212,32 +299,45 @@ class Product {
     }
 
     /**
-     * Add downloads
+     * Set gallery
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $downloads
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
      * @return Product
      */
-    public function addDownload(\Application\Sonata\MediaBundle\Entity\Media $downloads)
+    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
     {
-        $this->downloads[] = $downloads;
+        $this->gallery = $gallery;
 
         return $this;
     }
 
     /**
-     * Remove downloads
+     * Get gallery
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $downloads
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
      */
-    public function removeDownload(\Application\Sonata\MediaBundle\Entity\Media $downloads)
+    public function getGallery()
     {
-        $this->downloads->removeElement($downloads);
+        return $this->gallery;
+    }
+
+    /**
+     * Set downloads
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $downloads
+     * @return Product
+     */
+    public function setDownloads(\Application\Sonata\MediaBundle\Entity\Gallery $downloads = null)
+    {
+        $this->downloads = $downloads;
+
+        return $this;
     }
 
     /**
      * Get downloads
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
      */
     public function getDownloads()
     {
@@ -245,32 +345,22 @@ class Product {
     }
 
     /**
-     * Add videos
+     * Set videos
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $videos
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $videos
      * @return Product
      */
-    public function addVideo(\Application\Sonata\MediaBundle\Entity\Media $videos)
+    public function setVideos(\Application\Sonata\MediaBundle\Entity\Gallery $videos = null)
     {
-        $this->videos[] = $videos;
+        $this->videos = $videos;
 
         return $this;
     }
 
     /**
-     * Remove videos
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $videos
-     */
-    public function removeVideo(\Application\Sonata\MediaBundle\Entity\Media $videos)
-    {
-        $this->videos->removeElement($videos);
-    }
-
-    /**
      * Get videos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
      */
     public function getVideos()
     {

@@ -31,7 +31,7 @@ sonata_block:
             # cache: sonata.page.cache.esi # if you are using the PageBundle
             # cache: sonata.block.cache.esi # if you are using the BlockBundle without the PageBundle
         sonata.page.block.children_pages:
-        sonata.page.block.breadcrumb:
+#        sonata.page.block.breadcrumb:
 
         # MediaBundle's Blocks
         sonata.media.block.media:
@@ -39,7 +39,7 @@ sonata_block:
         sonata.media.block.feature_media:
 
         # NewsBundle's Blocks
-        sonata.news.block.recent_comments:
+#        sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
 
         # Ecommerce's Blocks
@@ -90,4 +90,4 @@ sonata_block:
         # Formatter
         sonata.formatter.block.formatter:
 
-        sonata.seo.block.breadcrumb.homepage:
+        #sonata.seo.block.breadcrumb.homepage:
