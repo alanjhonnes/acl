@@ -26,9 +26,10 @@ body {
 }
 
 .nav-top {
+  position: relative;
   background-color: @brand-color;
   height: @nav-top-height;
-  font-size: 17px;
+  font-size: 16px;
 
   > li {
     height: @nav-top-height;
@@ -61,6 +62,16 @@ body {
         background-position: center @nav-top-height - @nav-top-arrow-height;
       }
     }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    margin-left: -43px;
+    width: 43px;
+    height: 116px;
+    background-image: url(../img/menu-left-border.png);
+    background-repeat: no-repeat;
   }
 
 

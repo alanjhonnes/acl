@@ -11,9 +11,10 @@ body {
   color: #111111;
 }
 .nav-top {
+  position: relative;
   background-color: #a31a1d;
   height: 116px;
-  font-size: 17px;
+  font-size: 16px;
 }
 .nav-top > li {
   height: 116px;
@@ -42,6 +43,15 @@ body {
   color: #ffffff;
   background-color: transparent;
   background-position: center 105px;
+}
+.nav-top:before {
+  content: '';
+  position: absolute;
+  margin-left: -43px;
+  width: 43px;
+  height: 116px;
+  background-image: url(../img/menu-left-border.png);
+  background-repeat: no-repeat;
 }
 .nav-left {
   background-color: #9a1e20;

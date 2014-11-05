@@ -45,8 +45,17 @@ class PartnerAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('name')
+            ->add('name', 'text', array('label' => 'Nome'))
+            ->add(
+                'logo',
+                'sonata_type_model_list',
+                array( 'required' => false, 'label' => 'Logotipo' ),
+                array(
+                    'link_parameters' => array(
+                        'context' => 'product'
+                    )
+                )
+            )
         ;
     }
 

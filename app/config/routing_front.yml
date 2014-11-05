@@ -6,8 +6,8 @@
 #    resource: "@SonataQABundle/Resources/config/routing/qa.xml"
 
 blog:
-    resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
-    prefix: /blog
+    resource: '@ACLMainBundle/Resources/config/routing/news.xml'
+    prefix: /noticias
 
 sonata_media_gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'

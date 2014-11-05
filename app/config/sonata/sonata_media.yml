@@ -15,16 +15,17 @@ sonata_media:
                 - sonata.media.provider.vimeo
 
             formats:
-                small: { width: 100, quality: 100}
-                big:   { width: 970 , quality: 100}
+                small: { width: 150, quality: 100}
+                big:   { width: 1170 , quality: 100}
+                full:   { width: 1920 , quality: 100}
 
         Posts:
             providers:
                 - sonata.media.provider.image
 
             formats:
-                abstract: { width: 100, quality: 100}
-                wide:     { width: 820, quality: 100}
+                thumbnail: { width: 300, quality: 100}
+                wide:     { width: 1170, quality: 100}
 
 #        sonata_collection:
 #            providers:
@@ -39,8 +40,9 @@ sonata_media:
               - sonata.media.provider.image
 
             formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
+                icon: { }
+                thumbnail: { width: 269, quality: 100}
+                wide:    { width: 1170, quality: 100}
 
         sonata_product:
             providers:
@@ -48,8 +50,16 @@ sonata_media:
 
             formats:
                 preview:   { width: 100, quality: 100}
-                small:     { width: 300, quality: 100}
+                main:     { width: 300, quality: 100}
                 large:     { width: 750, quality: 100}
+
+        partners:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 200, quality: 100 }
+                wide: { width: 1170, quality: 100 }
+
 
     cdn:
         # define the public base url for the uploaded media

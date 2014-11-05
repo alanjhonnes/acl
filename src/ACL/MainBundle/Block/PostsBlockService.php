@@ -17,6 +17,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -26,23 +27,23 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
- * Class PartnersBlockService
+ * Class PostsBlockService
  *
- * Renders Partners list
+ * Renders the lastest posts
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class PartnersBlockService extends BaseBlockService
+class PostsBlockService extends BaseBlockService
 {
 
-    protected $partnerManager;
+    protected $postManager;
 
     /**
-     * @return ManagerInterface
+     * @return PostManagerInterface
      */
-    public function getPartnerManager()
+    public function getPostManager()
     {
-        return $this->partnerManager;
+        return $this->$postManager;
     }
 
     /**
@@ -50,12 +51,12 @@ class PartnersBlockService extends BaseBlockService
      *
      * @param string               $name        A block name
      * @param EngineInterface      $templating  Twig engine service
-     * @param
+     * @param PostManagerInterface     $postManager PostManager service
      */
-    public function __construct($name, EngineInterface $templating, ManagerInterface $partnerManager)
+    public function __construct($name, EngineInterface $templating, PostManagerInterface $postManager)
     {
         parent::__construct($name, $templating);
-        $this->partnerManager = $partnerManager;
+        $this->$postManager = $postManager;
     }
 
     /**
@@ -63,7 +64,7 @@ class PartnersBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $partners = $this->getPartnerManager()->findAll();
+        $partners = $this->getPostManager()->findLatest;
 
         return $this->renderResponse($blockContext->getTemplate(), array(
                 'partners' => $partners,

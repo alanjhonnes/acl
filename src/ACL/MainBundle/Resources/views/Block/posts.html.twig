@@ -1,0 +1,10 @@
+<div class="row">
+    <h2>Notícias</h2>
+    <ul class="posts-list">
+        {% for partner in partners %}
+        <li class="post-item">
+            {% media partner.logo, 'default_small' %}
+            {% endfor %}
+        </li>
+    </ul>
+</div>

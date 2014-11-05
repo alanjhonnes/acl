@@ -47,9 +47,9 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createBlogIndex($site);
 
 	    $this->createProductPage($site);
-	    $this->createWhoWeArePage($site);
-	    $this->createContactUsPage($site);
-
+	    $this->createCompanyPage($site);
+	    $this->createContactPage($site);
+        $this->createPartnersPage($site);
 
         //$this->createGalleryIndex($site);
         //$this->createMediaPage($site);
@@ -258,10 +258,10 @@ CONTENT
 
         $category = $pageManager->create();
 
-        $category->setSlug('shop-category');
-        $category->setUrl('/shop/category');
-        $category->setName('Shop');
-        $category->setTitle('Shop');
+        $category->setSlug('produtos');
+        $category->setUrl('/produtos/categoria');
+        $category->setName('Produtos');
+        $category->setTitle('Produtos');
         $category->setEnabled(true);
         $category->setDecorate(1);
         $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -282,7 +282,7 @@ CONTENT
      *
      * @return void
      */
-    public function createWhoWeArePage(SiteInterface $site)
+    public function createCompanyPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'who-we-are', 'Who we are', <<<CONTENT
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
@@ -292,6 +292,10 @@ CONTENT
         );
     }
 
+    public function createPartnersPage(SiteInterface $site){
+
+    }
+
     /**
      * Creates the "Contact us" content page (link available in footer)
      *
@@ -299,9 +303,9 @@ CONTENT
      *
      * @return void
      */
-    public function createContactUsPage(SiteInterface $site)
+    public function createContactPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'contact-us', 'Contact us', <<<CONTENT
+        $this->createTextContentPage($site, 'contato', 'Contato', <<<CONTENT
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -469,14 +473,6 @@ CONTENT
 
         $header->setName('The header container');
 
-        $header->addChildren($text = $blockManager->create());
-
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<a class="logo" href="/"><img src="/img/logo.png" alt="ACL Security"/></a></h2>');
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($global);
-
         $global->addBlocks($headerTop = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
@@ -503,14 +499,6 @@ CONTENT
 
         $headerMenu->setName('The header menu container');
         $headerMenu->setPosition(3);
-        $headerMenu->addChildren($menu = $blockManager->create());
-
-        $menu->setType('sonata.block.service.menu');
-        $menu->setSetting('menu_name', "ACLMainBundle:Builder:mainMenu");
-        $menu->setSetting('safe_labels', true);
-        $menu->setPosition(3);
-        $menu->setEnabled(true);
-        $menu->setPage($global);
 
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
@@ -520,50 +508,15 @@ CONTENT
             $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
         }));
 
-        $footer->setName('The footer container');
 
-        // Footer : add 3 children block containers (left, center, right)
-        $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
-        ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
-        }));
-
-        $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content',
-        ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
-        }));
-
-        $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
-        ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
-        }));
-
-        $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
-        ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
-        }));
 
         // Footer left: add a simple text block
-        $footerLeft->addChildren($text = $blockManager->create());
+        $footer->addChildren($partners = $blockManager->create());
 
-        $text->setType('acl.block.service.partners');
-//        $text->setSetting('content', '<h2>Sonata Demo</h2><p class="handcraft">HANDCRAFTED IN PARIS<br />WITH MIXED HERITAGE</p><p><a href="http://twitter.com/sonataproject" target="_blank">Follow Sonata on Twitter</a></p>');
-
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($global);
+        $partners->setType('acl.block.service.partners');
+        $partners->setPosition(1);
+        $partners->setEnabled(true);
+        $partners->setPage($global);
 
 
         $pageManager->save($global);

@@ -1,3 +1,12 @@
 <div class="row">
-    <p>Parceiros.</p>
+    <div class="col-md-12">
+        <h4>Nossos Parceiros</h4>
+        <ul class="partners-list">
+        {% for partner in partners %}
+            <li class="partner-item">
+            {% media partner.logo, 'default_small' %}
+        {% endfor %}
+            </li>
+        </ul>
+    </div>
 </div>

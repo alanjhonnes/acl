@@ -1,6 +1,8 @@
 parameters:
 #    acl.main.example.class: ACL\MainBundle\Example
 
+    acl.main.partner.class: ACL\MainBundle\Entity\Partner
+
 services:
 #    acl.main.example:
 #        class: %acl.main.example.class%
@@ -27,6 +29,19 @@ services:
 
     acl.block.service.partners:
         class: ACL\MainBundle\Block\PartnersBlockService
-        arguments: [acl.block.service.partners, @templating]
+        arguments: [acl.block.service.partners, @templating, @acl.main.partner.manager]
         tags:
             - { name: sonata.block }
+
+    acl.block.service.posts:
+        class: ACL\MainBundle\Block\PostsBlockService
+        arguments: [acl.block.service.posts, @templating, @sonata.news.manager.post]
+        tags:
+            - { name: sonata.block }
+
+
+    acl.main.partner.manager:
+        class: ACL\MainBundle\Entity\PartnerManager
+        arguments:
+            - %acl.main.partner.class%
+            - @doctrine

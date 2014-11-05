@@ -13,19 +13,32 @@ file that was distributed with this source code.
 {% block sonata_page_container %}
     <div class="container">
         <div class="content">
-            <div class="row page-header">
+            <div class="row">
+                <a class="logo col-md-3" href="{{ path('page_slug', {'path' : '/'}) }}">
+                    <img class="img-responsive" src="/img/logo.png" alt="ACL Security"/>
+                </a>
+                <div class="col-md-9" role="navigation">
+                    {{ knp_menu_render('ACLMainBundle:Builder:mainMenu') }}
+                </div>
+
+            </div>
+            <div class="row">
                 {{ sonata_page_render_container('header', 'global') }}
             </div>
+        </div>
+    </div>
 
-            {% if page is defined %}
-                <div class="row">
-                    {% if page.name != 'global'%}
-                        {{ sonata_page_render_container('content_top', 'global') }}
-                    {% endif %}
-                    {{ sonata_page_render_container('content_top', page) }}
-                </div>
+    {% if page is defined %}
+        <div>
+            {% if page.name != 'global'%}
+                {{ sonata_page_render_container('content_top', 'global') }}
             {% endif %}
+            {{ sonata_page_render_container('content_top', page) }}
+        </div>
+    {% endif %}
 
+    <div class="container">
+        <div class="content">
             <div class="row">
                 {% block page_content %}
                     {% if content is defined %}

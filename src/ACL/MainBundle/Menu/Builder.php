@@ -93,7 +93,10 @@ class Builder extends ContainerAware
                                         'routeParameters' => array(
                                             'path' => '/treinamento',
                                         )));
-
+        $menu->addChild('Contato', array( 'route' => 'page_slug',
+                                              'routeParameters' => array(
+                                                  'path' => '/contato',
+                                              )));
 
 //        foreach ($shopCategories as $category) {
 //            $shop->addChild($category->getName(), array(
