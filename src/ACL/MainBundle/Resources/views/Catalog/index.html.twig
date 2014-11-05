@@ -9,8 +9,11 @@ file that was distributed with this source code.
 
 #}
 
-{% extends 'SonataPageBundle:BlockAdmin:edit.html.twig' %}
+{% extends 'SonataProductBundle:Catalog:layout.html.twig' %}
 
-{% block block %}
+
+{% block products %}
+
+    {% include 'SonataProductBundle:Catalog:' ~ display_mode ~ '.html.twig' %}
 
 {% endblock %}

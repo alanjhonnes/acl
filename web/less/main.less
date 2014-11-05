@@ -1,6 +1,15 @@
 @main-text-color: #111111;
 @brand-color: #a31a1d;
 @nav-color: #ffffff;
+@nav-top-link-inactive: #c27c7d;
+
+@nav-left-background: #9a1e20;
+
+@tab-background: #dcd9d9;
+@tab-inactive-background: #cbcaca;
+
+@nav-top-height: 116px;
+@nav-top-arrow-height: 11px;
 
 html, body {
   width: 100%;
@@ -15,6 +24,92 @@ body {
   background-attachment: fixed;
   color: @main-text-color;
 }
+
+.nav-top {
+  background-color: @brand-color;
+  height: @nav-top-height;
+  font-size: 17px;
+
+  > li {
+    height: @nav-top-height;
+    vertical-align: middle;
+    &.active {
+      a {
+        color: #ffffff;
+        background-color: transparent;
+        background-position: center @nav-top-height - @nav-top-arrow-height;
+      }
+
+    }
+    a {
+      color: @nav-top-link-inactive;
+      height: @nav-top-height;
+      line-height: @nav-top-height - 30px;
+      border-radius: 0;
+      background-color: transparent;
+      background-position: center @nav-top-height;
+      background-repeat: no-repeat;
+      background-image: url(../img/menu-active.png);
+      -webkit-transition-property: background-position;
+      transition-property: background-position;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+
+      &:hover {
+        color: #ffffff;
+        background-color: transparent;
+        background-position: center @nav-top-height - @nav-top-arrow-height;
+      }
+    }
+  }
+
+
+}
+
+.nav-left {
+  background-color: @nav-left-background;
+  background-image: url(../img/menu-left-background.png);
+  background-repeat: repeat-y;
+  background-position: top;
+
+  color: #ffffff;
+
+  .active {
+    border-color: #ffffff;
+    border-style: solid;
+    border-bottom-width: 1px;
+    background-image: url(../img/menu-active.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+  > ul {
+    border-bottom-color: #cc171b;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 15px 12px;
+    font-weight: bold;
+    > ul {
+      font-weight: normal;
+    }
+  }
+}
+
+.product {
+
+}
+
+.title {
+  color: @brand-color;
+  font-weight: bold;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: @brand-color;
+}
+
+.tab {
+  background-color: @tab-background;
+}
+
 
 
 

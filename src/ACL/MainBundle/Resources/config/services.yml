@@ -23,3 +23,10 @@ services:
         arguments: [~, ACL\MainBundle\Entity\Partner, ACLMainBundle:PartnerAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Parceiro}
+
+
+    acl.block.service.partners:
+        class: ACL\MainBundle\Block\PartnersBlockService
+        arguments: [acl.block.service.partners, @templating]
+        tags:
+            - { name: sonata.block }

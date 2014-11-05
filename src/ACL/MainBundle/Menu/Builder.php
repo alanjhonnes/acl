@@ -39,84 +39,72 @@ class Builder extends ContainerAware
         $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
 
         $menuOptions = array_merge($options, array(
-            'childrenAttributes' => array('class' => 'nav nav-pills'),
+            'childrenAttributes' => array('class' => 'nav nav-justified nav-top'),
         ));
 
         $menu = $factory->createItem('main', $menuOptions);
 
+
         $shopMenuParams = array('route' => 'sonata_catalog_index');
 
-        if (count($shopCategories) > 0 && !$isFooter) {
-            $shopMenuParams = array_merge($shopMenuParams, array(
-                'attributes' => array('class' => 'dropdown'),
-                'childrenAttributes' => array('class' => 'dropdown-menu'),
-                'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-                'label' => 'Products <b class="caret caret-menu"></b>',
-                'extras' => array(
-                    'safe_label' => true,
-                )
-            ));
-        }
-
-        if ($isFooter) {
-            $shopMenuParams = array_merge($shopMenuParams, array(
-                'attributes' => array('class' => 'span2'),
-                "childrenAttributes" => array('class' => 'nav')
-            ));
-        }
-
-        $shop = $menu->addChild('Shop', $shopMenuParams);
-
-        $menu->addChild('News', array('route' => 'sonata_news_home'));
-
-        foreach ($shopCategories as $category) {
-            $shop->addChild($category->getName(), array(
-                'route' => 'sonata_catalog_category',
-                'routeParameters' => array(
-                    'category_id'   => $category->getId(),
-                    'category_slug' => $category->getSlug()),
-                )
-            );
-        }
-
-        $dropdownExtrasOptions = $isFooter ? array(
-            'uri' => "#",
-            'attributes' => array('class' => 'span2'),
-            'childrenAttributes' => array('class' => 'nav'),
-        ) : array(
-            'uri' => "#",
-            'attributes' => array('class' => 'dropdown'),
-            'childrenAttributes' => array('class' => 'dropdown-menu'),
-            'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-            'label' => 'Solutions <b class="caret caret-menu"></b>',
-            'extras' => array(
-                'safe_label' => true,
-            )
-        );
-        //$extras = $factory->createItem('Discover', $dropdownExtrasOptions);
-
-        //$extras->addChild('Bundles', array('route' => 'page_slug', 'routeParameters' => array('path' => '/bundles')));
-        //$extras->addChild('Api', array('route' => 'page_slug', 'routeParameters' => array('path' => '/api-landing')));
-        //$extras->addChild('Gallery', array('route' => 'sonata_media_gallery_index'));
-        //$extras->addChild('Media & SEO', array('route' => 'sonata_demo_media'));
-
-        //$menu->addChild($extras);
-
-        $menu->addChild('Admin', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/user'
-            )
-        ));
-
-//        if ($isFooter) {
-//            $menu->addChild('Legal notes', array(
-//                'route' => 'page_slug',
-//                'routeParameters' => array(
-//                    'path' => '/legal-notes',
+//        if (count($shopCategories) > 0 && !$isFooter) {
+//            $shopMenuParams = array_merge($shopMenuParams, array(
+//                'attributes' => array('class' => 'dropdown'),
+//                'childrenAttributes' => array('class' => 'dropdown-menu'),
+//                'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
+//                'label' => 'Products <b class="caret caret-menu"></b>',
+//                'extras' => array(
+//                    'safe_label' => true,
 //                )
 //            ));
 //        }
+//
+//        if ($isFooter) {
+//            $shopMenuParams = array_merge($shopMenuParams, array(
+//                'attributes' => array('class' => 'span2'),
+//                "childrenAttributes" => array('class' => 'nav')
+//            ));
+//        }
+
+        $menu->addChild('Empresa', array( 'route' => 'page_slug',
+                                          'routeParameters' => array(
+                                              'path' => '/empresa',
+                                          )));
+
+
+
+        $shop = $menu->addChild('Produtos', array('label' => 'Produtos', 'route' => 'sonata_catalog_index'));
+
+        $menu->addChild('Parceiros', array( 'route' => 'page_slug',
+                                            'routeParameters' => array(
+                                                'path' => '/parceiros',
+                                            )));
+
+
+
+        $menu->addChild('Notícias', array('route' => 'sonata_news_archive'));
+
+        $menu->addChild('Cases', array( 'route' => 'page_slug',
+                                            'routeParameters' => array(
+                                                'path' => '/cases',
+                                            )));
+
+        $menu->addChild('Treinamento', array( 'route' => 'page_slug',
+                                        'routeParameters' => array(
+                                            'path' => '/treinamento',
+                                        )));
+
+
+//        foreach ($shopCategories as $category) {
+//            $shop->addChild($category->getName(), array(
+//                'route' => 'sonata_catalog_category',
+//                'routeParameters' => array(
+//                    'category_id'   => $category->getId(),
+//                    'category_slug' => $category->getSlug()),
+//                )
+//            );
+//        }
+
 
         return $menu;
     }

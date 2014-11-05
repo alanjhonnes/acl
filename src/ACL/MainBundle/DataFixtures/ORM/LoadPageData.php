@@ -131,9 +131,9 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $homepage->setName('Home');
         $homepage->setTitle('Homepage');
         $homepage->setEnabled(true);
-        $homepage->setDecorate(0);
+        $homepage->setDecorate(1);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $homepage->setTemplateCode('2columns');
+        $homepage->setTemplateCode('default');
         $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 
@@ -472,7 +472,7 @@ CONTENT
         $header->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2><a href="/">Sonata Demo</a></h2>');
+        $text->setSetting('content', '<a class="logo" href="/"><img src="/img/logo.png" alt="ACL Security"/></a></h2>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
@@ -558,66 +558,13 @@ CONTENT
         // Footer left: add a simple text block
         $footerLeft->addChildren($text = $blockManager->create());
 
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2>Sonata Demo</h2><p class="handcraft">HANDCRAFTED IN PARIS<br />WITH MIXED HERITAGE</p><p><a href="http://twitter.com/sonataproject" target="_blank">Follow Sonata on Twitter</a></p>');
+        $text->setType('acl.block.service.partners');
+//        $text->setSetting('content', '<h2>Sonata Demo</h2><p class="handcraft">HANDCRAFTED IN PARIS<br />WITH MIXED HERITAGE</p><p><a href="http://twitter.com/sonataproject" target="_blank">Follow Sonata on Twitter</a></p>');
 
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
 
-        // Footer left links
-        $footerLinksLeft->addChildren($text = $blockManager->create());
-
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-<h4>PRODUCT</h4>
-<ul class="links">
-    <li><a href="/bundles">Sonata</a></li>
-    <li><a href="/api-landing">API</a></li>
-    <li><a href="/faq">FAQ</a></li>
-</ul>
-CONTENT
-        );
-
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($global);
-
-        // Footer middle links
-        $footerLinksCenter->addChildren($text = $blockManager->create());
-
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-<h4>ABOUT</h4>
-<ul class="links">
-    <li><a href="http://www.sonata-project.org/about" target="_blank">About Sonata</a></li>
-    <li><a href="/legal-notes">Legal notes</a></li>
-    <li><a href="/shop/payment/terms-and-conditions">Terms</a></li>
-</ul>
-CONTENT
-        );
-
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($global);
-
-        // Footer right links
-        $footerLinksRight->addChildren($text = $blockManager->create());
-
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-<h4>COMMUNITY</h4>
-<ul class="links">
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="http://www.github.com/sonata-project" target="_blank">Github</a></li>
-    <li><a href="/contact-us">Contact us</a></li>
-</ul>
-CONTENT
-        );
-
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($global);
 
         $pageManager->save($global);
     }

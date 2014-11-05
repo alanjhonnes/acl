@@ -33,10 +33,6 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
  */
 class PartnersBlockService extends BaseBlockService
 {
-    /**
-     * @var FormInterface
-     */
-    protected $form;
 
     /**
      * Constructor
@@ -46,11 +42,10 @@ class PartnersBlockService extends BaseBlockService
      * @param FormFactoryInterface $formFactory Symfony FormFactory service
      * @param string               $formType    Newsletter form type
      */
-    public function __construct($name, EngineInterface $templating, FormFactoryInterface $formFactory, $formType)
+    public function __construct($name, EngineInterface $templating)
     {
         parent::__construct($name, $templating);
 
-        $this->form = $formFactory->create($formType);
     }
 
     /**
@@ -61,7 +56,6 @@ class PartnersBlockService extends BaseBlockService
         return $this->renderPrivateResponse($blockContext->getTemplate(), array(
                 'block'   => $blockContext->getBlock(),
                 'context' => $blockContext,
-                'form'    => $this->form->createView(),
             ));
     }
 
@@ -96,6 +90,6 @@ class PartnersBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Bloco Parceiros ()';
+        return 'Bloco Parceiros';
     }
 }

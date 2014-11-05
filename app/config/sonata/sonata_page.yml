@@ -42,9 +42,11 @@ sonata_page:
     assets:
         stylesheets:
             - assetic/sonata_front_css.css
+            - css/main.css
 
         javascripts:
             - assetic/sonata_front_js.js
+            - js/main.js
 
     default_template: default
     templates:
@@ -110,7 +112,7 @@ sonata_page:
                      F: footer
 
     page_defaults:
-        homepage: { decorate: false, enabled: true }
+        homepage: { decorate: true, enabled: true }
 
     caches:
         esi:
