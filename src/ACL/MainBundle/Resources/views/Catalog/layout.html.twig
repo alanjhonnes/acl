@@ -1,44 +1,17 @@
-{#
-
-This file is part of the Sonata package.
-
-(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-
-#}
-
-{% sonata_template_box 'This is the catalog template. Feel free to override it.' %}
-
-{% block sonata_page_breadcrumb %}
-    <div class="row-fluid clearfix">
-        {{ sonata_block_render_event('breadcrumb', { 'context': 'catalog', 'category': category, 'current_uri': app.request.requestUri }) }}
-    </div>
-{% endblock %}
-
 <div class="row">
 
     <div class="col-sm-3">
 
         {% block product_category %}
-            {{ sonata_block_render({'type': 'sonata.product.block.categories_menu', 'settings': {
+            {{ sonata_block_render({'type': 'acl.block.service.categories_menu', 'settings': {
                 'current_uri': app.request.requestUri,
                 'extra_cache_keys': {
-                    'block_id':    'sonata.product.block.categories_menu',
+                    'block_id':    'acl.block.service.categories_menu',
                     'updated_at':  'now',
                 },
                 'ttl': 60
             }}) }}
         {% endblock %}
-
-        {#{% block product_filter %}#}
-            {#{% if provider %}#}
-                {#<div class="well" style="padding: 8px 0;">#}
-                    {#{{ sonata_block_render({'type': 'sonata.product.block.filters_menu'}, {'product_provider': provider, 'current_uri': app.request.requestUri}) }}#}
-                {#</div>#}
-            {#{% endif %}#}
-        {#{% endblock %}#}
 
     </div>
 
@@ -48,7 +21,7 @@ file that was distributed with this source code.
 
             {% block no_products %}
                 <div class="no-products-available">
-                    {% trans from 'SonataProductBundle' %}no_products_available{% endtrans %}
+                    Não há produtos disponíveis.
                 </div>
             {% endblock %}
 
@@ -67,7 +40,7 @@ file that was distributed with this source code.
                             </h4>
                         </div>
                         <div class="col-sm-9">
-                            {% include 'SonataProductBundle:Catalog:_pager.html.twig' %}
+                            {% include 'ACLMainBundle:Catalog:_pager.html.twig' %}
                         </div>
                     </div>
                 </div>
@@ -78,7 +51,7 @@ file that was distributed with this source code.
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-sm-12">
-                                {% include 'SonataProductBundle:Catalog:_pager.html.twig' %}
+                                {% include 'ACLMainBundle:Catalog:_pager.html.twig' %}
                             </div>
                         </div>
                     </div>

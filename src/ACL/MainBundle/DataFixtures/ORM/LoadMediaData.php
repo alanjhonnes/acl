@@ -11,6 +11,7 @@
 
 namespace ACL\MainBundle\DataFixtures\ORM;
 
+use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -23,6 +24,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
@@ -45,26 +47,40 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $manager = $this->getMediaManager();
         $faker = $this->getFaker();
 
-//        $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
-//        $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
-//        $switzerland = Finder::create()->name('switzerland_2012-05-19_006.jpg')->in(__DIR__.'/../data/files/sylvain-switzerland');
+        $galleryFiles = Finder::create()->name('*.jpg')->in(__DIR__.'/../data/gallery');
+		$iconFiles = Finder::create()->name('*.png')->in(__DIR__.'/../data/icons');
 
         $i = 0;
-//        foreach ($canada as $file) {
-//            $media = $manager->create();
-//            $media->setBinaryContent($file);
-//            $media->setEnabled(true);
-//            $media->setName('Canada');
-//            $media->setDescription('Canada');
-//            $media->setAuthorName('Gilles Rosenbaum');
-//            $media->setCopyright('CC BY-NC-SA 4.0');
-//
-//            $this->addReference('sonata-media-'.($i++), $media);
-//
-//            $manager->save($media, 'default', 'sonata.media.provider.image');
-//
-//            $this->addMedia($gallery, $media);
-//        }
+        foreach ($galleryFiles as $file) {
+            $media = $manager->create();
+            $media->setBinaryContent($file);
+            $media->setEnabled(true);
+            $media->setName('Imagem galeria 1');
+            $media->setDescription('Descricao da imagem');
+            $media->setAuthorName('');
+            $media->setCopyright('CC BY-NC-SA 4.0');
+
+            $this->addReference('sonata-media-'.($i++), $media);
+
+            $manager->save($media, 'default', 'sonata.media.provider.image');
+
+            $this->addMedia($gallery, $media);
+        }
+		$i = 0;
+	    foreach ($iconFiles as $file) {
+		    $media = $manager->create();
+		    $media->setBinaryContent($file);
+		    $media->setEnabled(true);
+		    $media->setName($file->getBasename());
+		    $media->setDescription('Descricao da imagem');
+		    $media->setAuthorName('');
+		    $media->setCopyright('CC BY-NC-SA 4.0');
+			$media->setContext('Categorias');
+		    $this->addReference('icon-'.$file->getBasename('.png'), $media);
+
+		    $manager->save($media, 'sonata_category', 'sonata.media.provider.image');
+
+	    }
 //
 //        foreach ($paris as $file) {
 //            $media = $manager->create();
@@ -99,8 +115,9 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 //        }
 
         $gallery->setEnabled(true);
-        $gallery->setName($faker->sentence(4));
-        $gallery->setDefaultFormat('small');
+        $gallery->setName('Galeria da Homepage');
+
+        $gallery->setDefaultFormat('full');
         $gallery->setContext('default');
 
         $this->getGalleryManager()->update($gallery);

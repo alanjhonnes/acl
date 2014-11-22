@@ -64,10 +64,10 @@ class PostsBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $partners = $this->getPostManager()->findLatest;
+        $posts = $this->getPostManager()->findLatest;
 
         return $this->renderResponse($blockContext->getTemplate(), array(
-                'partners' => $partners,
+                'posts' => $posts,
                 'block'   => $blockContext->getBlock(),
                 'context' => $blockContext,
             ));

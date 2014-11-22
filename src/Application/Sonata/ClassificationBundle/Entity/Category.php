@@ -39,9 +39,4 @@ class Category extends BaseCategory
     {
         return $this->id;
     }
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
-     */
-    protected $icon;
 }

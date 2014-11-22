@@ -66,6 +66,10 @@ class Product {
 	protected $position;
 
 	/**
+	 * @ORM\Column(type="boolean")
+	 */
+	protected $enabled = true;
+	/**
 	 * @var
 	 * @ORM\ManyToOne(targetEntity="Application\Sonata\ClassificationBundle\Entity\Category")
      */
@@ -75,7 +79,7 @@ class Product {
      * @var
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      */
-    protected $mainImage;
+    protected $image;
 
     /**
      * @var
@@ -365,5 +369,51 @@ class Product {
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     * @return Product
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean 
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $image
+     * @return Product
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

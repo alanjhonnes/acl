@@ -1,7 +1,7 @@
 acl_main:
     resource: "@ACLMainBundle/Controller/"
     type:     annotation
-    prefix:   /shop/catalog
+    prefix:   /
 
 # Internal routing configuration to handle ESI
 #_internal:

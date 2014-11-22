@@ -71,8 +71,8 @@ class ProductAdmin extends Admin
 
         $formMapper
             ->with( 'Geral', array( 'class' => 'col-md-8' ) )
-            ->add( 'title' )
-            ->add( 'description', 'textarea', array( 'required' => true ) )
+            ->add( 'title', null, array('label' => 'Título') )
+            ->add( 'description', 'textarea', array( 'required' => true, 'label' => 'Descrição' ) )
             ->add(
                 'content',
                 'sonata_formatter_type',
@@ -84,50 +84,52 @@ class ProductAdmin extends Admin
                         'attr' => array( 'class' => 'col-md-8', 'rows' => 20 )
                     ),
                     'listener'             => true,
-                    'target_field'         => 'content'
+                    'target_field'         => 'content',
+                    'label' => 'Conteúdo'
                 )
             )
             ->end()
             ->with( 'Opções', array( 'class' => 'col-md-4' ) )
-            ->add( 'position', 'integer', array( 'required' => false, 'data' => 0 ) )
-            ->add( 'category', 'sonata_type_model_list' )
+            ->add( 'position', 'integer', array( 'required' => false, 'data' => 0, 'label' => 'Posição' ) )
+	        ->add('enabled', null, array('required' => false, 'label' => 'Ativo'))
+            ->add( 'category', 'sonata_type_model_list', array('label' => 'Categoria') )
             ->add(
-                'mainImage',
+                'image',
                 'sonata_type_model_list',
-                array( 'required' => false ),
+                array( 'required' => false, 'label' => 'Imagem principal' ),
                 array(
                     'link_parameters' => array(
-                        'context' => 'product'
+                        'context' => 'Produtos'
                     )
                 )
             )
             ->add(
                 'gallery',
                 'sonata_type_model_list',
-                array( 'required' => false ),
+                array( 'required' => false, 'label' => 'Galeria de Fotos' ),
                 array(
                     'link_parameters' => array(
-                        //'context' => 'product'
+                        'context' => 'Produtos'
                     )
                 )
             )
             ->add(
                 'downloads',
                 'sonata_type_model_list',
-                array( 'required' => false ),
+                array( 'required' => false, 'label' => 'Galeria de Downloads' ),
                 array(
                     'link_parameters' => array(
-                        //'context' => 'product'
+                        'context' => 'Downloads'
                     )
                 )
             )
             ->add(
                 'videos',
                 'sonata_type_model_list',
-                array( 'required' => false ),
+                array( 'required' => false, 'label' => 'Galeria de Vídeos' ),
                 array(
                     'link_parameters' => array(
-                        //'context' => 'product'
+	                    'context' => 'Videos'
                     )
                 )
             )

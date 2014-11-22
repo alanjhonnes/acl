@@ -9,11 +9,11 @@ file that was distributed with this source code.
 
 #}
 
-{% extends 'SonataProductBundle:Catalog:layout.html.twig' %}
+{% extends 'ACLMainBundle:Catalog:layout.html.twig' %}
 
 
 {% block products %}
 
-    {% include 'SonataProductBundle:Catalog:' ~ display_mode ~ '.html.twig' %}
+    {% include 'ACLMainBundle:Catalog:' ~ display_mode ~ '.html.twig' %}
 
 {% endblock %}

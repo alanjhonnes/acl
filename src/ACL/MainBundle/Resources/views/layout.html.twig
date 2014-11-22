@@ -11,22 +11,24 @@ file that was distributed with this source code.
 {% extends 'ACLMainBundle::base_layout.html.twig' %}
 
 {% block sonata_page_container %}
-    <div class="container">
-        <div class="content">
-            <div class="row">
-                <a class="logo col-md-3" href="{{ path('page_slug', {'path' : '/'}) }}">
-                    <img class="img-responsive" src="/img/logo.png" alt="ACL Security"/>
-                </a>
-                <div class="col-md-9" role="navigation">
-                    {{ knp_menu_render('ACLMainBundle:Builder:mainMenu') }}
-                </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <a class="logo col-md-3" href="{{ path('page_slug', {'path' : '/'}) }}">
+                        <img class="img-responsive" src="/img/logo.png" alt="ACL Security"/>
+                    </a>
+                    <div class="col-md-9" role="navigation">
+                        {{ knp_menu_render('ACLMainBundle:Builder:mainMenu', { template: 'ACLMainBundle:MenuRenderer:knp_menu.html.twig'}  ) }}
+                    </div>
 
-            </div>
-            <div class="row">
-                {{ sonata_page_render_container('header', 'global') }}
+                </div>
+                <div class="row">
+                    {{ sonata_page_render_container('header', 'global') }}
+                </div>
             </div>
         </div>
-    </div>
+    </header>
 
     {% if page is defined %}
         <div>
@@ -64,9 +66,18 @@ file that was distributed with this source code.
                 </div>
             {% endif %}
         </div>
-
-        <footer class="row">
-            {{ sonata_page_render_container('footer', 'global') }}
-        </footer>
     </div>
+
+    <footer>
+        {{ sonata_page_render_container('footer', 'global') }}
+        <div class="container">
+            <div class="row">
+                <div class="copyright col-xs-6">
+                    Todos os Direitos Reservados a ACL® Security
+                </div>
+                <div class="col-xs-6 text-right"><a class="doisd" href="http://doisd.com.br" target="_blank">[2:d]</a></div>
+            </div>
+        </div>
+    </footer>
+
 {% endblock %}

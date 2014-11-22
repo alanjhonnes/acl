@@ -59,6 +59,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $alarmes->setSlug('alarmes');
         $alarmes->setDescription('Descricao da categoria alarmes');
         $alarmes->setEnabled(true);
+	    $alarmes->setMedia($this->getReference('icon-alarmes'));
         $this->getCategoryManager()->save($alarmes);
         $this->setReference('alarmes_category', $alarmes);
 
@@ -148,6 +149,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $cftv->setSlug('cftv');
         $cftv->setDescription('Descrição da categoria CFTV');
         $cftv->setEnabled(true);
+	    $cftv->setMedia($this->getReference('icon-cftv'));
         $this->getCategoryManager()->save($cftv);
         $this->setReference('cftv_category', $cftv);
 
@@ -188,6 +190,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 	    $acesso->setSlug('acesso');
 	    $acesso->setDescription('Descrição da categoria Acesso');
 	    $acesso->setEnabled(true);
+	    $acesso->setMedia($this->getReference('icon-acesso'));
 	    $this->getCategoryManager()->save($acesso);
 	    $this->setReference('acesso_category', $acesso);
 
@@ -258,6 +261,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $incendio->setSlug('incendio');
         $incendio->setDescription('Descrição da categoria Incêndio');
         $incendio->setEnabled(true);
+	    $incendio->setMedia($this->getReference('icon-incendio'));
         $this->getCategoryManager()->save($incendio);
         $this->setReference('incendio_category', $incendio);
 

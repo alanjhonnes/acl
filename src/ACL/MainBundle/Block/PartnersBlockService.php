@@ -103,6 +103,6 @@ class PartnersBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Bloco Parceiros';
+        return 'Parceiros';
     }
 }

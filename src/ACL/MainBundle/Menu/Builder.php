@@ -73,7 +73,7 @@ class Builder extends ContainerAware
 
 
 
-        $shop = $menu->addChild('Produtos', array('label' => 'Produtos', 'route' => 'sonata_catalog_index'));
+        $shop = $menu->addChild('Produtos', array('label' => 'Produtos', 'route' => 'catalog_index'));
 
         $menu->addChild('Parceiros', array( 'route' => 'page_slug',
                                             'routeParameters' => array(

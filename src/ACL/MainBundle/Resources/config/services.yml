@@ -2,6 +2,8 @@ parameters:
 #    acl.main.example.class: ACL\MainBundle\Example
 
     acl.main.partner.class: ACL\MainBundle\Entity\Partner
+    acl.main.product.class: ACL\MainBundle\Entity\Product
+    acl.main.category.class: Application\Sonata\ClassificationBundle\Entity\Category
 
 services:
 #    acl.main.example:
@@ -12,6 +14,17 @@ services:
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+    acl.block.service.categories_menu:
+        class: ACL\MainBundle\Block\CategoryMenuBlockService
+        arguments: [acl.block.service.categories_menu, @templating, @knp_menu.menu_provider, @acl.menu.menu.product_menu_builder]
+        tags:
+            - { name: sonata.block }
+
+    acl.menu.menu.product_menu_builder:
+        class: ACL\MainBundle\Menu\ProductMenuBuilder
+        arguments: [@knp_menu.factory, @acl.main.category.manager, @router]
+
+
     acl_main.admin.product:
         class: ACL\MainBundle\Admin\ProductAdmin
         arguments: [~, ACL\MainBundle\Entity\Product, ACLMainBundle:ProductAdmin]
@@ -39,9 +52,29 @@ services:
         tags:
             - { name: sonata.block }
 
+    acl.block.service.categories:
+        class: ACL\MainBundle\Block\CategoryBlockService
+        arguments: [acl.block.service.categories, @templating, @sonata.classification.manager.category]
+        tags:
+            - { name: sonata.block }
+
+
+
 
     acl.main.partner.manager:
         class: ACL\MainBundle\Entity\PartnerManager
         arguments:
             - %acl.main.partner.class%
             - @doctrine
+
+    acl.main.category.manager:
+        class: ACL\MainBundle\Entity\ACLCategoryManager
+        arguments:
+            - %acl.main.category.class%
+            - @doctrine
+
+    acl.main.product.manager:
+            class: ACL\MainBundle\Entity\ProductManager
+            arguments:
+                - %acl.main.product.class%
+                - @doctrine

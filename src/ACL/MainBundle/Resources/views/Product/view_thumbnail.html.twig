@@ -25,9 +25,6 @@ file that was distributed with this source code.
             {% endif %}
         </div>
         <div class="panel-footer">
-            <span class="text-left">
-                {% include "SonataBasketBundle:Basket:add_product_form_button.html.twig" %}
-            </span>
             <span itemprop="price" class="text-right">
                 {% if not sonata_product_has_variations(product) %}
                     {{ sonata_product_price(product, currency, true)|number_format_currency(currency) }}

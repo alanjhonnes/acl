@@ -14,6 +14,10 @@
                 <source>Partner</source>
                 <target>Parceiro</target>
             </trans-unit>
+            <trans-unit id="sonata_content">
+                <source>sonata_content</source>
+                <target>Conteudo</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

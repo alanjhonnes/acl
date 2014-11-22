@@ -2,22 +2,30 @@
 
 namespace ACL\MainBundle\Controller;
 
+use ACL\MainBundle\Entity\ProductManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class CatalogController
+ * @package ACL\MainBundle\Controller
+ * @Route(path="/catalogo")
+ */
 class CatalogController extends Controller
 {
+
+	protected $request;
+
 	/**
 	 * @param $request
 	 *
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 *
-	 * @Route(name="sonata_catalog_index", path="/")
-	 * @Route(name="sonata_catalog_category", path="/{category_slug}/{category_id}")
+	 * @Route(name="catalog_index", path="/")
+	 * @Route(name="catalog_category", path="/{category_slug}/{category_id}")
 	 *
 	 * @throws NotFoundHttpException
 	 *
@@ -25,12 +33,12 @@ class CatalogController extends Controller
 	public function indexAction(Request $request, $category_slug = 'all', $category_id = 0)
 	{
 
-
-		$page        = $this->getRequest()->get('page', 1);
-		$displayMax  = $this->getRequest()->get('max', 9);
-		$displayMode = $this->getRequest()->get('mode', 'grid');
-		$filter      = $this->getRequest()->get('filter');
-		$option      = $this->getRequest()->get('option');
+		$this->request = $request;
+		$page        = $this->request->get('page', 1);
+		$displayMax  = $this->request->get('max', 9);
+		$displayMode = $this->request->get('mode', 'grid');
+		$filter      = $this->request->get('filter');
+		$option      = $this->request->get('option');
 
 		if (!in_array($displayMode, array('grid'))) { // "list" mode will be added later
 			throw new NotFoundHttpException(sprintf('Given display_mode "%s" doesn\'t exist.', $displayMode));
@@ -41,9 +49,9 @@ class CatalogController extends Controller
 		$this->get('sonata.seo.page')->setTitle($category ? $category->getName() : $this->get('translator')->trans('catalog_index_title'));
 
 		$pager = $this->get('knp_paginator');
-		$pagination = $pager->paginate($this->getProductSetManager()->getCategoryActiveProductsQueryBuilder($category, $filter, $option), $page, $displayMax);
+		$pagination = $pager->paginate($this->getProductManager()->getCategoryActiveProductsQueryBuilder($category, $filter, $option), $page, $displayMax);
 
-		return $this->render('SonataProductBundle:Catalog:index.html.twig', array(
+		return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
 			'display_mode' => $displayMode,
 			'pager'        => $pagination,
 			'category'     => $category,
@@ -57,8 +65,8 @@ class CatalogController extends Controller
 	 */
 	protected function retrieveCategoryFromQueryString()
 	{
-		$categoryId   = $this->getRequest()->get('category_id');
-		$categorySlug = $this->getRequest()->get('category_slug');
+		$categoryId   = $this->request->get('category_id');
+		$categorySlug = $this->request->get('category_slug');
 
 		if (!$categoryId || !$categorySlug) {
 			return null;
@@ -71,45 +79,11 @@ class CatalogController extends Controller
 	}
 
 	/**
-	 * Gets the product provider associated with $category if any
-	 *
-	 * @param CategoryInterface $category
-	 *
-	 * @return null|\Sonata\Component\Product\ProductProviderInterface
+	 * @return ProductManager
 	 */
-	protected function getProviderFromCategory(CategoryInterface $category = null)
+	protected function getProductManager()
 	{
-		if (null === $category) {
-			return null;
-		}
-
-		$product = $this->getProductSetManager()->findProductForCategory($category);
-
-		return $product ? $this->getProductPool()->getProvider($product) : null;
-	}
-
-	/**
-	 * @return Pool
-	 */
-	protected function getProductPool()
-	{
-		return $this->get('sonata.product.pool');
-	}
-
-	/**
-	 * @return ProductSetManager
-	 */
-	protected function getProductSetManager()
-	{
-		return $this->get('sonata.product.set.manager');
-	}
-
-	/**
-	 * @return CurrencyDetector
-	 */
-	protected function getCurrencyDetector()
-	{
-		return $this->get('sonata.price.currency.detector');
+		return $this->get('acl.main.product.manager');
 	}
 
 	/**

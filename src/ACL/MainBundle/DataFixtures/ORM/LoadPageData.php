@@ -50,6 +50,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 	    $this->createCompanyPage($site);
 	    $this->createContactPage($site);
         $this->createPartnersPage($site);
+        $this->createProjectsPage($site);
+        $this->createTrainningPage($site);
 
         //$this->createGalleryIndex($site);
         //$this->createMediaPage($site);
@@ -146,31 +148,19 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'code' => 'content_top',
         )));
 
-        $contentTop->setName('The container top container');
+        $contentTop->setName('Container do Topo');
 
         $blockManager->save($contentTop);
 
-        // add a block text
-        $contentTop->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-<div class="col-md-3 welcome"><h2>Welcome</h2></div>
-<div class="col-md-9">
-    <p>
-        This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
-        This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
-    </p>
-
-    <p>
-        First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
-        blocks.
-    </p>
-</div>
-CONTENT
-        );
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($homepage);
+	    $contentTop->addChildren($gallery = $blockManager->create());
+        $gallery->setType('sonata.media.block.gallery');
+        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
+        $gallery->setSetting('context', 'default');
+        $gallery->setSetting('format', 'full');
+        $gallery->setSetting('title', 'full');
+        $gallery->setPosition(1);
+        $gallery->setEnabled(true);
+        $gallery->setPage($homepage);
 
 
         $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
@@ -178,22 +168,16 @@ CONTENT
             'page' => $homepage,
             'code' => 'content',
         )));
-        $content->setName('The content container');
+        $content->setName('Container de conteúdo');
         $blockManager->save($content);
 
-//        // Add media gallery block
-//        $content->addChildren($gallery = $blockManager->create());
-//        $gallery->setType('sonata.media.block.gallery');
-//        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
-//        $gallery->setSetting('context', 'default');
-//        $gallery->setSetting('format', 'big');
-//        $gallery->setPosition(1);
-//        $gallery->setEnabled(true);
-//        $gallery->setPage($homepage);
 
-	    //TODO add ACL categories block
+	    $contentTop->addChildren($categories = $blockManager->create());
+	    $categories->setType('acl.block.service.categories');
+	    $categories->setPosition(1);
+	    $categories->setEnabled(true);
+	    $categories->setPage($homepage);
 
-	    //TODO add ACL partners page
 
         // Add recent products block
 //        $content->addChildren($newProductsBlock = $blockManager->create());
@@ -212,39 +196,7 @@ CONTENT
         ), function ($container) {
             $container->setSetting('layout', '{{ CONTENT }}');
         }));
-        $bottom->setName('The bottom content container');
-
-//        // Add homepage newsletter container
-//        $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
-//            'enabled' => true,
-//            'page'    => $homepage,
-//            'code'    => 'bottom_newsletter',
-//        ), function ($container) {
-//            $container->setSetting('layout', '<div class="block-newsletter col-sm-6 well">{{ CONTENT }}</div>');
-//        }));
-//        $bottomNewsletter->setName('The bottom newsetter container');
-//        $bottomNewsletter->addChildren($newsletter = $blockManager->create());
-//        $newsletter->setType('sonata.demo.block.newsletter');
-//        $newsletter->setPosition(1);
-//        $newsletter->setEnabled(true);
-//        $newsletter->setPage($homepage);
-//
-//        // Add homepage embed tweet container
-//        $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer(array(
-//            'enabled' => true,
-//            'page'    => $homepage,
-//            'code'    => 'bottom_embed',
-//        ), function ($container) {
-//            $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
-//        }));
-//        $bottomEmbed->setName('The bottom embedded tweet container');
-//        $bottomEmbed->addChildren($embedded = $blockManager->create());
-//        $embedded->setType('sonata.seo.block.twitter.embed');
-//        $embedded->setPosition(1);
-//        $embedded->setEnabled(true);
-//        $embedded->setSetting('tweet', "https://twitter.com/dunglas/statuses/438337742565826560");
-//        $embedded->setSetting('lang', "en");
-//        $embedded->setPage($homepage);
+        $bottom->setName('Container do conteúdo debaixo');
 
         $pageManager->save($homepage);
     }
@@ -266,7 +218,7 @@ CONTENT
         $category->setDecorate(1);
         $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
         $category->setTemplateCode('default');
-        $category->setRouteName('sonata_catalog_index');
+        $category->setRouteName('catalog_index');
         $category->setSite($site);
         $category->setParent($this->getReference('page-homepage'));
 
@@ -284,7 +236,7 @@ CONTENT
      */
     public function createCompanyPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'who-we-are', 'Who we are', <<<CONTENT
+        $this->createTextContentPage($site, 'empresa', 'Empresa', <<<CONTENT
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -292,12 +244,23 @@ CONTENT
         );
     }
 
+	//TODO
     public function createPartnersPage(SiteInterface $site){
 
     }
 
+	//TODO
+	public function createProjectsPage(SiteInterface $site){
+
+	}
+
+	//TODO
+	public function createTrainningPage(SiteInterface $site){
+
+	}
+
     /**
-     * Creates the "Contact us" content page (link available in footer)
+     * Creates the "Contact us" content page
      *
      * @param SiteInterface $site
      *
@@ -347,7 +310,7 @@ CONTENT
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page'    => $page,
-            'code'    => 'content_top',
+            'code'    => 'content',
         )));
 
 //        // add the breadcrumb
@@ -400,7 +363,7 @@ CONTENT
         // Add text content block
         $block->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2>Error 404</h2><div>Page not found.</div>');
+        $text->setSetting('content', '<h2>Erro 404</h2><div>Página não encontrada.</div>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($page);
@@ -440,7 +403,7 @@ CONTENT
         // Add text content block
         $block->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2>Error 500</h2><div>Internal error.</div>');
+        $text->setSetting('content', '<h2>Error 500</h2><div>Erro Interno.</div>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($page);
@@ -478,7 +441,7 @@ CONTENT
             'page' => $global,
             'code' => 'header-top',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="pull-right">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div>{{ CONTENT }}</div>');
         }));
 
         $headerTop->setPosition(1);
@@ -505,12 +468,12 @@ CONTENT
             'page'    => $global,
             'code'    => 'footer'
         ), function ($container) {
-            $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div>{{ CONTENT }}</div>');
         }));
 
 
 
-        // Footer left: add a simple text block
+        // Footer left: add partners block
         $footer->addChildren($partners = $blockManager->create());
 
         $partners->setType('acl.block.service.partners');

@@ -49,6 +49,14 @@ sonata_page_exceptions:
     resource: '@SonataPageBundle/Resources/config/routing/exceptions.xml'
     prefix: /page
 
+#sonata_product_catalog:
+#    resource: @SonataProductBundle/Resources/config/routing/catalog.xml
+#    prefix: /catalogo
+#
+#sonata_product:
+#    resource: @SonataProductBundle/Resources/config/routing/product.xml
+#    prefix: /catalogo/produto
+
 
 
 #sonata_customer:

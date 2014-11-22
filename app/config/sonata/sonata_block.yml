@@ -93,3 +93,5 @@ sonata_block:
         #sonata.seo.block.breadcrumb.homepage:
 
         acl.block.service.partners:
+        acl.block.service.categories:
+        acl.block.service.categories_menu:
