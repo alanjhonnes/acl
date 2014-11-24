@@ -52,7 +52,7 @@ class PartnerAdmin extends Admin
                 array( 'required' => false, 'label' => 'Logotipo' ),
                 array(
                     'link_parameters' => array(
-                        'context' => 'product'
+                        'context' => 'Parceiros'
                     )
                 )
             )

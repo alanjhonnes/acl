@@ -79,6 +79,18 @@ class CatalogController extends Controller
 	}
 
 	/**
+	 * @Route(name="catalog_product", path="/produto/{product_slug}/{product_id}")
+	 */
+	public function productAction($product_slug, $product_id){
+
+		$product = $this->getProductManager()->findEnabledFromIdAndSlug($product_id, $product_slug);
+
+		return $this->render('ACLMainBundle:Catalog:product.html.twig', array(
+			'product'     => $product
+		));
+	}
+
+	/**
 	 * @return ProductManager
 	 */
 	protected function getProductManager()

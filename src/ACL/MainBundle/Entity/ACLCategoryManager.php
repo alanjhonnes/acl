@@ -22,20 +22,64 @@ class ACLCategoryManager extends CategoryManager {
 	 */
 	public function getCategoryTree()
 	{
-		$qb = $this->getRepository()->createQueryBuilder('c')
-		           ->select('c')
-		           ->where('c.enabled = true')
-		;
-
-		$pCategories = $qb->getQuery()->execute();
+		$categories =  $this->getCategories();
 
 		$categoryTree = array();
 
-		foreach ($pCategories as $category) {
+		foreach ($categories as $category) {
 			$this->putInTree($category, $categoryTree);
 		}
 
 		return $categoryTree;
+
+//		$qb = $this->getRepository()->createQueryBuilder('c')
+//		           ->select('c')
+//				   ->leftJoin('c.parent', 'cp')
+//			       ->leftJoin('c.media', 'm')
+//		           ->where('c.enabled = true')
+//
+//		;
+//
+//		$pCategories = $qb->getQuery()->execute();
+//
+//		$categoryTree = array();
+//
+//		foreach ($pCategories as $category) {
+//			$this->putInTree($category, $categoryTree);
+//		}
+//
+//		return $categoryTree;
+	}
+
+	/**
+	* Load all categories from the database, the current method is very efficient for < 256 categories
+	*
+	*/
+	protected function loadCategories()
+	{
+		if ($this->categories !== null) {
+			return;
+		}
+
+		$this->categories = array();
+
+		$categories = $this->getObjectManager()->createQuery(sprintf('SELECT c FROM %s c INDEX BY c.id', $this->class))
+		                   ->execute();
+
+		foreach ($categories as $category) {
+			$this->categories[$category->getId()] = $category;
+
+			$parent = $category->getParent();
+
+			$category->disableChildrenLazyLoading();
+
+			if (!$parent) {
+				$categories[] = $category;
+				continue;
+			}
+
+			$parent->addChild($category);
+		}
 	}
 
 	/**

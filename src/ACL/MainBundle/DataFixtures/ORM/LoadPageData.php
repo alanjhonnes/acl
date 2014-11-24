@@ -157,7 +157,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'full');
-        $gallery->setSetting('title', 'full');
         $gallery->setPosition(1);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);
@@ -210,15 +209,15 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
         $category = $pageManager->create();
 
-        $category->setSlug('produtos');
-        $category->setUrl('/produtos/categoria');
+        $category->setSlug('produto');
+        $category->setUrl('/catalogo/{product_slug}/{product_id}');
         $category->setName('Produtos');
         $category->setTitle('Produtos');
         $category->setEnabled(true);
         $category->setDecorate(1);
         $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
         $category->setTemplateCode('default');
-        $category->setRouteName('catalog_index');
+        $category->setRouteName('catalog_product');
         $category->setSite($site);
         $category->setParent($this->getReference('page-homepage'));
 

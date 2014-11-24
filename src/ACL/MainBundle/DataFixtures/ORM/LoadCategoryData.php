@@ -135,7 +135,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
         // Dispositivos especiais category
         $dispositivosEspeciais = $this->getCategoryManager()->create();
-        $dispositivosEspeciais->setParent($sensoresMagneticos);
+        $dispositivosEspeciais->setParent($alarmes);
         $dispositivosEspeciais->setName('Dispositivos Especiais');
         $dispositivosEspeciais->setSlug('alarmes-dispositivos-especiais');
         $dispositivosEspeciais->setDescription('Descrição da categoria alarmes - dispositivos especiais');

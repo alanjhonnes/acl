@@ -16,7 +16,7 @@ sonata_media:
 
             formats:
                 small: { width: 150, quality: 100}
-                big:   { width: 1170 , quality: 100}
+                wide:   { width: 1170 , quality: 100}
                 full:   { width: 1920 , quality: 100}
 
         Posts:
@@ -41,17 +41,15 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
-                preview:   { width: 100, quality: 100}
                 main:     { width: 300, quality: 100}
-                large:     { width: 750, quality: 100}
-
-
+                wide:     { width: 1170, quality: 100}
 
         Parceiros:
             providers:
                 - sonata.media.provider.image
             formats:
                 small: { width: 200, quality: 100 }
+                view: { width: 750, quality: 100 }
                 wide: { width: 1170, quality: 100 }
 
         Downloads:
@@ -79,7 +77,7 @@ sonata_media:
     filesystem:
         # define where the uploaded file will be stored
         local:
-            directory:  %kernel.root_dir%/../web/uploads/media
+            directory:  %sonata_media.filesystem.local.directory% #%kernel.root_dir%/../web/uploads/media
             create:     true
 
     providers:
@@ -88,6 +86,7 @@ sonata_media:
             resizer:    false
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
+           resizer: sonata.media.resizer.custom
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #            thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
         vimeo:
@@ -105,8 +104,8 @@ sonata_media:
 
     resizer:
         simple:
-#            mode:  outbound
-            mode:  inset
+            mode:  outbound
+#            mode:  inset
 
 #
 # The LiipImagineBundle can be used if you want to convert on demand an image

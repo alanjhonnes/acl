@@ -1,0 +1,23 @@
+{% extends "ACLMainBundle:Catalog:layout.html.twig" %}
+{% block product_category %}
+    {{ sonata_block_render({'type': 'acl.block.service.categories_menu', 'settings': {
+        'current_uri': app.request.requestUri,
+        'extra_cache_keys': {
+        'block_id':    'acl.block.service.categories_menu',
+        'updated_at':  'now',
+        },
+        'ttl': 60
+    }}) }}
+{% endblock %}
+
+{% block content %}
+    <h3 class="product-name">
+        {{ product.name }}
+    </h3>
+    <div class="panel">
+        {% media product.image, 'view' with {'itemprop': 'image', 'class': 'img-responsive img-rounded'} %}
+    </div>
+
+
+{% endblock %}
+

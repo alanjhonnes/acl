@@ -20,6 +20,7 @@ use Sonata\Component\Product\ProductCategoryManagerInterface;
 use Sonata\Component\Product\ProductProviderInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouterInterface;
+use ACL\MainBundle\Entity\ACLCategoryManager;
 
 
 /**
@@ -37,6 +38,9 @@ class ProductMenuBuilder
      */
     protected $router;
 
+	/**
+	 * @var ACLCategoryManager
+	 */
 	protected $categoryManager;
 
     /**
@@ -76,7 +80,6 @@ class ProductMenuBuilder
     public function buildCategoryMenu(ItemInterface $menu, array $options = array(), $currentUri = null)
     {
         $categories = $this->categoryManager->getCategoryTree();
-
         $this->fillMenu($menu, $categories, $options, $currentUri);
     }
 
@@ -118,7 +121,8 @@ class ProductMenuBuilder
 
             if (count($category->getChildren()) > 0) {
                 if (null === $category->getParent()) {
-                    $this->fillMenu($menu, $category->getChildren(), $options, $currentUri);
+                    //$this->fillMenu($menu, $category->getChildren(), $options, $currentUri);
+                    $this->fillMenu($child, $category->getChildren(), $options, $currentUri);
                 } else {
                     $this->fillMenu($child, $category->getChildren(), $options, $currentUri);
                 }

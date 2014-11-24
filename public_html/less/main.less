@@ -84,31 +84,82 @@ body {
 }
 
 .nav-left {
+  @group-padding-left: 20px;
   background-color: @nav-left-background;
   background-image: url(../img/menu-left-background.png);
   background-repeat: repeat-y;
-  background-position: top;
-
+  background-position: top right;
+  font-weight: normal;
   color: #ffffff;
-
-  .active {
-    border-color: #ffffff;
-    border-style: solid;
-    border-bottom-width: 1px;
-    background-image: url(../img/menu-active.png);
-    background-repeat: no-repeat;
-    background-position: bottom;
+  .menu-container {
+    padding: 12px 15px;
   }
-  > ul {
-    border-bottom-color: #cc171b;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    padding: 15px 12px;
+  .lead {
+    margin-top: 8px;
+    margin-left: 10px;
     font-weight: bold;
-    > ul {
-      font-weight: normal;
+    margin-bottom: 0px;
+    &:before {
+      margin-top: -2px;
     }
   }
+   a {
+     color: #ffffff;
+     &:before {
+       content: "";
+       display: inline-block;
+       position: absolute;
+       width: 0;
+       height: 0;
+       border-color: transparent;
+       border-left-color: transparent;
+       border-width: 14px;
+       border-style: solid;
+       margin-left: -50px;
+       margin-top: -10px;
+       -webkit-transition-duration: 0.4s;
+       -webkit-transition-property: all;
+       -webkit-transition-timing-function: cubic-bezier(0.425, 0, 0, 1);
+       transition-duration: 0.4s;
+       transition-property: all;
+       transition-timing-function: cubic-bezier(0.425, 0, 0, 1);
+
+     }
+     &:hover, &:active, .active {
+       text-decoration: none;
+       &:before {
+         border-left-color: #ffffff;
+         border-width: 20px;
+         margin-left: -30px;
+       }
+
+
+     }
+   }
+  .category-group {
+    padding-left: @group-padding-left;
+    display: block;
+  }
+  > .category-group > .category-group:after {
+    content: "";
+    margin-top: 10px;
+    display: block;
+    margin-left: -@group-padding-left * 2;
+    width: ~"calc(100% + " @group-padding-left * 2 ~")";
+    border-bottom-width: 1px;
+    border-bottom-color: #ffffff;
+    border-bottom-style: solid;
+  }
+
+  .category-item {
+    display: block;
+    padding: 10px 0px;
+  }
+}
+
+.list-group {
+  margin-bottom: 0px;
+  padding-left: 10px;
 }
 
 .product {

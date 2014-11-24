@@ -1,10 +1,23 @@
 {% extends 'ACLMainBundle:MenuRenderer:knp_menu.html.twig' %}
 
+{% block root %}
+    <nav class="nav-left">
+        {{  parent() }}
+    </nav>
+{% endblock %}
+
+
 {% block list %}
+    {% if item.hasChildren and options.depth is sameas(1) %}
+        <div class="menu-container">
+    {% endif %}
     {% import 'ACLMainBundle:MenuRenderer:knp_menu.html.twig' as macros %}
     {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
         <div{{ macros.attributes(listAttributes) }}>
             {{ block('children') }}
+        </div>
+    {% endif %}
+    {% if item.hasChildren and options.depth is sameas(1) %}
         </div>
     {% endif %}
 {% endblock %}
@@ -40,6 +53,7 @@
         {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
         {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
         {{ block('list') }}
+
     {% endif %}
 {% endblock %}
 

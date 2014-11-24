@@ -28,6 +28,18 @@ class ProductAdmin extends Admin
         $this->formatterPool = $formatterPool;
     }
 
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function configureShowFields(ShowMapper $showMapper)
+	{
+		$showMapper
+			->add('name')
+			->add('description')
+			->add('position')
+		;
+	}
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -35,7 +47,7 @@ class ProductAdmin extends Admin
     {
         $datagridMapper
             ->add( 'id' )
-            ->add( 'title' )
+            ->add( 'name' )
             ->add( 'description' )
             ->add( 'position' );
     }
@@ -47,7 +59,7 @@ class ProductAdmin extends Admin
     {
         $listMapper
             ->add( 'id' )
-            ->add( 'title' )
+            ->add( 'name' )
             ->add( 'description' )
             ->add( 'position' )
             ->add(
@@ -71,7 +83,7 @@ class ProductAdmin extends Admin
 
         $formMapper
             ->with( 'Geral', array( 'class' => 'col-md-8' ) )
-            ->add( 'title', null, array('label' => 'Título') )
+            ->add( 'name', null, array('label' => 'Nome do Produto') )
             ->add( 'description', 'textarea', array( 'required' => true, 'label' => 'Descrição' ) )
             ->add(
                 'content',

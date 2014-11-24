@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-sm-9">
-
+    {% block content  %}
         {% if pager.count == 0 %}
 
             {% block no_products %}
@@ -35,7 +35,7 @@
                                 {% if category %}
                                     {{ category.name }}
                                 {% else %}
-                                    {% trans from 'SonataProductBundle' %}catalog_root_title{% endtrans %}
+                                    Produtos
                                 {% endif %}
                             </h4>
                         </div>
@@ -58,7 +58,7 @@
                 {% endif %}
             </div>
         {% endif %}
-
+    {% endblock %}
     </div>
 
 </div>

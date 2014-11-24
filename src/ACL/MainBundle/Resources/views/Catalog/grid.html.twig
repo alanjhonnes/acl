@@ -13,13 +13,9 @@ file that was distributed with this source code.
 
     {% for product in pager %}
 
-        {% if not sonata_product_has_variations(product) or (sonata_product_has_variations(product) and sonata_product_has_enabled_variations(product)) %}
-
             <div class="col-sm-4" itemscope itemtype="http://schema.org/Product">
                 {% include 'ACLMainBundle:Catalog:_product_grid.html.twig' %}
             </div>
-
-        {% endif %}
 
     {% endfor %}
 

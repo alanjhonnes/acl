@@ -33,7 +33,13 @@ class Product {
 	 * @Assert\NotBlank()
 	 *
 	 */
-	protected $title;
+	protected $name;
+
+	/**
+	 * @var
+	 * @ORM\Column(type="string")
+	 */
+	protected $slug;
 
 	/**
 	 * @var
@@ -107,6 +113,55 @@ class Product {
      */
     protected $videos;
 
+	/**
+	 * source : http://snipplr.com/view/22741/slugify-a-string-in-php/
+	 *
+	 * @static
+	 * @param  $text
+	 * @return mixed|string
+	 */
+	public static function slugify($text)
+	{
+		// replace non letter or digits by -
+		$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+
+		// trim
+		$text = trim($text, '-');
+
+		// transliterate
+		if (function_exists('iconv')) {
+			$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+		}
+
+		// lowercase
+		$text = strtolower($text);
+
+		// remove unwanted characters
+		$text = preg_replace('~[^-\w]+~', '', $text);
+
+		if (empty($text)) {
+			return 'n-a';
+		}
+
+		return $text;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setSlug($slug)
+	{
+		$this->slug = self::slugify(trim($slug));
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getSlug()
+	{
+		return $this->slug;
+	}
+
 
     /**
      * Get id
@@ -119,26 +174,30 @@ class Product {
     }
 
     /**
-     * Set title
+     * Set name
      *
-     * @param string $title
+     * @param string $name
      * @return Product
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
+
+	    if (!$this->getSlug()) {
+		    $this->setSlug($name);
+	    }
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get name
      *
      * @return string 
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**

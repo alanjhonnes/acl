@@ -62,7 +62,9 @@ class CategoryMenuBlockService extends MenuBlockService
 
 		$resolver->setDefaults(array(
 			'menu_template' => "ACLMainBundle:Block:categories_menu.html.twig",
-			'safe_labels'   => true
+			'safe_labels'   => true,
+			'menu_class'     => "category-group",
+			'children_class' => "category-item"
 		));
 	}
 

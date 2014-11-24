@@ -14,6 +14,10 @@ services:
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+    sonata.media.resizer.custom:
+        class: ACL\MainBundle\Resizer\CustomResizer
+        arguments: [@sonata.media.adapter.image.gd, 'outbound', @sonata.media.metadata.proxy]
+
     acl.block.service.categories_menu:
         class: ACL\MainBundle\Block\CategoryMenuBlockService
         arguments: [acl.block.service.categories_menu, @templating, @knp_menu.menu_provider, @acl.menu.menu.product_menu_builder]
@@ -57,9 +61,6 @@ services:
         arguments: [acl.block.service.categories, @templating, @sonata.classification.manager.category]
         tags:
             - { name: sonata.block }
-
-
-
 
     acl.main.partner.manager:
         class: ACL\MainBundle\Entity\PartnerManager
