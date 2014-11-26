@@ -28,7 +28,6 @@
         "ext-mysql": "*",
         "ext-mysqli": "*",
         "ext-mysqlnd": "*",
-        "ext-odbc": "*",
         "ext-PDO": "*",
         "ext-pdo_mysql": "*",
         "ext-Phar": "*",
@@ -43,7 +42,6 @@
         "lib-ICU": "*",
         "lib-libxml": "*",
         "lib-openssl": "*",
-        "lib-xsl": "*",
 
 
         "twig/twig": "~1.12",
