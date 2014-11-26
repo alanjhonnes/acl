@@ -18,6 +18,10 @@ services:
         class: ACL\MainBundle\Resizer\CustomResizer
         arguments: [@sonata.media.adapter.image.gd, 'outbound', @sonata.media.metadata.proxy]
 
+    sonata.media.resizer.fixed:
+            class: ACL\MainBundle\Resizer\FixedDimensionsResizer
+            arguments: [@sonata.media.adapter.image.gd, 'outbound', @sonata.media.metadata.proxy]
+
     acl.block.service.categories_menu:
         class: ACL\MainBundle\Block\CategoryMenuBlockService
         arguments: [acl.block.service.categories_menu, @templating, @knp_menu.menu_provider, @acl.menu.menu.product_menu_builder]
@@ -36,6 +40,12 @@ services:
             - [setPoolFormatter, [@sonata.formatter.pool]]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Produto}
+
+    acl_main.admin.brand:
+            class: ACL\MainBundle\Admin\BrandAdmin
+            arguments: [~, ACL\MainBundle\Entity\Brand, ACLMainBundle:BrandAdmin]
+            tags:
+                - {name: sonata.admin, manager_type: orm, group: admin, label: Marca}
 
     acl_main.admin.partner:
         class: ACL\MainBundle\Admin\PartnerAdmin
@@ -61,6 +71,18 @@ services:
         arguments: [acl.block.service.categories, @templating, @sonata.classification.manager.category]
         tags:
             - { name: sonata.block }
+
+    acl.block.service.product:
+            class: ACL\MainBundle\Block\ProductBlockService
+            arguments: [acl.block.service.product, @templating, @service_container, @acl.main.product.manager]
+            tags:
+                - { name: sonata.block }
+
+    acl.block.service.richtext:
+            class: ACL\MainBundle\Block\RichTextBlockService
+            arguments: [acl.block.service.richtext, @templating]
+            tags:
+                - { name: sonata.block }
 
     acl.main.partner.manager:
         class: ACL\MainBundle\Entity\PartnerManager

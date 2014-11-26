@@ -153,4 +153,8 @@ class Project {
     {
         return $this->image;
     }
+
+	function __toString() {
+		return $this->getName();
+	}
 }

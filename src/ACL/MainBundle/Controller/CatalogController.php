@@ -83,10 +83,10 @@ class CatalogController extends Controller
 	 */
 	public function productAction($product_slug, $product_id){
 
-		$product = $this->getProductManager()->findEnabledFromIdAndSlug($product_id, $product_slug);
+		//$product = $this->getProductManager()->findEnabledFromIdAndSlug($product_id, $product_slug);
 
 		return $this->render('ACLMainBundle:Catalog:product.html.twig', array(
-			'product'     => $product
+			'productId'     => $product_id
 		));
 	}
 

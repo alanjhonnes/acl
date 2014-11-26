@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Alan Jhonnes
- * Date: 10/31/2014
- * Time: 3:19 PM
+ * Date: 11/25/2014
+ * Time: 11:56 AM
  */
 
 namespace ACL\MainBundle\Entity;
@@ -12,13 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Partner
+ * Class Brand
  * @package ACL\MainBundle\Entity
- * @ORM\Entity(repositoryClass="PartnerRepository")
- * @ORM\Table(name="partner")
+ * @ORM\Entity()
+ * @ORM\Table(name="brand")
  */
-class Partner {
-
+class Brand {
 	/**
 	 * @ORM\Id()
 	 * @ORM\Column(type="integer")
@@ -30,13 +29,6 @@ class Partner {
 	 * @ORM\Column(type="string")
 	 */
 	protected $name;
-
-    /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
-     */
-	protected $logo;
-
 
     /**
      * Get id
@@ -52,7 +44,7 @@ class Partner {
      * Set name
      *
      * @param string $name
-     * @return Partner
+     * @return Brand
      */
     public function setName($name)
     {
@@ -71,30 +63,9 @@ class Partner {
         return $this->name;
     }
 
-    /**
-     * Set logo
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $logo
-     * @return Partner
-     */
-    public function setLogo(\Application\Sonata\MediaBundle\Entity\Media $logo = null)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
 	function __toString() {
 		return $this->getName();
 	}
+
+
 }

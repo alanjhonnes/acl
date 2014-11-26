@@ -46,7 +46,6 @@ class ProductAdmin extends Admin
     protected function configureDatagridFilters( DatagridMapper $datagridMapper )
     {
         $datagridMapper
-            ->add( 'id' )
             ->add( 'name' )
             ->add( 'description' )
             ->add( 'position' );
@@ -58,7 +57,6 @@ class ProductAdmin extends Admin
     protected function configureListFields( ListMapper $listMapper )
     {
         $listMapper
-            ->add( 'id' )
             ->add( 'name' )
             ->add( 'description' )
             ->add( 'position' )
@@ -104,6 +102,7 @@ class ProductAdmin extends Admin
             ->with( 'Opções', array( 'class' => 'col-md-4' ) )
             ->add( 'position', 'integer', array( 'required' => false, 'data' => 0, 'label' => 'Posição' ) )
 	        ->add('enabled', null, array('required' => false, 'label' => 'Ativo'))
+	        ->add( 'brand', 'sonata_type_model_list', array('label' => 'Marca') )
             ->add( 'category', 'sonata_type_model_list', array('label' => 'Categoria') )
             ->add(
                 'image',

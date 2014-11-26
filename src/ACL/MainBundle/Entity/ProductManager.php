@@ -46,7 +46,14 @@ class ProductManager extends BaseEntityManager {
 		if ($category) {
 			$queryBuilder
 				->leftJoin('p.category', 'c')
+				->leftJoin('c.parent', 'cp')
+				->leftJoin('cp.parent', 'cp2')
+				->leftJoin('cp2.parent', 'cp3')
 				->andWhere('p.category = :categoryId')
+				->orWhere('c.parent = :categoryId')
+				->orWhere('c.parent = :categoryId')
+				->orWhere('cp.parent = :categoryId')
+				->orWhere('cp2.parent = :categoryId')
 				->setParameter('categoryId', $category->getId());
 		}
 

@@ -46,6 +46,7 @@ sonata_page:
 
         javascripts:
             - assetic/sonata_front_js.js
+            - js/jssor.slider.mini.js
             - js/main.js
 
     default_template: default

@@ -56,7 +56,7 @@ class PostsBlockService extends BaseBlockService
     public function __construct($name, EngineInterface $templating, PostManagerInterface $postManager)
     {
         parent::__construct($name, $templating);
-        $this->$postManager = $postManager;
+        $this->postManager = $postManager;
     }
 
     /**

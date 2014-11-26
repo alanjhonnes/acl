@@ -81,6 +81,12 @@ class Product {
      */
 	protected $category;
 
+	/**
+	 * @var
+	 * @ORM\ManyToOne(targetEntity="ACL\MainBundle\Entity\Brand")
+	 */
+	protected $brand;
+
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
@@ -475,4 +481,31 @@ class Product {
     {
         return $this->image;
     }
+
+    /**
+     * Set brand
+     *
+     * @param \ACL\MainBundle\Entity\Brand $brand
+     * @return Product
+     */
+    public function setBrand(\ACL\MainBundle\Entity\Brand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \ACL\MainBundle\Entity\Brand 
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+	function __toString() {
+		return $this->getName();
+	}
 }

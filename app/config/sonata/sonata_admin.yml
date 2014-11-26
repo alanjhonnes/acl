@@ -25,7 +25,7 @@ sonata_admin:
 
     dashboard:
         blocks:
-            - { position: left, type: sonata.block.service.text, settings: { content: "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Bem vindo!</h3></div><div class='panel-body'>Use o menu à esquerda ou abaixo para administrar o conteúdo do site. <a href='#'>Clique aqui para visualizar o manual do site.</a></div></div>"} }
+            - { position: left, type: acl.block.service.richtext, settings: { content: "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Bem vindo!</h3></div><div class='panel-body'>Use o menu à esquerda ou abaixo para administrar o conteúdo do site. <a href='#'>Clique aqui para visualizar o manual do site.</a></div></div>"} }
             - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
             # This block is disabled for now as the bundle generates an exception with composite key
@@ -44,6 +44,7 @@ sonata_admin:
                 items:
 #                    - sonata.news.admin.comment
                     - acl_main.admin.product
+                    - acl_main.admin.brand
                     - acl_main.admin.partner
                     - sonata.news.admin.post
                     - sonata.media.admin.media
@@ -70,12 +71,12 @@ sonata_admin:
                     - sonata.classification.admin.collection
 
             sonata.admin.group.site_builder:
-                label:           Site Builder
-                label_catalogue: SonataDemoBundle
+                label:           Construtor de Site
+                label_catalogue: ACLMainBundle
                 icon:            '<i class="fa fa-puzzle-piece"></i>'
                 items:
                     - sonata.page.admin.page
-#                    - sonata.page.admin.site
+                    - sonata.page.admin.site
 
             sonata.admin.group.administration:
                 label:           sonata_administration
@@ -87,14 +88,6 @@ sonata_admin:
 #                    - sonata.page.admin.site
 #                    - sonata.notification.admin.message
 
-#            sonata.admin.group.demo:
-#                label: Demo
-#                icon:  '<i class="fa fa-play-circle"></i>'
-#                items:
-#                    - sonata.demo.admin.car
-#                    - sonata.demo.admin.engine
-#                    - sonata.demo.admin.color
-#                    - sonata.demo.admin.material
 
     assets:
         stylesheets:

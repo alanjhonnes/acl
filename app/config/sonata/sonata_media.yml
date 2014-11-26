@@ -42,6 +42,7 @@ sonata_media:
 
             formats:
                 main:     { width: 300, quality: 100}
+                view:     { width: 750, height: 300, quality: 100}
                 wide:     { width: 1170, quality: 100}
 
         Parceiros:
@@ -63,8 +64,8 @@ sonata_media:
             providers:
                 - sonata.media.provider.vimeo
             formats:
-                small: { width: 300, quality: 100}
-                big:   { width: 1170 , quality: 100}
+                small: { width: 450, quality: 100}
+                wide:   { width: 1170 , quality: 100}
                 full:   { width: 1920 , quality: 100}
 
 
@@ -84,6 +85,63 @@ sonata_media:
         file:
             # the resizer must be set to false, otherwhise this can delete icon files from the fs
             resizer:    false
+            allowed_extensions:
+                - 'pdf'
+                - 'txt'
+                - 'rtf'
+                - 'doc'
+                - 'docx'
+                - 'xls'
+                - 'xlsx'
+                - 'ppt'
+                - 'pttx'
+                - 'odt'
+                - 'odg'
+                - 'odp'
+                - 'ods'
+                - 'odc'
+                - 'odf'
+                - 'odb'
+                - 'csv'
+                - 'xml'
+                - 'exe'
+                - 'zip'
+                - '7z'
+            allowed_mime_types:
+                - 'application/pdf'
+                - 'application/x-pdf'
+                - 'application/rtf'
+                - 'text/html'
+                - 'text/rtf'
+                - 'text/plain'
+                - 'application/x-dosexec'
+                - 'application/x-msdownload'
+                - 'application/octet-stream'
+                - 'application/exe'
+                - 'application/x-exe'
+                - 'application/dos-exe'
+                - 'vms/exe'
+                - 'application/x-winexe'
+                - 'application/msdos-windows'
+                - 'application/x-msdos-program'
+                - 'application/msword'
+                - 'application/doc'
+                - 'appl/text'
+                - 'application/vnd.msword'
+                - 'application/vnd.ms-word'
+                - 'application/winword'
+                - 'application/word'
+                - 'application/x-msw6'
+                - 'application/x-msword'
+                - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                - 'application/zip'
+                - 'application/x-zip'
+                - 'application/x-zip-compressed'
+                - 'application/octet-stream'
+                - 'application/x-compress'
+                - 'application/x-compressed'
+                - 'multipart/x-zip'
+                - 'application/x-7z-compressed'
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
            resizer: sonata.media.resizer.custom

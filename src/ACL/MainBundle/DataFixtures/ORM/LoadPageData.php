@@ -321,7 +321,7 @@ CONTENT
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
+        $text->setType('acl.block.service.richtext');
         $text->setSetting('content', sprintf('<h2>%s</h2><div>%s</div>', $title, $content));
         $text->setPosition(1);
         $text->setEnabled(true);
@@ -361,7 +361,7 @@ CONTENT
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
+        $text->setType('acl.block.service.richtext');
         $text->setSetting('content', '<h2>Erro 404</h2><div>Página não encontrada.</div>');
         $text->setPosition(1);
         $text->setEnabled(true);
@@ -401,7 +401,7 @@ CONTENT
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
+        $text->setType('acl.block.service.richtext');
         $text->setSetting('content', '<h2>Error 500</h2><div>Erro Interno.</div>');
         $text->setPosition(1);
         $text->setEnabled(true);

@@ -11,12 +11,16 @@
 {% endblock %}
 
 {% block content %}
-    <h3 class="product-name">
-        {{ product.name }}
-    </h3>
-    <div class="panel">
-        {% media product.image, 'view' with {'itemprop': 'image', 'class': 'img-responsive img-rounded'} %}
-    </div>
+    {{ sonata_block_render({'type': 'acl.block.service.product', 'settings': {
+    'productId': productId,
+    'extra_cache_keys': {
+    'block_id':    'acl.block.service.product',
+    'updated_at':  'now',
+    },
+    'ttl': 60
+    }}) }}
+
+
 
 
 {% endblock %}

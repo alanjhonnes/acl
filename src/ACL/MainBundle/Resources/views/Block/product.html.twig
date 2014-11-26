@@ -1,0 +1,75 @@
+<h3 class="product-name">
+    {{ product.name }}
+</h3>
+{% if product.gallery %}
+    {# Rendering image gallery #}
+    <div id="{{ product.slug }}" class="jssor-gallery"
+         style="position: relative; top: 0px; left: 0px; width: 750px; height: 300px;">
+        <!-- Slides Container -->
+        <div u="slides"
+             style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 750px; height: 300px;">
+            {% set images = product.gallery.getGalleryHasMedias %}
+            {% for image in images %}
+                <div>
+                    {% media image.getMedia, 'view' with {'u': 'image'} %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% else %}
+    {# render main image #}
+    <div class="panel">
+        {% media product.image, 'view' with {'itemprop': 'image', 'class': 'img-responsive img-rounded'} %}
+    </div>
+{% endif %}
+<br/>
+{# render tabs #}
+<div role="tabpanel">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#product-description" aria-controls="product-description" role="tab" data-toggle="tab">Especificações
+                Técnicas</a>
+        </li>
+        {% if product.downloads %}
+        <li role="presentation">
+            <a href="#product-downloads" aria-controls="product-downloads" role="tab" data-toggle="tab">Downloads</a>
+        </li>
+        {% endif %}
+        {% if product.videos %}
+        <li role="presentation">
+            <a href="#product-videos" aria-controls="product-videos" role="tab" data-toggle="tab">Vídeos</a>
+        </li>
+        {% endif %}
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="product-description">
+            {{ product.content|raw }}
+        </div>
+        {% if product.downloads %}
+        <div role="tabpanel" class="tab-pane" id="product-downloads">
+            {% set downloads = product.downloads.getGalleryHasMedias %}
+            {% for download in downloads %}
+                <div>
+                    <a href="{% path download, 'reference' %}">{% path download, 'reference' %}</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if product.videos %}
+        <div role="tabpanel" class="tab-pane" id="product-videos">
+            {% set videos = product.videos.getGalleryHasMedias %}
+            {% for video in videos %}
+                <div>
+                    {% media video, 'small' %}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>

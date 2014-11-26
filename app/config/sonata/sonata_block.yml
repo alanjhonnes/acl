@@ -3,6 +3,7 @@ sonata_block:
     default_contexts: [sonata_page_bundle]
 
     http_cache:
+        handler: sonata.block.cache.handler.default
         listener: true
 
     menus:
@@ -18,7 +19,7 @@ sonata_block:
         #    contexts:   [admin]
 
         # Builtin Block
-        sonata.block.service.text:
+        #sonata.block.service.text:
         sonata.block.service.container:
         sonata.block.service.rss:
         sonata.block.service.menu:
@@ -91,7 +92,8 @@ sonata_block:
         sonata.formatter.block.formatter:
 
         #sonata.seo.block.breadcrumb.homepage:
-
+        acl.block.service.richtext:
         acl.block.service.partners:
         acl.block.service.categories:
         acl.block.service.categories_menu:
+        acl.block.service.product:
