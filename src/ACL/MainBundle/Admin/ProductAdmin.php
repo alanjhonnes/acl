@@ -35,6 +35,7 @@ class ProductAdmin extends Admin
 	{
 		$showMapper
 			->add('name')
+			->add('subname')
 			->add('description')
 			->add('position')
 		;
@@ -57,9 +58,11 @@ class ProductAdmin extends Admin
     protected function configureListFields( ListMapper $listMapper )
     {
         $listMapper
-            ->add( 'name' )
-            ->add( 'description' )
+            ->addIdentifier( 'name' )
+            ->add( 'subname' )
+            ->add( 'description', 'raw' )
             ->add( 'position' )
+            ->add( 'category', null, array('associated_property' => 'name', 'label' => 'Categoria') )
             ->add(
                 '_action',
                 'actions',
@@ -82,7 +85,8 @@ class ProductAdmin extends Admin
         $formMapper
             ->with( 'Geral', array( 'class' => 'col-md-8' ) )
             ->add( 'name', null, array('label' => 'Nome do Produto') )
-            ->add( 'description', 'textarea', array( 'required' => true, 'label' => 'Descrição' ) )
+            ->add( 'subname', null, array('label' => 'Subtítulo do Produto') )
+            ->add( 'description', 'ckeditor', array( 'required' => true, 'label' => 'Descrição' ) )
             ->add(
                 'content',
                 'sonata_formatter_type',
@@ -95,7 +99,7 @@ class ProductAdmin extends Admin
                     ),
                     'listener'             => true,
                     'target_field'         => 'content',
-                    'label' => 'Conteúdo'
+                    'label' => 'Específicações Técnicas'
                 )
             )
             ->end()
@@ -134,6 +138,16 @@ class ProductAdmin extends Admin
                     )
                 )
             )
+	        ->add(
+		        'softwares',
+		        'sonata_type_model_list',
+		        array( 'required' => false, 'label' => 'Galeria de Softwares' ),
+		        array(
+			        'link_parameters' => array(
+				        'context' => 'Softwares'
+			        )
+		        )
+	        )
             ->add(
                 'videos',
                 'sonata_type_model_list',

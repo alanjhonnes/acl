@@ -12,19 +12,21 @@ file that was distributed with this source code.
 {#% extends "ACLMainBundle:Product:view_thumbnail.html.twig" % #}
 
 {% set link = url('catalog_product', {'product_id': product.id, 'product_slug': product.slug}) %}
-
-<div class="panel panel-default">
+<a href="{{ link }}">
+<div  class="panel panel-default product-item">
     <div class="panel-heading">
-        <h5 itemprop="name" class="panel-title truncate"><a href="{{ link }}">{{ product.name }}</a></h5>
+        <h4 itemprop="name" class="panel-title truncate">{{ product.name }}</h4>
+        <h5>{{ product.subname }}</h5>
     </div>
     <div class="panel-body">
         {% if product.image %}
-            <a href="{{ link }}">{% media product.image, 'main' with {'itemprop': 'image', 'class': 'img-responsive', 'width': null, 'height': null} %}</a>
+            {% media product.image, 'main' with {'itemprop': 'image', 'class': 'img-responsive', 'width': null, 'height': null} %}
         {% else %}
             {# default product picture goes here #}
         {% endif %}
     </div>
     <div class="panel-footer">
-
+        <h5 itemprop="name" class="panel-title truncate product-description">{{ product.description|raw }}</h5>
     </div>
 </div>
+</a>

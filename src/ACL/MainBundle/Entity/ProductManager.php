@@ -9,6 +9,8 @@
 namespace ACL\MainBundle\Entity;
 
 
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\CoreBundle\Model\BaseEntityManager;
 
@@ -78,4 +80,32 @@ class ProductManager extends BaseEntityManager {
 		            ));
 	}
 
-} 
+	public function findFullDetails($id){
+		$queryBuilder = $this->getRepository()->createQueryBuilder('p')
+			->select('p, b, i, pd, ps, pv, g, gm, pdm, psm, pvm, gmm, pdmm, psmm, pvmm')
+			->leftJoin('p.brand', 'b')
+	        ->leftJoin('p.image', 'i')
+
+			->leftJoin('p.downloads', 'pd')
+			->leftJoin('p.softwares', 'ps')
+			->leftJoin('p.videos', 'pv')
+			->leftJoin('p.gallery', 'g')
+
+			->leftJoin('g.galleryHasMedias', 'gm')
+			->leftJoin('pd.galleryHasMedias', 'pdm')
+			->leftJoin('ps.galleryHasMedias', 'psm')
+			->leftJoin('pv.galleryHasMedias', 'pvm')
+
+			->leftJoin('gm.media', 'gmm')
+			->leftJoin('pdm.media', 'pdmm')
+			->leftJoin('psm.media', 'psmm')
+			->leftJoin('pvm.media', 'pvmm')
+
+			->andWhere('p.id = :id')
+			->setParameter('id', $id)
+
+		;
+		return $queryBuilder->getQuery()->getOneOrNullResult();
+	}
+
+}

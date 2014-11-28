@@ -11,6 +11,7 @@
 
 namespace ACL\MainBundle\DataFixtures\ORM;
 
+use Application\Sonata\PageBundle\Entity\Site;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -79,7 +80,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
     public function createSite()
     {
         $site = $this->getSiteManager()->create();
-
         $site->setHost('localhost');
         $site->setEnabled(true);
         $site->setName('localhost');

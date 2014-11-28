@@ -170,3 +170,10 @@ sonata_admin:
 #            - bundles/sonataformatter/markitup/sets/markdown/set.js
 #            - bundles/sonataformatter/markitup/sets/html/set.js
 #            - bundles/sonataformatter/markitup/sets/textile/set.js
+
+sonata_doctrine_orm_admin:
+  templates:
+    types:
+      list:
+#        array:      SonataAdminBundle:CRUD:list_array.html.twig
+        raw:        ACLMainBundle:CRUD:raw.html.twig

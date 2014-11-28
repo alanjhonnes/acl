@@ -16,7 +16,7 @@ file that was distributed with this source code.
             <div class="content">
                 <div class="row">
                     <a class="logo col-md-3" href="{{ path('page_slug', {'path' : '/'}) }}">
-                        <img class="img-responsive" src="/img/logo.png" alt="ACL Security"/>
+                        <img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="ACL Security"/>
                     </a>
                     <div class="col-md-9" role="navigation">
                         {{ knp_menu_render('ACLMainBundle:Builder:mainMenu', { template: 'ACLMainBundle:MenuRenderer:knp_menu.html.twig'}  ) }}

@@ -14,6 +14,8 @@ parameters:
 
     secret:             ThisTokenIsNotSoSecretChangeIt
 
+    multisite_type: host
+
     # Sonata Admin Options
     sonata_admin.title:             Sonata Project
     sonata_admin.logo_title:        /bundles/sonataadmin/logo_title.png

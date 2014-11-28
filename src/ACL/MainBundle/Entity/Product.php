@@ -37,6 +37,13 @@ class Product {
 
 	/**
 	 * @var
+	 * @ORM\Column(type="string", nullable=true)
+	 *
+	 */
+	protected $subname;
+
+	/**
+	 * @var
 	 * @ORM\Column(type="string")
 	 */
 	protected $slug;
@@ -108,6 +115,16 @@ class Product {
      * )
      */
     protected $downloads;
+
+	/**
+	 * @var
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
+	 * @ORM\JoinTable(name="product_softwares",
+	 *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@ORM\JoinColumn(name="softwares_id", referencedColumnName="id")}
+	 * )
+	 */
+	protected $softwares;
 
     /**
      * @var
@@ -508,4 +525,50 @@ class Product {
 	function __toString() {
 		return $this->getName();
 	}
+
+    /**
+     * Set subname
+     *
+     * @param string $subname
+     * @return Product
+     */
+    public function setSubname($subname)
+    {
+        $this->subname = $subname;
+
+        return $this;
+    }
+
+    /**
+     * Get subname
+     *
+     * @return string 
+     */
+    public function getSubname()
+    {
+        return $this->subname;
+    }
+
+    /**
+     * Set softwares
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $softwares
+     * @return Product
+     */
+    public function setSoftwares(\Application\Sonata\MediaBundle\Entity\Gallery $softwares = null)
+    {
+        $this->softwares = $softwares;
+
+        return $this;
+    }
+
+    /**
+     * Get softwares
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     */
+    public function getSoftwares()
+    {
+        return $this->softwares;
+    }
 }

@@ -106,7 +106,7 @@ class ProductBlockService extends BaseBlockService{
 		$product = $block->getSetting('productId');
 
 		if ($product) {
-			$product = $this->productManager->findOneBy(array('id' => $product));
+			$product = $this->productManager->findFullDetails($product);
 		}
 
 		$block->setSetting('productId', $product);

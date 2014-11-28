@@ -1,6 +1,7 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
+//use Symfony\Component\HttpFoundation\Request;
+use Sonata\PageBundle\Request\SiteRequest as Request;
 
 /*
  * This file is part of the Sonata package.
@@ -15,8 +16,8 @@ require_once __DIR__ . '/../app/bootstrap.php.cache';
 require_once __DIR__ . '/../app/AppKernel.php';
 
 
-//$request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
-$request = Request::createFromGlobals();
+$request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
+//$request = Request::createFromGlobals();
 
 $kernel = new AppKernel('prod', false);
 

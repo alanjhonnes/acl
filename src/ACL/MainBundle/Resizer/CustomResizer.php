@@ -19,11 +19,6 @@ class CustomResizer implements ResizerInterface
     protected $metadata;
 
     /**
-     * @var Point
-     */
-    protected $cropPoint;
-
-    /**
      * @param ImagineInterface $adapter
      * @param string $mode
      */
@@ -44,9 +39,32 @@ class CustomResizer implements ResizerInterface
 
         $image = $this->adapter->load($in->getContent());
 
-        $content = $image
-            ->thumbnail($this->getBox($media, $settings), $this->mode)
-            ->resize($this->getBox($media, $settings))
+	    $totalSize = $this->getBox($media, $settings);
+
+	    $imageSize = $media->getBox();
+
+	    $heightRatio = $totalSize->getHeight() /$imageSize->getHeight();
+	    $widthRatio  = $totalSize->getWidth() / $imageSize->getWidth();
+
+	    if ($heightRatio < $widthRatio) {
+		    $optimalRatio = $heightRatio;
+	    } else {
+		    $optimalRatio = $widthRatio;
+	    }
+
+	    $imageSize = $imageSize->scale($optimalRatio);
+
+	    if ($heightRatio > $widthRatio) {
+		    $pastePoint = new Point(0, (max($totalSize->getHeight() - $imageSize->getHeight(), 0)) / 2);
+	    } else {
+		    $pastePoint = new Point((max($totalSize->getWidth() - $imageSize->getWidth(), 0)) / 2, 0);
+	    }
+
+
+        $content = $this->adapter->create($totalSize)
+            //->thumbnail($this->getBox($media, $settings), $this->mode)
+            //->resize($size)
+	        ->paste($image->resize($imageSize), $pastePoint)
             ->get($format, array('quality' => $settings['quality']));
 
         $out->setContent($content, $this->metadata->get($media, $out->getName()));
@@ -61,19 +79,28 @@ class CustomResizer implements ResizerInterface
         $hasWidth = isset($settings['width']) && $settings['width'];
         $hasHeight = isset($settings['height']) && $settings['height'];
 
-        if (!$hasWidth && !$hasHeight)
-            throw new \RuntimeException(sprintf('Width/Height parameter is missing in context "%s" for provider "%s". Please add at least one parameter.', $media->getContext(), $media->getProviderName()));
+        if (!$hasWidth && !$hasHeight) {
+	        throw new \RuntimeException(sprintf('Width/Height parameter is missing in context "%s" for provider "%s". Please add at least one parameter.', $media->getContext(), $media->getProviderName()));
+        }
 
-        if ($hasWidth && $hasHeight)
-            return new Box($settings['width'], $settings['height']);
+        if (!$hasHeight){
+	        $height = intval($settings['width'] * $size->getHeight() / $size->getWidth());
+	        $width = $settings['width'];
+        }
+	    else {
+		    $height = $settings['height'];
+	    }
 
-        if (!$hasHeight)
-            $settings['height'] = intval($settings['width'] * $size->getHeight() / $size->getWidth());
+        if (!$hasWidth){
+	        $width = intval($settings['height'] * $size->getWidth() / $size->getHeight());
+	        $height = $settings['height'];
+        }
+	    else {
+		    $width = $settings['width'];
+	    }
 
-        if (!$hasWidth)
-            $settings['width'] = intval($settings['height'] * $size->getWidth() / $size->getHeight());
+	    return new Box($width, $height);
 
-        return $this->computeBox($media, $settings);
     }
 
     /**

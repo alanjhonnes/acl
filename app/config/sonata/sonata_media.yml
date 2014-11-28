@@ -41,6 +41,7 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
+                thumbnail:     { width: 100, height: 60, quality: 100}
                 main:     { width: 300, quality: 100}
                 view:     { width: 750, height: 300, quality: 100}
                 wide:     { width: 1170, quality: 100}
@@ -60,9 +61,17 @@ sonata_media:
                 preview:   { width: 100, quality: 100}
                 main:     { width: 300, quality: 100}
 
+        Softwares:
+            providers:
+                - sonata.media.provider.file
+            formats:
+                preview:   { width: 100, quality: 100}
+                main:     { width: 300, quality: 100}
+
         Videos:
             providers:
                 - sonata.media.provider.vimeo
+                - sonata.media.provider.youtube
             formats:
                 small: { width: 450, quality: 100}
                 wide:   { width: 1170 , quality: 100}
