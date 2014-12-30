@@ -2,6 +2,9 @@
 # more information can be found here http://sonata-project.org/bundles/news
 #
 sonata_news:
+    admin:
+        post:
+            class: Application\Sonata\NewsBundle\Admin\PostAdmin
     title:        %sonata_news.blog_title%
     link:         %sonata_news.blog_link%
     description:  %sonata_news.blog_description%

@@ -59,15 +59,17 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Descricao da imagem');
             $media->setAuthorName('');
             $media->setCopyright('CC BY-NC-SA 4.0');
-
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
 		$i = 0;
 	    foreach ($iconFiles as $file) {
+            /* @var $media Media */
 		    $media = $manager->create();
 		    $media->setBinaryContent($file);
 		    $media->setEnabled(true);
@@ -76,43 +78,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 		    $media->setAuthorName('');
 		    $media->setCopyright('CC BY-NC-SA 4.0');
 			$media->setContext('Categorias');
+            $media->setProviderName('sonata.media.provider.image');
 		    $this->addReference('icon-'.$file->getBasename('.png'), $media);
 
-		    $manager->save($media, 'sonata_category', 'sonata.media.provider.image');
+		    $manager->save($media);
 
 	    }
-//
-//        foreach ($paris as $file) {
-//            $media = $manager->create();
-//            $media->setBinaryContent($file);
-//            $media->setEnabled(true);
-//            $media->setName('Paris');
-//            $media->setDescription('Paris');
-//            $media->setAuthorName('Hugo Briand');
-//            $media->setCopyright("CC BY-NC-SA 4.0");
-//
-//            $this->addReference('sonata-media-'.($i++), $media);
-//
-//            $manager->save($media, 'default', 'sonata.media.provider.image');
-//
-//            $this->addMedia($gallery, $media);
-//        }
-//
-//        foreach ($switzerland as $file) {
-//            $media = $manager->create();
-//            $media->setBinaryContent($file);
-//            $media->setEnabled(true);
-//            $media->setName('Switzerland');
-//            $media->setDescription('Switzerland');
-//            $media->setAuthorName('Sylvain Deloux');
-//            $media->setCopyright('CC BY-NC-SA 4.0');
-//
-//            $this->addReference('sonata-media-'.($i++), $media);
-//
-//            $manager->save($media, 'default', 'sonata.media.provider.image');
-//
-//            $this->addMedia($gallery, $media);
-//        }
 
         $gallery->setEnabled(true);
         $gallery->setName('Galeria da Homepage');

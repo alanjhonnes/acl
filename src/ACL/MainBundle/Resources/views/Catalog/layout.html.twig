@@ -9,7 +9,7 @@
                     'block_id':    'acl.block.service.categories_menu',
                     'updated_at':  'now',
                 },
-                'ttl': 60
+                'ttl': 600
             }}) }}
         {% endblock %}
 
@@ -27,20 +27,28 @@
 
         {% else %}
 
-            <div class="panel panel-default sonata-product-navigation-bar">
+            <div class="catalog-grid">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-3">
-                            <h4 class="panel-title">
+                            <h4 class="catalog-title">
                                 {% if category %}
                                     {{ category.name }}
                                 {% else %}
                                     Produtos
                                 {% endif %}
                             </h4>
+
                         </div>
                         <div class="col-sm-9">
-                            {% include 'ACLMainBundle:Catalog:_pager.html.twig' %}
+                            {% if categoryIcons %}
+                            <ul>
+                                {% for categoryIcon in categoryIcons|slice(0, 4) %}
+                                <li><a></a></li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {#% include 'ACLMainBundle:Catalog:_pager.html.twig' %#}
                         </div>
                     </div>
                 </div>

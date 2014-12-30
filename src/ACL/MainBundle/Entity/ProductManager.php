@@ -62,6 +62,17 @@ class ProductManager extends BaseEntityManager {
 		return $queryBuilder;
 	}
 
+	public function getProductsByNameQueryBuilder($name){
+		$queryBuilder = $this->getRepository()->createQueryBuilder('p')
+			->leftJoin('p.image', 'i')
+			->leftJoin('p.gallery', 'g')
+			->andWhere('p.name LIKE %:productName%')
+			->orWhere('c.subname LIKE %:productName%')
+			->setParameter('productName', $name);
+
+		return $queryBuilder;
+	}
+
 	/**
 	 * Retrieve an active product from its id and its slug
 	 *

@@ -1,0 +1,4 @@
+sonata_classification:
+  admin:
+    category:
+      class: Application\Sonata\ClassificationBundle\Admin\CategoryAdmin

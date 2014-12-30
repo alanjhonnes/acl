@@ -46,7 +46,7 @@ class CatalogController extends Controller
 
 		$category = $this->retrieveCategoryFromQueryString();
 
-		$this->get('sonata.seo.page')->setTitle($category ? $category->getName() : $this->get('translator')->trans('catalog_index_title'));
+		$this->get('sonata.seo.page')->setTitle($category ? $category->getName() : 'Catálogo');
 
 		$pager = $this->get('knp_paginator');
 		$pagination = $pager->paginate($this->getProductManager()->getCategoryActiveProductsQueryBuilder($category, $filter, $option), $page, $displayMax);
@@ -87,6 +87,27 @@ class CatalogController extends Controller
 
 		return $this->render('ACLMainBundle:Catalog:product.html.twig', array(
 			'productId'     => $product_id
+		));
+	}
+
+	/**
+	 * @Route(name="catalog_search", path="/busca/{product_name}")
+	 */
+	public function searchAction(Request $request, $product_name){
+		$this->request = $request;
+		$page        = $this->request->get('page', 1);
+		$displayMax  = $this->request->get('max', 9);
+		$displayMode = $this->request->get('mode', 'grid');
+
+		$this->get('sonata.seo.page')->setTitle($product_name ? $product_name->getName() : 'Catálogo');
+
+		$pager = $this->get('knp_paginator');
+		$pagination = $pager->paginate($this->getProductManager()->getProductsByNameQueryBuilder($product_name), $page, $displayMax);
+
+		return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
+			'display_mode' => $displayMode,
+			'pager'        => $pagination,
+			'search' => $product_name
 		));
 	}
 
