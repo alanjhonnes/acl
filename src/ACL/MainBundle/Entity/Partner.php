@@ -32,6 +32,11 @@ class Partner {
 	protected $name;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $description;
+
+    /**
      * @var
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      */
@@ -69,6 +74,29 @@ class Partner {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Partner
+     */
+    public function setDescription($description)
+    {
+        $this->$description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

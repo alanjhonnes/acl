@@ -28,11 +28,11 @@ class CategoryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Geral', array('class' => 'col-md-6'))
+            ->with('Geral', array('class' => 'col-md-9'))
                 ->add('name', 'text', array('label' => 'Nome'))
                 ->add('description', 'textarea', array('required' => false, 'label' => 'Descrição'))
             ->end()
-            ->with('Opções', array('class' => 'col-md-6'))
+            ->with('Opções', array('class' => 'col-md-3'))
                 ->add('position', 'integer', array('required' => false, 'data' => 0, 'label' => 'Posição'))
                 ->add('parent', 'sonata_category_selector', array(
                     'category'      => $this->getSubject() ?: null,

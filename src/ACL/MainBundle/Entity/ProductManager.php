@@ -63,12 +63,14 @@ class ProductManager extends BaseEntityManager {
 	}
 
 	public function getProductsByNameQueryBuilder($name){
-		$queryBuilder = $this->getRepository()->createQueryBuilder('p')
-			->leftJoin('p.image', 'i')
+
+		$queryBuilder = $this->getRepository()->createQueryBuilder('p');
+		/* @var $queryBuilder QueryBuilder */
+		$queryBuilder->leftJoin('p.image', 'i')
 			->leftJoin('p.gallery', 'g')
-			->andWhere('p.name LIKE %:productName%')
-			->orWhere('c.subname LIKE %:productName%')
-			->setParameter('productName', $name);
+			->andWhere('p.name LIKE :productName')
+			->orWhere('p.subname LIKE :productName')
+			->setParameter('productName', '%'.$name.'%');
 
 		return $queryBuilder;
 	}
@@ -79,7 +81,7 @@ class ProductManager extends BaseEntityManager {
 	 * @param int    $id
 	 * @param string $slug
 	 *
-	 * @return ProductInterface|null
+	 * @return Product|null
 	 */
 	public function findEnabledFromIdAndSlug($id, $slug)
 	{

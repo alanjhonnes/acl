@@ -17,16 +17,6 @@
 
     <div class="col-sm-9">
     {% block content  %}
-        {% if pager.count == 0 %}
-
-            {% block no_products %}
-                <div class="no-products-available">
-                    Não há produtos disponíveis.
-                </div>
-            {% endblock %}
-
-        {% else %}
-
             <div class="catalog-grid">
                 <div class="panel-heading">
                     <div class="row">
@@ -34,6 +24,8 @@
                             <h4 class="catalog-title">
                                 {% if category %}
                                     {{ category.name }}
+                                {% elseif search %}
+                                    Busca por: {{ search }}
                                 {% else %}
                                     Produtos
                                 {% endif %}
@@ -42,12 +34,23 @@
                         </div>
                         <div class="col-sm-9">
                             {% if categoryIcons %}
-                            <ul>
+                            <ul class="category-icons">
                                 {% for categoryIcon in categoryIcons|slice(0, 4) %}
-                                <li><a></a></li>
+                                <li>
+                                    <a href="{{ url('catalog_category', {'category_slug': categoryIcon.slug, 'category_id': categoryIcon.id}) }}"
+                                       {% if rootCategory and rootCategory.id == categoryIcon.id %}
+                                            class="category-icon-active"
+                                        {% endif %}
+                                            >
+                                        <img src="{% path categoryIcon.media, 'icon' %}" alt="{{ categoryIcon.name }}" title="{{ categoryIcon.name }}"/>
+                                    </a>
+                                </li>
                                 {% endfor %}
                             </ul>
                             {% endif %}
+                            {{ form_start(searchForm) }}
+                            {{ form_widget(searchForm.title, { 'attr': {'placeholder': 'Buscar'} }) }}
+                            {{ form_end(searchForm) }}
                             {#% include 'ACLMainBundle:Catalog:_pager.html.twig' %#}
                         </div>
                     </div>
@@ -65,8 +68,6 @@
                     </div>
                 {% endif %}
             </div>
-        {% endif %}
     {% endblock %}
     </div>
-
 </div>

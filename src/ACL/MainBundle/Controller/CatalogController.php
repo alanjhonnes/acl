@@ -2,7 +2,11 @@
 
 namespace ACL\MainBundle\Controller;
 
+use ACL\MainBundle\Entity\Product;
 use ACL\MainBundle\Entity\ProductManager;
+use ACL\MainBundle\Form\ProductSearchType;
+use Application\Sonata\ClassificationBundle\Entity\CategoryManager;
+use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +22,76 @@ class CatalogController extends Controller
 {
 
 	protected $request;
+
+	/**
+	 * @Route(name="catalog_search", path="/busca")
+	 */
+	public function searchAction(Request $request){
+//		$this->request = $request;
+//
+//		$title = $this->request->request->get('title');
+//
+//		return $this->redirectToRoute('catalog_search_result', array('product_name' => $title));
+		$this->request = $request;
+		$form = $this->createForm(new ProductSearchType());
+		$form->handleRequest($request);
+
+		if ($form->isValid()) {
+			// data is an array with "name", "email", and "message" keys
+			$data = $form->getData();
+			$product_name =$data['title'];
+
+			$page        = $this->request->get('page', 1);
+			$displayMax  = $this->request->get('max', 9);
+			$displayMode = $this->request->get('mode', 'grid');
+
+			$this->get('sonata.seo.page')->setTitle('Catálogo');
+
+			$pager = $this->get('knp_paginator');
+			$pagination = $pager->paginate($this->getProductManager()->getProductsByNameQueryBuilder($product_name), $page, $displayMax);
+
+			return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
+				'display_mode' => $displayMode,
+				'pager'        => $pagination,
+				'category' => null,
+				'categoryIcons' => $this->getCategoryIcons(),
+				'search' => $product_name,
+				'rootCategory' => null,
+				'searchForm' => $this->getSearchForm()
+			));
+
+		}
+		else {
+			//return $this->redirectToRoute('catalog_index');
+		}
+
+
+	}
+
+	/**
+	 * @Route(name="catalog_search_result", path="/busca/{product_name}")
+	 */
+	public function searchResultAction(Request $request, $product_name){
+		$this->request = $request;
+		$page        = $this->request->get('page', 1);
+		$displayMax  = $this->request->get('max', 9);
+		$displayMode = $this->request->get('mode', 'grid');
+
+		$this->get('sonata.seo.page')->setTitle('Catálogo');
+
+		$pager = $this->get('knp_paginator');
+		$pagination = $pager->paginate($this->getProductManager()->getProductsByNameQueryBuilder($product_name), $page, $displayMax);
+
+		return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
+			'display_mode' => $displayMode,
+			'pager'        => $pagination,
+			'category' => null,
+			'categoryIcons' => $this->getCategoryIcons(),
+			'search' => $product_name,
+			'rootCategory' => null,
+			'searchForm' => $this->getSearchForm()
+		));
+	}
 
 	/**
 	 * @param $request
@@ -45,6 +119,7 @@ class CatalogController extends Controller
 		}
 
 		$category = $this->retrieveCategoryFromQueryString();
+		$categoryIcons = $this->getCategoryIcons();
 
 		$this->get('sonata.seo.page')->setTitle($category ? $category->getName() : 'Catálogo');
 
@@ -55,6 +130,9 @@ class CatalogController extends Controller
 			'display_mode' => $displayMode,
 			'pager'        => $pagination,
 			'category'     => $category,
+			'rootCategory' => $this->getRootCategoryForCategory($category),
+			'categoryIcons' => $categoryIcons,
+			'searchForm' => $this->getSearchForm()
 		));
 	}
 
@@ -83,33 +161,18 @@ class CatalogController extends Controller
 	 */
 	public function productAction($product_slug, $product_id){
 
-		//$product = $this->getProductManager()->findEnabledFromIdAndSlug($product_id, $product_slug);
+		$product = $this->getProductManager()->findEnabledFromIdAndSlug($product_id, $product_slug);
+
 
 		return $this->render('ACLMainBundle:Catalog:product.html.twig', array(
-			'productId'     => $product_id
+			'productId'     => $product_id,
+			'rootCategory' => $this->getRootCategoryForProduct($product),
+			'categoryIcons' => $this->getCategoryIcons(),
+			'searchForm' => $this->getSearchForm()
 		));
 	}
 
-	/**
-	 * @Route(name="catalog_search", path="/busca/{product_name}")
-	 */
-	public function searchAction(Request $request, $product_name){
-		$this->request = $request;
-		$page        = $this->request->get('page', 1);
-		$displayMax  = $this->request->get('max', 9);
-		$displayMode = $this->request->get('mode', 'grid');
 
-		$this->get('sonata.seo.page')->setTitle($product_name ? $product_name->getName() : 'Catálogo');
-
-		$pager = $this->get('knp_paginator');
-		$pagination = $pager->paginate($this->getProductManager()->getProductsByNameQueryBuilder($product_name), $page, $displayMax);
-
-		return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
-			'display_mode' => $displayMode,
-			'pager'        => $pagination,
-			'search' => $product_name
-		));
-	}
 
 	/**
 	 * @return ProductManager
@@ -125,5 +188,46 @@ class CatalogController extends Controller
 	protected function getCategoryManager()
 	{
 		return $this->get('sonata.classification.manager.category');
+	}
+
+	/**
+	 * @return CategoryInterface[]
+	 */
+	private function getCategoryIcons()
+	{
+		return $this->getCategoryManager()->findRootCategoriesWithIcons();
+	}
+
+	/**
+	 * @param $category CategoryInterface
+	 * @return CategoryInterface The root category of the $category
+	 */
+	private function getRootCategoryForCategory($category)
+	{
+		if(!$category){
+			return null;
+		}
+		while($category->getParent() != null){
+			$category = $category->getParent();
+		}
+		return $category;
+	}
+
+	/**
+	 * @param $product Product
+	 * @return CategoryInterface The root category of the $category
+	 */
+	private function getRootCategoryForProduct($product)
+	{
+		$category = $product->getCategory();
+		return $this->getRootCategoryForCategory($category);
+	}
+
+
+	private function getSearchForm(){
+		$form = $this->createForm(new ProductSearchType(), null, array(
+			'action' => $this->generateUrl('catalog_search')
+		));
+		return $form->createView();
 	}
 }

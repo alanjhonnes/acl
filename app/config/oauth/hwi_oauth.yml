@@ -1,0 +1,10 @@
+hwi_oauth:
+  # name of the firewall in which this bundle is active, this setting MUST be set
+  firewall_name: secured_area
+  resource_owners:
+    facebook_resource:
+        type:                facebook
+        client_id:           1534793126736059 #radarfit
+        client_secret:       bf38170f9645c496a878a61d9169cb04
+        options:
+          display: popup #dialog is optimized for popup window

@@ -5,6 +5,7 @@ namespace ACL\MainBundle\Resizer;
 use Imagine\Image\ImagineInterface;
 use Imagine\Image\Box;
 use Gaufrette\File;
+use Imagine\Image\Palette\RGB;
 use Imagine\Image\Point;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Sonata\MediaBundle\Resizer\ResizerInterface;
@@ -60,8 +61,10 @@ class CustomResizer implements ResizerInterface
 		    $pastePoint = new Point((max($totalSize->getWidth() - $imageSize->getWidth(), 0)) / 2, 0);
 	    }
 
+        $pallete = new RGB();
 
-        $content = $this->adapter->create($totalSize)
+        $backgroundColor = $pallete->color('#ffffff', 0);
+        $content = $this->adapter->create($totalSize, $backgroundColor)
             //->thumbnail($this->getBox($media, $settings), $this->mode)
             //->resize($size)
 	        ->paste($image->resize($imageSize), $pastePoint)

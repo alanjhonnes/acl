@@ -46,6 +46,8 @@ imports:
 #    - { resource: sonata/sonata_customer.yml }
 #    - { resource: sonata/sonata_basket.yml }
 
+#     - { resource: oauth/hwi_oauth.yml }
+
 framework:
     #esi:                   ~
     translator:

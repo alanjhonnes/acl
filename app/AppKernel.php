@@ -126,6 +126,7 @@ class AppKernel extends Kernel
 //            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(), // easy extends integration
 
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            //new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new ACL\MainBundle\ACLMainBundle(),
         );
 
