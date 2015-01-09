@@ -46,6 +46,7 @@ sonata_admin:
                     - acl_main.admin.product
                     - acl_main.admin.brand
                     - acl_main.admin.partner
+                    - acl_main.admin.project
                     - sonata.news.admin.post
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery

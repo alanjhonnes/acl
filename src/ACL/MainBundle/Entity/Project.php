@@ -32,15 +32,21 @@ class Project {
 	 */
 	protected $name;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $slug;
+
 	/**
 	 * @var
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="text", nullable=true)
 	 */
 	protected $description;
 
 	/**
 	 * @var
-	 * @ORM\Column(type="text")
+	 * @ORM\Column(type="text", nullable=true)
 	 */
 	protected $content;
 
@@ -70,7 +76,9 @@ class Project {
     public function setName($name)
     {
         $this->name = $name;
-
+        if (!$this->getSlug()) {
+            $this->setSlug($name);
+        }
         return $this;
     }
 
@@ -83,6 +91,56 @@ class Project {
     {
         return $this->name;
     }
+
+    /**
+     * source : http://snipplr.com/view/22741/slugify-a-string-in-php/
+     *
+     * @static
+     * @param  $text
+     * @return mixed|string
+     */
+    public static function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // transliterate
+        if (function_exists('iconv')) {
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        }
+
+        // lowercase
+        $text = strtolower($text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = self::slugify(trim($slug));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
 
 
     /**

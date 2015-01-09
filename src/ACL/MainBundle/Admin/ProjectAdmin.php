@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: alanjhonnes
+ * Date: 1/9/2015
+ * Time: 8:25 PM
+ */
 
 namespace ACL\MainBundle\Admin;
 
@@ -8,8 +14,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class PartnerAdmin extends Admin
-{
+class ProjectAdmin extends Admin {
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -18,6 +23,7 @@ class PartnerAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('name')
+            ->add('description')
         ;
     }
 
@@ -29,6 +35,7 @@ class PartnerAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('name')
+            ->add('description')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -46,14 +53,15 @@ class PartnerAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Nome'))
-            ->add('description', 'ckeditor', array('label' => 'Descrição'))
+            ->add('description', 'text', array('label' => 'Descrição'))
+            ->add('content', 'ckeditor', array('label' => 'Conteúdo'))
             ->add(
-                'logo',
+                'image',
                 'sonata_type_model_list',
-                array( 'required' => false, 'label' => 'Logotipo' ),
+                array( 'required' => false, 'label' => 'Imagem' ),
                 array(
                     'link_parameters' => array(
-                        'context' => 'Parceiros'
+                        'context' => 'Cases'
                     )
                 )
             )

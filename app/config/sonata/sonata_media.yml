@@ -54,6 +54,14 @@ sonata_media:
                 view: { width: 750, quality: 100 }
                 wide: { width: 1170, quality: 100 }
 
+        Cases:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 200, quality: 100 }
+                view: { width: 750, quality: 100 }
+                wide: { width: 1170, quality: 100 }
+
         Downloads:
             providers:
                 - sonata.media.provider.file

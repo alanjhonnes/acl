@@ -132,7 +132,8 @@ class CatalogController extends Controller
 			'category'     => $category,
 			'rootCategory' => $this->getRootCategoryForCategory($category),
 			'categoryIcons' => $categoryIcons,
-			'searchForm' => $this->getSearchForm()
+			'searchForm' => $this->getSearchForm(),
+			'search' => null,
 		));
 	}
 
@@ -168,7 +169,7 @@ class CatalogController extends Controller
 			'productId'     => $product_id,
 			'rootCategory' => $this->getRootCategoryForProduct($product),
 			'categoryIcons' => $this->getCategoryIcons(),
-			'searchForm' => $this->getSearchForm()
+			'searchForm' => $this->getSearchForm(),
 		));
 	}
 

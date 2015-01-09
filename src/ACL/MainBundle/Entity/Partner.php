@@ -32,7 +32,7 @@ class Partner {
 	protected $name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $description;
 
@@ -108,7 +108,6 @@ class Partner {
     public function setLogo(\Application\Sonata\MediaBundle\Entity\Media $logo = null)
     {
         $this->logo = $logo;
-
         return $this;
     }
 

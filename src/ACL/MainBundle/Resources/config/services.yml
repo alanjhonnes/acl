@@ -53,6 +53,12 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Parceiro}
 
+    acl_main.admin.project:
+            class: ACL\MainBundle\Admin\ProjectAdmin
+            arguments: [~, ACL\MainBundle\Entity\Project, ACLMainBundle:ProjectAdmin]
+            tags:
+                - {name: sonata.admin, manager_type: orm, group: admin, label: Case}
+
 
     acl.block.service.partners:
         class: ACL\MainBundle\Block\PartnersBlockService

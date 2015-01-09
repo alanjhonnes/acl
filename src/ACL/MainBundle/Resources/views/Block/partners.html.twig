@@ -1,13 +1,15 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Nossos Parceiros</h4>
-            <div class="partners-list">
-                {% for partner in partners %}
-                <div class="col-md-2 col-sm-3 col-xs-4">
-                    {% media partner.logo, 'small' with { 'class': 'img-responsive img-rounded'} %}
+<div class="partners-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Nossos Parceiros</h4>
+                <div class="partners-list">
+                    {% for partner in partners %}
+                    <div class="col-md-2 col-sm-3 col-xs-4">
+                        {% media partner.logo, 'small' with { 'class': 'img-responsive img-rounded'} %}
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>

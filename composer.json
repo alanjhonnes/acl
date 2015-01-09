@@ -1,8 +1,8 @@
 {
-    "name": "sonata-project/sandbox",
-    "description": "Sonata Project's sandbox (with ecommerce bundles)",
+    "name": "aclsecurity/site",
+    "description": "ACLSecurity website",
 
-    "license": "MIT",
+    "license": "proprietary",
 
     "autoload": {
         "psr-0": { "": "src/" }
@@ -57,8 +57,8 @@
         "sensio/generator-bundle": "~2.3",
 
         "jms/security-extra-bundle": "~1.5",
-        "jms/di-extra-bundle": "~1.4",
         "jms/serializer-bundle": "~0.11",
+        "jms/di-extra-bundle": "~1.5",
 
         "doctrine/orm": "~2.4",
         "doctrine/doctrine-bundle": "~1.2",
@@ -101,6 +101,8 @@
 
         "mopa/bootstrap-bundle": "v3.0.0-beta3",
         "twbs/bootstrap": "v3.0.0",
+
+
 
         "stof/doctrine-extensions-bundle": "~1.1",
         "stephpy/TimelineBundle": "~2.0@dev",

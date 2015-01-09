@@ -314,6 +314,7 @@ body {
   border-bottom-color: #a31a1d;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  padding-bottom: 0px;
 }
 .catalog-title {
   color: #a31a1d;
@@ -326,4 +327,11 @@ body {
   float: right;
   margin-top: 6px;
   margin-right: 10px;
+}
+.partners-block {
+  background-color: #e0dede;
+  padding-bottom: 16px;
+}
+.copyright {
+  font-size: 12px;
 }
