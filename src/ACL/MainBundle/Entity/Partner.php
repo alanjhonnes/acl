@@ -32,7 +32,7 @@ class Partner {
 	protected $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
 
@@ -84,7 +84,7 @@ class Partner {
      */
     public function setDescription($description)
     {
-        $this->$description = $description;
+        $this->description = $description;
 
         return $this;
     }

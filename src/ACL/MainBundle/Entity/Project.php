@@ -39,7 +39,7 @@ class Project {
     protected $slug;
 
 	/**
-	 * @var
+	 * @var string
 	 * @ORM\Column(type="text", nullable=true)
 	 */
 	protected $description;

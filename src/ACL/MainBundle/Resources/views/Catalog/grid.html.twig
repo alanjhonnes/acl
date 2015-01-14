@@ -9,7 +9,7 @@ file that was distributed with this source code.
 
 #}
 
-<div class="panel-body product-grid">
+<div class="panel-body product-grid equalizer">
     {% if pager.count == 0 %}
         <div class="no-products-available">
             Não há produtos disponíveis.
@@ -17,7 +17,7 @@ file that was distributed with this source code.
     {% else %}
         {% for product in pager %}
 
-                <div class="col-sm-4" itemscope itemtype="http://schema.org/Product">
+                <div class="col-sm-4 watch" itemscope itemtype="http://schema.org/Product">
                     {% include 'ACLMainBundle:Catalog:_product_grid.html.twig' %}
                 </div>
 

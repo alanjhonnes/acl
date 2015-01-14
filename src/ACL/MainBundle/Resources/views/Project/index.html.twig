@@ -1,0 +1,18 @@
+<h1 class="page-title">Cases</h1>
+<section class="row equalizer">
+    {% for project in projects %}
+        <article class="partner-display col-md-6">
+            <h2 class="partner-title col-xs-12">
+                {{ project.name }}
+            </h2>
+            <div class="col-xs-4 partner-logo-container">
+                {% thumbnail project.image, 'small' with { 'class': 'img-responsive project-image' } %}
+            </div>
+            <div class="partner-content col-xs-8 watch">
+                <div>
+                    {{ project.content|raw }}
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+</section>

@@ -4,7 +4,7 @@
             <div class="categories-list">
                 {% for category in categories|slice(0, 4) %}
                 <div class="col-md-3 col-xs-6">
-                    <a href="#TODO">
+                    <a href="{{ path('catalog_category', { 'category_slug': category.slug, 'category_id': category.id  }) }}">
                         <h3>{{ category.name }}</h3>
                         <p>{{ category.description }}</p>
                     </a>

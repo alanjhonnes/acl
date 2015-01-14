@@ -1,8 +1,18 @@
-<h1>Parceiros</h1>
-<section>
+<h1 class="page-title">Parceiros</h1>
+<section class="row equalizer">
     {% for partner in partners %}
-        <article class="partner-display">
-
+        <article class="partner-display col-md-6">
+            <h2 class="partner-title col-xs-12">
+                {{ partner.name }}
+            </h2>
+            <div class="col-xs-4 partner-logo-container">
+            {% thumbnail partner.logo, 'small' with { 'class': 'img-responsive partner-logo' } %}
+            </div>
+            <div class="partner-content col-xs-8 watch">
+                <div>
+                    {{ partner.description|raw }}
+                </div>
+            </div>
         </article>
     {% endfor %}
 </section>

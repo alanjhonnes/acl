@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @package ACL\MainBundle\Controller
  * @Route(path="/cases")
  */
-class ProjectController extends Controller implements ContainerAwareInterface {
+class ProjectController extends Controller {
 
     /**
      * @var EntityManager
@@ -35,21 +35,31 @@ class ProjectController extends Controller implements ContainerAwareInterface {
     private $projectRepo;
 
     public function __construct(){
-
+        //$this->projectRepo = $this->getProjectRepository();
     }
 
     /**
      * @Route("/", name="acl.main.project.index")
+     * @Template
      */
     public function indexAction(){
-
+        $projects = $this->getProjectRepository()->findAll();
+        return array('projects' => $projects);
     }
 
     /**
      * @Route("/{project_slug}/{project_id}", name="acl.main.project.project")
+     * @Template
      */
     public function projectAction($project_slug, $project_id){
+        return array();
+    }
 
+    /**
+     * @return ProjectRepository
+     */
+    private function getProjectRepository(){
+        return $this->getDoctrine()->getRepository('ACLMainBundle:Project');
     }
 
 

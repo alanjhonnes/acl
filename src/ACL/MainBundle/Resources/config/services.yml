@@ -107,3 +107,9 @@ services:
             arguments:
                 - %acl.main.product.class%
                 - @doctrine
+    acl.main.project_repository:
+            class: Doctrine\ORM\EntityRepository
+            factory_service: doctrine.orm.default_entity_manager
+            factory_method: getRepository
+            arguments:
+                - ACL\MainBundle\Entity\Project

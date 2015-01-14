@@ -22,9 +22,25 @@
 {% block list %}
 {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
     {% import _self as knp_menu %}
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav nav-justified nav-top">
+        {{ block('children') }}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+
+
+    {#
     <ul{{ knp_menu.attributes(listAttributes) }}>
         {{ block('children') }}
     </ul>
+    #}
 {% endif %}
 {% endblock %}
 

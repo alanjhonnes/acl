@@ -2,6 +2,12 @@
  * Created by Alan Jhonnes on 11/3/2014.
  */
 jQuery(document).ready(function ($) {
+
+
+
+
+
+    /***** Sliders *****/
     var options = {
         $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
         $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -73,3 +79,17 @@ jQuery(document).ready(function ($) {
     $(window).bind("orientationchange", ScaleSlider);
     //responsive code end
 });
+
+$(document).on('load', function(){
+    "use strict";
+    /*** Bootstrap same column height ***/
+    $(".equalizer").each(function() {
+        var heights = $(this).find(".watch").map(function() {
+                return $(this).height();
+            }).get(),
+
+            maxHeight = Math.max.apply(null, heights);
+
+        $(".watch").height(maxHeight);
+    });
+})
