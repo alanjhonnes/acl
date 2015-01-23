@@ -11,6 +11,7 @@
 
 namespace ACL\MainBundle\Block;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
@@ -50,7 +51,7 @@ class PartnersBlockService extends BaseBlockService
      *
      * @param string               $name        A block name
      * @param EngineInterface      $templating  Twig engine service
-     * @param
+     * @param ManagerInterface     $partnerManager
      */
     public function __construct($name, EngineInterface $templating, ManagerInterface $partnerManager)
     {
@@ -63,7 +64,11 @@ class PartnersBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $partners = $this->getPartnerManager()->findAll();
+        /**
+         * @var $partners ArrayCollection
+         */
+        $partners = $this->getPartnerManager()->findWithLogo();
+        shuffle($partners);
 
         return $this->renderResponse($blockContext->getTemplate(), array(
                 'partners' => $partners,

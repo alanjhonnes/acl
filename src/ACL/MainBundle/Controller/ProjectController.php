@@ -43,7 +43,7 @@ class ProjectController extends Controller {
      * @Template
      */
     public function indexAction(){
-        $projects = $this->getProjectRepository()->findAll();
+        $projects = $this->getProjectRepository()->findAllWithMedia();
         return array('projects' => $projects);
     }
 

@@ -46,7 +46,7 @@ class PartnerAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Nome'))
-            ->add('description', 'ckeditor', array('label' => 'Descrição'))
+            ->add('description', 'ckeditor', array('label' => 'Descrição', 'required' => false))
             ->add(
                 'logo',
                 'sonata_type_model_list',

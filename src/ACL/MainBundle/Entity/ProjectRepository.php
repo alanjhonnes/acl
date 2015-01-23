@@ -13,8 +13,11 @@ use Doctrine\ORM\EntityRepository;
 class ProjectRepository extends EntityRepository
 {
 
-    public function findAll(){
-
+    public function findAllWithMedia(){
+        $qb = $this->createQueryBuilder('p')
+            ->select('p, i')
+            ->leftJoin('p.image', 'i');
+        return $qb->getQuery()->execute();
     }
 
 }

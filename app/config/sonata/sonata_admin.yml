@@ -47,6 +47,7 @@ sonata_admin:
                     - acl_main.admin.brand
                     - acl_main.admin.partner
                     - acl_main.admin.project
+                    - acl_main.admin.trainning
                     - sonata.news.admin.post
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery
@@ -63,7 +64,7 @@ sonata_admin:
 #                    - sonata.product.admin.product
 
             sonata.admin.group.classification:
-                label:           sonata_classification
+                label:           Classificação
                 label_catalogue: SonataClassificationBundle
                 icon:            '<i class="fa fa-sitemap"></i>'
                 items:
@@ -80,7 +81,7 @@ sonata_admin:
                     - sonata.page.admin.site
 
             sonata.admin.group.administration:
-                label:           sonata_administration
+                label:           Administração
                 label_catalogue: SonataAdminBundle
                 icon:            '<i class="fa fa-cogs"></i>'
                 items:

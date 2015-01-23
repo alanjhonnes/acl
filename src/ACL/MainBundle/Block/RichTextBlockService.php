@@ -11,8 +11,8 @@
 
 namespace ACL\MainBundle\Block;
 
+use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\Service\TextBlockService;
 use Symfony\Component\HttpFoundation\Response;
 
 use Sonata\AdminBundle\Form\FormMapper;
@@ -25,8 +25,27 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author     Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class RichTextBlockService extends TextBlockService
+class RichTextBlockService extends BaseBlockService
 {
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function execute(BlockContextInterface $blockContext, Response $response = null)
+	{
+		return $this->renderResponse($blockContext->getTemplate(), array(
+			'block'     => $blockContext->getBlock(),
+			'settings'  => $blockContext->getSettings()
+		), $response);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
+	{
+		// TODO: Implement validateBlock() method.
+	}
 
 	/**
 	 * {@inheritdoc}
@@ -35,7 +54,7 @@ class RichTextBlockService extends TextBlockService
 	{
 		$formMapper->add('settings', 'sonata_type_immutable_array', array(
 			'keys' => array(
-				array('content', 'ckeditor', array()),
+				array('content', 'ckeditor', array('input_sync' => true)),
 			)
 		));
 	}
@@ -45,7 +64,7 @@ class RichTextBlockService extends TextBlockService
 	 */
 	public function getName()
 	{
-		return 'Texto';
+		return 'Área de Texto';
 	}
 
 	/**
@@ -54,7 +73,7 @@ class RichTextBlockService extends TextBlockService
 	public function setDefaultSettings(OptionsResolverInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-			'content'  => 'Insira o texto aqui',
+			'content'  => 'Insira o conteúdo aqui',
 			'template' => 'SonataBlockBundle:Block:block_core_text.html.twig'
 		));
 	}

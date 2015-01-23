@@ -26,7 +26,7 @@ class PartnersController extends Controller {
      */
     public function indexAction(){
         $repo = $this->getPartnerRepository();
-        $partners = $repo->findAll();
+        $partners = $repo->findAllWithMedia();
 
         return $this->render('@ACLMain/Partner/index.html.twig', array('partners' => $partners));
     }

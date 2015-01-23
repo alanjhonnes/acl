@@ -58,6 +58,11 @@ services:
             arguments: [~, ACL\MainBundle\Entity\Project, ACLMainBundle:ProjectAdmin]
             tags:
                 - {name: sonata.admin, manager_type: orm, group: admin, label: Case}
+    acl_main.admin.trainning:
+                class: ACL\MainBundle\Admin\TrainningAdmin
+                arguments: [~, ACL\MainBundle\Entity\Trainning, ACLMainBundle:TrainningAdmin]
+                tags:
+                    - {name: sonata.admin, manager_type: orm, group: admin, label: Treinamento}
 
 
     acl.block.service.partners:

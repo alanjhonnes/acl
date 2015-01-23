@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartnerRepository extends EntityRepository
 {
+    public function findAllWithMedia(){
+        return $this->createQueryBuilder('p')
+            ->select('p, l')
+            ->leftJoin('p.logo', 'l')
+            ->getQuery()->execute();
+    }
 }

@@ -4,8 +4,48 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ef4549883f5da0c746d9c20e663cb13",
+    "hash": "6fd3aed4f82e51b81a2e6cc02d662348",
     "packages": [
+        {
+            "name": "behat/transliterator",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Transliterator.git",
+                "reference": "c93521d3462a554332d1ef5bb0e9b5b8ca4106c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/c93521d3462a554332d1ef5bb0e9b5b8ca4106c4",
+                "reference": "c93521d3462a554332d1ef5bb0e9b5b8ca4106c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Transliterator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Artistic-1.0"
+            ],
+            "description": "String transliterator",
+            "keywords": [
+                "i18n",
+                "slug",
+                "transliterator"
+            ],
+            "time": "2014-05-15 22:08:22"
+        },
         {
             "name": "dflydev/markdown",
             "version": "v1.0.3",
@@ -135,16 +175,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.3.1",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "cf483685798a72c93bf4206e3dd6358ea07d64e7"
+                "reference": "2346085d2b027b233ae1d5de59b07440b9f288c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/cf483685798a72c93bf4206e3dd6358ea07d64e7",
-                "reference": "cf483685798a72c93bf4206e3dd6358ea07d64e7",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/2346085d2b027b233ae1d5de59b07440b9f288c8",
+                "reference": "2346085d2b027b233ae1d5de59b07440b9f288c8",
                 "shasum": ""
             },
             "require": {
@@ -155,6 +195,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": ">=3.7",
+                "predis/predis": "~0.8",
                 "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
@@ -200,7 +241,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2014-09-17 14:24:04"
+            "time": "2015-01-15 20:38:55"
         },
         {
             "name": "doctrine/collections",
@@ -354,12 +395,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "ac36ccc812454e057aec564e0725509e74ce6b35"
+                "reference": "80401e8a3b6364287b80922fa303fc86d75714db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/ac36ccc812454e057aec564e0725509e74ce6b35",
-                "reference": "ac36ccc812454e057aec564e0725509e74ce6b35",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/80401e8a3b6364287b80922fa303fc86d75714db",
+                "reference": "80401e8a3b6364287b80922fa303fc86d75714db",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +408,7 @@
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "doctrine/orm": "~2.2"
+                "doctrine/orm": "~2.4"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
@@ -400,20 +441,20 @@
             "keywords": [
                 "database"
             ],
-            "time": "2014-08-18 12:52:16"
+            "time": "2015-01-19 01:52:30"
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "71140662c0a954602e81271667b6e03d9f53ea34"
+                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/71140662c0a954602e81271667b6e03d9f53ea34",
-                "reference": "71140662c0a954602e81271667b6e03d9f53ea34",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/628c2256b646ae2417d44e063bce8aec5199d48d",
+                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d",
                 "shasum": ""
             },
             "require": {
@@ -471,7 +512,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-12-04 21:57:15"
+            "time": "2015-01-12 21:52:47"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -882,12 +923,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "96f838b4fa93693d19196c8e24ed5f1c3972ba87"
+                "reference": "1ac14fac3ced533047d8feae8edc7c283d5b8a67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/96f838b4fa93693d19196c8e24ed5f1c3972ba87",
-                "reference": "96f838b4fa93693d19196c8e24ed5f1c3972ba87",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/1ac14fac3ced533047d8feae8edc7c283d5b8a67",
+                "reference": "1ac14fac3ced533047d8feae8edc7c283d5b8a67",
                 "shasum": ""
             },
             "require": {
@@ -914,7 +955,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL"
+                "LGPL-2.1"
             ],
             "authors": [
                 {
@@ -932,7 +973,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2014-12-19 17:14:47"
+            "time": "2015-01-19 02:26:02"
         },
         {
             "name": "doctrine/orm",
@@ -1387,35 +1428,33 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.3.9",
+            "version": "v2.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54"
+                "reference": "4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
-                "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0",
+                "reference": "4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.2,<2.5-dev",
+                "behat/transliterator": "~1.0",
+                "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "doctrine/common": ">=2.4.0-RC3",
-                "doctrine/dbal": ">=2.4.0-RC1",
-                "doctrine/mongodb": ">=1.0.3",
-                "doctrine/mongodb-odm": ">=1.0.0-BETA9",
-                "doctrine/orm": ">=2.4.0-RC1",
-                "symfony/yaml": "2.3.1"
+                "doctrine/mongodb-odm": ">=1.0.0-BETA11",
+                "doctrine/orm": "~2.4",
+                "phpunit/phpunit": "~4.4",
+                "phpunit/phpunit-mock-objects": "~2.3",
+                "symfony/yaml": "~2.3"
             },
             "suggest": {
-                "doctrine/dbal": ">=2.3.2",
-                "doctrine/mongodb": ">=1.0.1",
-                "doctrine/mongodb-odm": ">=1.0.0-BETA7",
-                "doctrine/orm": ">=2.3.2"
+                "doctrine/mongodb-odm": "to use the extensions with the MongoDB ODM",
+                "doctrine/orm": "to use the extensions with the ORM"
             },
             "type": "library",
             "extra": {
@@ -1463,7 +1502,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2014-01-12 16:34:06"
+            "time": "2015-01-21 20:55:10"
         },
         {
             "name": "imagine/imagine",
@@ -3122,17 +3161,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "0225fcd08e94de2165ffa85de50c3c9d9592e96b"
+                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/0225fcd08e94de2165ffa85de50c3c9d9592e96b",
-                "reference": "0225fcd08e94de2165ffa85de50c3c9d9592e96b",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/9e23fc3de265ae013690d84aab98e7a84f46edcd",
+                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd",
                 "shasum": ""
             },
             "require": {
@@ -3166,7 +3205,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2014-12-07 18:30:52"
+            "time": "2015-01-13 07:33:46"
         },
         {
             "name": "simplethings/entity-audit-bundle",
@@ -3902,89 +3941,6 @@
             "time": "2014-09-29 09:36:23"
         },
         {
-            "name": "sonata-project/ecommerce",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonata-project/ecommerce.git",
-                "reference": "af772237965fee1cd9f185218199bda1613005c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/ecommerce/zipball/af772237965fee1cd9f185218199bda1613005c2",
-                "reference": "af772237965fee1cd9f185218199bda1613005c2",
-                "shasum": ""
-            },
-            "require": {
-                "friendsofsymfony/comment-bundle": "~2.0@dev",
-                "friendsofsymfony/rest-bundle": "~1.1",
-                "friendsofsymfony/user-bundle": "~1.3",
-                "jms/serializer-bundle": "~0.11",
-                "knplabs/knp-menu-bundle": ">=1.1.0,<3.0.0",
-                "knplabs/knp-paginator-bundle": "~2.4",
-                "kriswallsmith/buzz": "0.*",
-                "nelmio/api-doc-bundle": "~2.4",
-                "sonata-project/classification-bundle": "~2.2",
-                "sonata-project/comment-bundle": "~2.2@dev",
-                "sonata-project/core-bundle": "~2.2@dev",
-                "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
-                "sonata-project/intl-bundle": "~2.1",
-                "sonata-project/media-bundle": "~2.2@dev",
-                "sonata-project/notification-bundle": "~2.2",
-                "sonata-project/seo-bundle": "~1",
-                "sonata-project/user-bundle": "~2.2@dev",
-                "symfony/config": "~2.3",
-                "symfony/console": "~2.3",
-                "symfony/form": "~2.3",
-                "symfony/http-foundation": "~2.3",
-                "symfony/process": "~2.3",
-                "symfony/routing": "~2.3",
-                "symfony/security-bundle": "~2.3",
-                "symfony/twig-bridge": "~2.3",
-                "symfony/validator": "~2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonata\\Component\\": "src/Component",
-                    "Sonata\\BasketBundle\\": "src/BasketBundle",
-                    "Sonata\\CustomerBundle\\": "src/CustomerBundle",
-                    "Sonata\\DeliveryBundle\\": "src/DeliveryBundle",
-                    "Sonata\\InvoiceBundle\\": "src/InvoiceBundle",
-                    "Sonata\\OrderBundle\\": "src/OrderBundle",
-                    "Sonata\\PaymentBundle\\": "src/PaymentBundle",
-                    "Sonata\\PriceBundle\\": "src/PriceBundle",
-                    "Sonata\\ProductBundle\\": "src/ProductBundle",
-                    "Sonata\\Tests\\Component\\": "tests/Component",
-                    "Sonata\\Tests\\BasketBundle\\": "tests/BasketBundle",
-                    "Sonata\\Tests\\CustomerBundle\\": "tests/CustomerBundle",
-                    "Sonata\\Tests\\DeliveryBundle\\": "tests/DeliveryBundle",
-                    "Sonata\\Tests\\InvoiceBundle\\": "tests/InvoiceBundle",
-                    "Sonata\\Tests\\OrderBundle\\": "tests/OrderBundle",
-                    "Sonata\\Tests\\PaymentBundle\\": "tests/PaymentBundle",
-                    "Sonata\\Tests\\PriceBundle\\": "tests/PriceBundle",
-                    "Sonata\\Tests\\ProductBundle\\": "tests/ProductBundle"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thomas Rabaix",
-                    "email": "thomas.rabaix@sonata-project.org"
-                }
-            ],
-            "description": "E-Commerce solution provided by Sonata",
-            "time": "2014-09-08 21:56:06"
-        },
-        {
             "name": "sonata-project/exporter",
             "version": "1.3.4",
             "source": {
@@ -4221,16 +4177,16 @@
         },
         {
             "name": "sonata-project/media-bundle",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "1a1e89f5a6daf586969be210ed41e1b38aba7ac2"
+                "reference": "479d0cfb0f15f678812398918466ef0c8511f6f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/1a1e89f5a6daf586969be210ed41e1b38aba7ac2",
-                "reference": "1a1e89f5a6daf586969be210ed41e1b38aba7ac2",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/479d0cfb0f15f678812398918466ef0c8511f6f2",
+                "reference": "479d0cfb0f15f678812398918466ef0c8511f6f2",
                 "shasum": ""
             },
             "require": {
@@ -4303,7 +4259,7 @@
                 "vimeo",
                 "youtube"
             ],
-            "time": "2014-09-09 15:05:56"
+            "time": "2015-01-16 15:25:37"
         },
         {
             "name": "sonata-project/news-bundle",
@@ -4582,60 +4538,6 @@
             "time": "2014-08-13 08:07:54"
         },
         {
-            "name": "sonata-project/timeline-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonata-project/SonataTimelineBundle.git",
-                "reference": "2765d6d7a68428d7149fa5de9e533d1557912add"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataTimelineBundle/zipball/2765d6d7a68428d7149fa5de9e533d1557912add",
-                "reference": "2765d6d7a68428d7149fa5de9e533d1557912add",
-                "shasum": ""
-            },
-            "require": {
-                "sonata-project/block-bundle": "~2.2,>=2.2.1",
-                "sonata-project/core-bundle": "~2.2",
-                "stephpy/timeline-bundle": "~2.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonata\\TimelineBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sonata Community",
-                    "homepage": "https://github.com/sonata-project/SonataTimelineBundle/contributors"
-                },
-                {
-                    "name": "Thomas Rabaix",
-                    "email": "thomas.rabaix@sonata-project.org"
-                }
-            ],
-            "description": "Symfony SonataTimelineBundle ~ integrate SpyTimelineBundle into Sonata",
-            "homepage": "http://sonata-project.org/bundles/timeline",
-            "keywords": [
-                "date",
-                "sonata",
-                "time",
-                "wall"
-            ],
-            "time": "2014-08-31 16:30:12"
-        },
-        {
             "name": "sonata-project/user-bundle",
             "version": "2.2.4",
             "source": {
@@ -4704,193 +4606,6 @@
                 "user"
             ],
             "time": "2014-02-14 14:56:14"
-        },
-        {
-            "name": "stephpy/TimelineBundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stephpy/timeline-bundle.git",
-                "reference": "6245d84e1e035041f1f20c31e1b54107133f1a58"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stephpy/timeline-bundle/zipball/6245d84e1e035041f1f20c31e1b54107133f1a58",
-                "reference": "6245d84e1e035041f1f20c31e1b54107133f1a58",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "stephpy/timeline": "*",
-                "symfony/framework-bundle": "2.*",
-                "symfony/options-resolver": "2.*"
-            },
-            "require-dev": {
-                "atoum/atoum": "1.*",
-                "doctrine/orm": "2.*",
-                "symfony/console": "2.*",
-                "symfony/twig-bundle": "2.*"
-            },
-            "suggest": {
-                "doctrine/mongodb-odm-bundle": "Use doctrine ODM driver",
-                "doctrine/orm": "Use doctrine ORM driver",
-                "snc/redis-bundle": "Use redis driver",
-                "symfony/console": "List spreads and deploy timelines via a command"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spy\\TimelineBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Community contributors",
-                    "homepage": "https://github.com/stephpy/timeline-bundle/contributors"
-                }
-            ],
-            "description": "Symfony2 bundle to make timeline",
-            "homepage": "https://github.com/stephpy/timeline-bundle",
-            "keywords": [
-                "bundle",
-                "notification",
-                "symfony",
-                "timeline"
-            ],
-            "abandoned": "https://packagist.org/packages/stephpy/timeline-bundle",
-            "time": "2014-12-04 12:53:28"
-        },
-        {
-            "name": "stephpy/timeline",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stephpy/timeline.git",
-                "reference": "e3dc5677f2cee4e5ea271310c0ce5ef9df1b2fd2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stephpy/timeline/zipball/e3dc5677f2cee4e5ea271310c0ce5ef9df1b2fd2",
-                "reference": "e3dc5677f2cee4e5ea271310c0ce5ef9df1b2fd2",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/common": "~2.2",
-                "php": ">=5.3.2",
-                "symfony/options-resolver": "*"
-            },
-            "require-dev": {
-                "atoum/atoum": "dev-master",
-                "knplabs/knp-components": "1.*",
-                "pimple/pimple": "*",
-                "symfony/event-dispatcher": "2.*"
-            },
-            "suggest": {
-                "ext-redis": "Redis C extension for PHP",
-                "knplabs/knp-components": "Knp Paginator",
-                "pimple/pimple": "Use ServiceLocator",
-                "predis/predis": "Redis PHP client library"
-            },
-            "type": "package",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spy\\Timeline\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Community contributors",
-                    "homepage": "https://github.com/stephpy/timeline/contributors"
-                }
-            ],
-            "description": "Standalone library to create timelines",
-            "homepage": "https://github.com/stephpy/timeline",
-            "keywords": [
-                "standalone",
-                "timeline"
-            ],
-            "time": "2014-11-14 13:32:45"
-        },
-        {
-            "name": "stephpy/timeline-bundle",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stephpy/timeline-bundle.git",
-                "reference": "0b73f422fa9f8a3cc9f2fe2246cda8e122e7ddca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stephpy/timeline-bundle/zipball/0b73f422fa9f8a3cc9f2fe2246cda8e122e7ddca",
-                "reference": "0b73f422fa9f8a3cc9f2fe2246cda8e122e7ddca",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "stephpy/timeline": "*",
-                "symfony/framework-bundle": "2.*",
-                "symfony/options-resolver": "2.*"
-            },
-            "require-dev": {
-                "atoum/atoum": "1.*",
-                "doctrine/orm": "2.*",
-                "symfony/console": "2.*",
-                "symfony/twig-bundle": "2.*"
-            },
-            "suggest": {
-                "doctrine/mongodb-odm-bundle": "Use doctrine ODM driver",
-                "doctrine/orm": "Use doctrine ORM driver",
-                "snc/redis-bundle": "Use redis driver",
-                "symfony/console": "List spreads and deploy timelines via a command"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spy\\TimelineBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Community contributors",
-                    "homepage": "https://github.com/stephpy/timeline-bundle/contributors"
-                }
-            ],
-            "description": "Symfony2 bundle to make timeline",
-            "homepage": "https://github.com/stephpy/timeline-bundle",
-            "keywords": [
-                "bundle",
-                "notification",
-                "symfony",
-                "timeline"
-            ],
-            "time": "2014-12-04 12:51:15"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -5515,16 +5230,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.3",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af"
+                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
-                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
                 "shasum": ""
             },
             "require": {
@@ -5533,7 +5248,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -5568,7 +5283,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-12-25 19:58:19"
+            "time": "2015-01-14 10:15:49"
         },
         {
             "name": "willdurand/faker-bundle",
@@ -6743,16 +6458,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "f8d5d08c56de5cfd592b3340424a81733259a876"
+                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/f8d5d08c56de5cfd592b3340424a81733259a876",
-                "reference": "f8d5d08c56de5cfd592b3340424a81733259a876",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db32c18eba00b121c145575fcbcd4d4d24e6db74",
+                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74",
                 "shasum": ""
             },
             "require": {
@@ -6765,7 +6480,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -6788,20 +6503,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2014-08-31 06:12:13"
+            "time": "2015-01-17 09:51:32"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.4.1",
+            "version": "4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6a5e49a86ce5e33b8d0657abe145057fc513543a"
+                "reference": "e90575c2bb86290d57a262862dab1da125431576"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6a5e49a86ce5e33b8d0657abe145057fc513543a",
-                "reference": "6a5e49a86ce5e33b8d0657abe145057fc513543a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e90575c2bb86290d57a262862dab1da125431576",
+                "reference": "e90575c2bb86290d57a262862dab1da125431576",
                 "shasum": ""
             },
             "require": {
@@ -6859,7 +6574,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-12-28 07:57:05"
+            "time": "2015-01-17 11:24:41"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -7241,47 +6956,14 @@
         "doctrine/migrations": 20,
         "doctrine/data-fixtures": 20,
         "sonata-project/datagrid-bundle": 20,
-        "sonata-project/timeline-bundle": 20,
-        "sonata-project/ecommerce": 20,
         "sonata-project/comment-bundle": 20,
         "friendsofsymfony/comment-bundle": 20,
-        "mopa/bootstrap-bundle": 10,
-        "stephpy/timelinebundle": 20,
-        "stephpy/timeline": 20
+        "mopa/bootstrap-bundle": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.3",
-        "ext-gd": "*",
-        "ext-date": "*",
-        "ext-calendar": "*",
-        "ext-fileinfo": "*",
-        "ext-ereg": "*",
-        "ext-bz2": "*",
-        "ext-gettext": "*",
-        "ext-hash": "*",
-        "ext-intl": "*",
-        "ext-iconv": "*",
-        "ext-libxml": "*",
-        "ext-mbstring": "*",
-        "ext-mysql": "*",
-        "ext-mysqli": "*",
-        "ext-mysqlnd": "*",
-        "ext-pdo": "*",
-        "ext-pdo_mysql": "*",
-        "ext-phar": "*",
-        "ext-reflection": "*",
-        "ext-session": "*",
-        "ext-simplexml": "*",
-        "ext-tokenizer": "*",
-        "ext-xml": "*",
-        "ext-xmlreader": "*",
-        "ext-zip": "*",
-        "lib-iconv": "*",
-        "lib-icu": "*",
-        "lib-libxml": "*",
-        "lib-openssl": "*"
+        "php": ">=5.3.3"
     },
     "platform-dev": []
 }

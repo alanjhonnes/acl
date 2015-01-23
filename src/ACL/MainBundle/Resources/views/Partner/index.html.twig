@@ -1,6 +1,14 @@
 <h1 class="page-title">Parceiros</h1>
+<div>
+    {{ sonata_page_render_container('content') }}
+</div>
 <section class="row equalizer">
     {% for partner in partners %}
+        <div class="col-xs-6 col-sm-3 col-md-2 project-logo-container">
+            {% thumbnail partner.logo, 'small' with { 'class': 'img-responsive partner-logo' } %}
+        </div>
+    {% endfor %}
+    {#
         <article class="partner-display col-md-6">
             <h2 class="partner-title col-xs-12">
                 {{ partner.name }}
@@ -14,5 +22,5 @@
                 </div>
             </div>
         </article>
-    {% endfor %}
+        #}
 </section>

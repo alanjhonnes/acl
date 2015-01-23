@@ -158,7 +158,7 @@ body {
   text-decoration: none;
 }
 .categories-list h3 {
-  text-align: center;
+  text-align: left;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #a31a1d;
@@ -356,4 +356,14 @@ a {
 a:hover,
 a:active {
   color: #771315;
+}
+strong {
+  color: #a31a1d;
+}
+.partner-logo-container,
+.project-logo-container {
+  margin-bottom: 10px;
+}
+.partners-list img {
+  margin-bottom: 10px;
 }

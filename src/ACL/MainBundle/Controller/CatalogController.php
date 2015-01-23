@@ -21,6 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
 class CatalogController extends Controller
 {
 
+	/**
+	 * @var Request
+	 */
 	protected $request;
 
 	/**
@@ -33,39 +36,27 @@ class CatalogController extends Controller
 //
 //		return $this->redirectToRoute('catalog_search_result', array('product_name' => $title));
 		$this->request = $request;
-		$form = $this->createForm(new ProductSearchType());
-		$form->handleRequest($request);
 
-		if ($form->isValid()) {
-			// data is an array with "name", "email", and "message" keys
-			$data = $form->getData();
-			$product_name =$data['title'];
-
-			$page        = $this->request->get('page', 1);
-			$displayMax  = $this->request->get('max', 9);
-			$displayMode = $this->request->get('mode', 'grid');
-
-			$this->get('sonata.seo.page')->setTitle('Catálogo');
-
-			$pager = $this->get('knp_paginator');
-			$pagination = $pager->paginate($this->getProductManager()->getProductsByNameQueryBuilder($product_name), $page, $displayMax);
-
-			return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
-				'display_mode' => $displayMode,
-				'pager'        => $pagination,
-				'category' => null,
-				'categoryIcons' => $this->getCategoryIcons(),
-				'search' => $product_name,
-				'rootCategory' => null,
-				'searchForm' => $this->getSearchForm()
-			));
-
-		}
-		else {
-			//return $this->redirectToRoute('catalog_index');
-		}
+		$page        = $this->request->get('page', 1);
+		$product_name = $this->request->get('title', 1);
+		$displayMax  = $this->request->get('max', 9);
+		$displayMode = $this->request->get('mode', 'grid');
 
 
+		$this->get('sonata.seo.page')->setTitle('Catálogo');
+
+		$pager = $this->get('knp_paginator');
+		$pagination = $pager->paginate($this->getProductManager()->getProductsByNameQueryBuilder($product_name), $page, $displayMax);
+
+		return $this->render('ACLMainBundle:Catalog:index.html.twig', array(
+			'display_mode' => $displayMode,
+			'pager'        => $pagination,
+			'category' => null,
+			'categoryIcons' => $this->getCategoryIcons(),
+			'search' => $product_name,
+			'rootCategory' => null,
+			'searchForm' => $this->getSearchForm()
+		));
 	}
 
 	/**

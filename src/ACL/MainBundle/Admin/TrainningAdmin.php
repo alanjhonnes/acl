@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alanjhonnes
- * Date: 1/9/2015
- * Time: 8:25 PM
- */
 
 namespace ACL\MainBundle\Admin;
 
@@ -14,7 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ProjectAdmin extends Admin {
+class TrainningAdmin extends Admin
+{
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -22,8 +17,8 @@ class ProjectAdmin extends Admin {
     {
         $datagridMapper
             ->add('id')
-            ->add('name')
-            ->add('description')
+            ->add('question')
+            ->add('answer')
         ;
     }
 
@@ -33,8 +28,7 @@ class ProjectAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
+            ->addIdentifier('question')
             ->add('description')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -52,19 +46,8 @@ class ProjectAdmin extends Admin {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Nome'))
-            ->add('description', 'text', array('label' => 'Descrição', 'required' => false))
-            ->add('content', 'ckeditor', array('label' => 'Conteúdo', 'required' => false))
-            ->add(
-                'image',
-                'sonata_type_model_list',
-                array( 'required' => false, 'label' => 'Imagem' ),
-                array(
-                    'link_parameters' => array(
-                        'context' => 'Cases'
-                    )
-                )
-            )
+            ->add('question', 'text', array('label' => 'Pergunta'))
+            ->add('answer', 'ckeditor', array('label' => 'Resposta'))
         ;
     }
 
@@ -75,7 +58,8 @@ class ProjectAdmin extends Admin {
     {
         $showMapper
             ->add('id')
-            ->add('name')
+            ->add('question')
+            ->add('answer')
         ;
     }
 }

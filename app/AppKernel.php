@@ -95,6 +95,7 @@ class AppKernel extends Kernel
 
 	        new JMS\SerializerBundle\JMSSerializerBundle($this),
 
+
             // SONATA CORE & HELPER BUNDLES
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),

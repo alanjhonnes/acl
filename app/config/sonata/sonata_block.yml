@@ -19,7 +19,7 @@ sonata_block:
         #    contexts:   [admin]
 
         # Builtin Block
-        #sonata.block.service.text:
+        sonata.block.service.text:
         sonata.block.service.container:
         sonata.block.service.rss:
         sonata.block.service.menu:

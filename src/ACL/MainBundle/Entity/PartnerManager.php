@@ -14,6 +14,8 @@ use Sonata\CoreBundle\Model\BaseEntityManager;
 
 class PartnerManager extends BaseEntityManager {
 
-
+    public function findWithLogo(){
+        return $this->getRepository()->findAllWithMedia();
+    }
 
 }
