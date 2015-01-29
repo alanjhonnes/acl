@@ -63,7 +63,7 @@ class ACLCategoryManager extends CategoryManager {
 
 		$this->categories = array();
 
-		$categories = $this->getObjectManager()->createQuery(sprintf('SELECT c FROM %s c INDEX BY c.id', $this->class))
+		$categories = $this->getObjectManager()->createQuery(sprintf('SELECT c FROM %s c INDEX BY c.id ORDER BY c.position ASC', $this->class))
 		                   ->execute();
 
 		foreach ($categories as $category) {

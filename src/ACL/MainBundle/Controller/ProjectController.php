@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class ProjectController
  * @package ACL\MainBundle\Controller
- * @Route(path="/cases")
  */
 class ProjectController extends Controller {
 
@@ -39,7 +38,7 @@ class ProjectController extends Controller {
     }
 
     /**
-     * @Route("/", name="acl.main.project.index")
+     * @Route("/cases", name="acl.main.project.index")
      * @Template
      */
     public function indexAction(){
@@ -48,7 +47,7 @@ class ProjectController extends Controller {
     }
 
     /**
-     * @Route("/{project_slug}/{project_id}", name="acl.main.project.project")
+     * @Route("/cases/{project_slug}/{project_id}", name="acl.main.project.project")
      * @Template
      */
     public function projectAction($project_slug, $project_id){

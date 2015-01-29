@@ -26,6 +26,111 @@
                 <source>Classification</source>
                 <target>Classificação</target>
             </trans-unit>
+            <trans-unit id="Name">
+                <source>Name</source>
+                <target>Nome</target>
+            </trans-unit>
+            <trans-unit id="Subname">
+                <source>Subname</source>
+                <target>Subtitulo</target>
+            </trans-unit>
+            <trans-unit id="Description">
+                <source>Description</source>
+                <target>Descrição</target>
+            </trans-unit>
+            <trans-unit id="Position">
+                <source>Position</source>
+                <target>Posição</target>
+            </trans-unit>
+            <trans-unit id="Action">
+                <source>Action</source>
+                <target>Ação</target>
+            </trans-unit>
+            <trans-unit id="action">
+                <source>action</source>
+                <target>Ação</target>
+            </trans-unit>
+            <trans-unit id="Content">
+                <source>Content</source>
+                <target>Conteúdo</target>
+            </trans-unit>
+            <trans-unit id="Question">
+                <source>Question</source>
+                <target>Pergunta</target>
+            </trans-unit>
+            <trans-unit id="Answer">
+                <source>Answer</source>
+                <target>Resposta</target>
+            </trans-unit>
+            <trans-unit id="list.label_description">
+                <source>list.label_description</source>
+                <target>Descrição</target>
+            </trans-unit>
+            <trans-unit id="list.label_size">
+                <source>list.label_size</source>
+                <target>Tamanho</target>
+            </trans-unit>
+            <trans-unit id="select a text formatting option">
+                <source>select a text formatting option</source>
+                <target>Selecione uma opção de formatação de texto</target>
+            </trans-unit>
+            <trans-unit id="Recent Posts">
+                <source>Recent Posts</source>
+                <target>Posts recentes</target>
+            </trans-unit>
+            <trans-unit id="Title">
+                <source>Title</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="Context">
+                <source>Context</source>
+                <target>Contexto</target>
+            </trans-unit>
+            <trans-unit id="Format">
+                <source>Format</source>
+                <target>Formato</target>
+            </trans-unit>
+            <trans-unit id="Pause time">
+                <source>Pause time</source>
+                <target>Tempo de pausa</target>
+            </trans-unit>
+            <trans-unit id="Start paused">
+                <source>Start paused</source>
+                <target>Começar pausado</target>
+            </trans-unit>
+            <trans-unit id="Gallery id">
+                <source>Gallery id</source>
+                <target>Galeria</target>
+            </trans-unit>
+
+            <trans-unit id="galleryId">
+                <source>galleryId</source>
+                <target>Galeria</target>
+            </trans-unit>
+            <trans-unit id="default">
+                <source>default</source>
+                <target>Padrão</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>cancelar</target>
+            </trans-unit>
+            <trans-unit id="Category">
+                <source>Category</source>
+                <target>Categoria</target>
+            </trans-unit>
+            <trans-unit id="Brand">
+                <source>Brand</source>
+                <target>Marca</target>
+            </trans-unit>
+            <trans-unit id="Next">
+                <source>Next</source>
+                <target>Próxima</target>
+            </trans-unit>
+            <trans-unit id="Previous">
+                <source>Previous</source>
+                <target>Anterior</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

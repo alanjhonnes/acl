@@ -1,0 +1,30 @@
+<div class="col-xs-12">
+    <h2 class="page-title">Treinamento e Suporte</h2>
+    <img src="{{ asset('img/banner-trainning.jpg') }}" alt="" class="img-responsive"/>
+    <div class="trainning-search row">
+        <form action="{{ path('acl.main.trainning.index') }}">
+            <div class="col-sm-4">
+                <label for="question-input">Qual é a sua dúvida?</label>
+            </div>
+            <div class="col-sm-5">
+                <input id="question-input" type="text" name="question" value="{{ search }}"/>
+            </div>
+           <div class="col-sm-3">
+               <button>Buscar</button>
+           </div>
+
+        </form>
+    </div>
+    {% for trainning in pager %}
+        <h3 class="question-title">
+            {{ trainning.question }}<div class="question-arrow"></div>
+        </h3>
+        <div class="question-answer">
+            {{ trainning.answer|raw }}
+        </div>
+    {% endfor %}
+
+    <div>
+    {{ knp_pagination_render(pager, null, {}, {'pagination_class': 'pagination pull-right'}) }}
+    </div>
+</div>

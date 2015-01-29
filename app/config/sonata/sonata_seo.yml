@@ -8,8 +8,8 @@ sonata_seo:
         title:            ACL Security
         metas:
             name:
-                keywords:             foo bar
-                description:          The description
+                keywords:             segurança, seguranca, camera, camera, invasao
+                description:          Nós temos a solução em segurança eletrônica
                 robots:               index, follow
 
             property:
@@ -20,7 +20,7 @@ sonata_seo:
                 # Open Graph information
                 # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
                 'og:site_name':       ACL Security
-                'og:description':     A demo of the some rich bundles for your Symfony2 projects
+                'og:description':     Produtos de segurança
 
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8

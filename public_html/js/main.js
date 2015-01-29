@@ -1,10 +1,47 @@
-/**
- * Created by Alan Jhonnes on 11/3/2014.
- */
+function equalize(){
+    "use strict";
+    $(".equalizer").each(function () {
+        var $watch = $(this).find(".watch");
+        var $heading = $(this).find(".panel-heading");
+        var $footer = $(this).find(".panel-footer");
+        $watch.css('height', 'auto');
+        $heading.css('height', 'auto');
+        $footer.css('height', 'auto');
+        var heights = _.map($watch,function (e) {
+                return $(e).height();
+            }),
+
+            maxHeight = Math.max.apply(null, heights);
+
+        $watch.height(maxHeight);
+
+
+        var headingHeights = _.map($heading, function (e) {
+                return $(e).height();
+            }),
+
+            maxHeight = Math.max.apply(null, headingHeights);
+
+        $heading.height(maxHeight);
+
+        var footerHeights = _.map($footer, function (e) {
+                return $(e).height();
+            }),
+
+            maxHeight = Math.max.apply(null, footerHeights);
+        $footer.height(maxHeight);
+    });
+}
+
+
 jQuery(document).ready(function ($) {
 
-
-
+    $(window).on('load', function () {
+        "use strict";
+        /*** Bootstrap same column height ***/
+        equalize();
+        $(window).on('resize', equalize);
+    });
 
 
     /***** Sliders *****/
@@ -38,10 +75,9 @@ jQuery(document).ready(function ($) {
         }
 
 
-
     };
     var sliders = {};
-    $(".jssor-gallery").each(function(){
+    $(".jssor-gallery").each(function () {
         var id = $(this).attr('id');
         console.log("jssor gallery: " + id);
         sliders[id] = new $JssorSlider$(id, options);
@@ -52,9 +88,9 @@ jQuery(document).ready(function ($) {
     //while window resizes
     function ScaleSlider() {
 
-        $(".jssor-gallery").each(function(){
+        $(".jssor-gallery").each(function () {
             var id = $(this).attr('id');
-            if(id){
+            if (id) {
                 console.log("scaling slider: " + id);
                 var parentWidth = $('#' + id).parent().width();
                 if (parentWidth) {
@@ -70,6 +106,7 @@ jQuery(document).ready(function ($) {
 
 
     }
+
     //Scale slider after document ready
     ScaleSlider();
 
@@ -80,16 +117,4 @@ jQuery(document).ready(function ($) {
     //responsive code end
 });
 
-$(document).on('load', function(){
-    "use strict";
-    /*** Bootstrap same column height ***/
-    $(".equalizer").each(function() {
-        var heights = $(this).find(".watch").map(function() {
-                return $(this).height();
-            }).get(),
 
-            maxHeight = Math.max.apply(null, heights);
-
-        $(".watch").height(maxHeight);
-    });
-})

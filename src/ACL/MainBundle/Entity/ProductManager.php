@@ -21,6 +21,7 @@ class ProductManager extends BaseEntityManager {
 	{
 		$queryBuilder = $this->getCategoryProductsQueryBuilder($category);
 		$queryBuilder->andWhere('p.enabled = :enabled')
+					 ->orderBy('p.position')
 		             ->setParameter('enabled', true);
 
 		if (null !== $filter) {
@@ -43,7 +44,8 @@ class ProductManager extends BaseEntityManager {
 	{
 		$queryBuilder = $this->getRepository()->createQueryBuilder('p')
 		                     ->leftJoin('p.image', 'i')
-		                     ->leftJoin('p.gallery', 'g');
+		                     ->leftJoin('p.gallery', 'g')
+							 ->orderBy('p.position');
 
 		if ($category) {
 			$queryBuilder
@@ -70,6 +72,7 @@ class ProductManager extends BaseEntityManager {
 			->leftJoin('p.gallery', 'g')
 			->andWhere('p.name LIKE :productName')
 			->orWhere('p.subname LIKE :productName')
+			->orderBy('p.position')
 			->setParameter('productName', '%'.$name.'%');
 
 		return $queryBuilder;

@@ -94,4 +94,11 @@ class Trainning {
     {
         return $this->answer;
     }
+
+    function __toString()
+    {
+        return $this->getQuestion();
+    }
+
+
 }

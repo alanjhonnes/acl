@@ -13,4 +13,11 @@ use Doctrine\ORM\EntityRepository;
 
 class TrainningRepository extends EntityRepository {
 
+
+    public function getQueryBuilderForQuestion($question){
+        return $this->createQueryBuilder('t')
+            ->where('t.question LIKE :question')
+            ->setParameter('question', '%'.$question.'%');
+
+    }
 }

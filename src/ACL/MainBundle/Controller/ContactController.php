@@ -22,24 +22,25 @@ use Symfony\Component\HttpFoundation\Request;
 class ContactController extends Controller {
 
     /**
-     * @Route(path="/contato", name="acl_contact" )
+     * @Route(path="/contato", name="acl.main.contact.index" )
      */
     public function indexAction(Request $request){
-
+        return $this->render('ACLMainBundle:Contact:index.html.twig');
     }
 
     /**
-     * @Route(path="/contato/send", name="acl_contact_send" )
+     * @Route(path="/contato/general", name="acl.main.contact.general" )
      */
     public function contactAction(){
 
+        $this->redirectToRoute('acl.main.contact.index');
     }
 
     /**
-     * @Route(path="/contato/trainning", name="acl_contact_trainning" )
+     * @Route(path="/contato/tecnical", name="acl.main.contact.tecnical" )
      */
-    public function trainningAction(){
-
+    public function tecnicalAction(){
+        $this->redirectToRoute('acl.main.contact.index');
     }
 
 } 

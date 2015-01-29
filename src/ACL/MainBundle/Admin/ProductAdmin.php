@@ -49,7 +49,11 @@ class ProductAdmin extends Admin
         $datagridMapper
             ->add( 'name' )
             ->add( 'description' )
-            ->add( 'position' );
+            ->add( 'position' )
+            ->add('brand')
+            ->add('category')
+
+        ;
     }
 
     /**

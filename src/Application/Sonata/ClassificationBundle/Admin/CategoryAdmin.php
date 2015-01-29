@@ -33,7 +33,8 @@ class CategoryAdmin extends Admin
                 ->add('description', 'textarea', array('required' => false, 'label' => 'Descrição'))
             ->end()
             ->with('Opções', array('class' => 'col-md-3'))
-                ->add('position', 'integer', array('required' => false, 'data' => 0, 'label' => 'Posição'))
+                ->add('enabled', null, array('required' => true))
+                ->add('position', 'integer', array('required' => false, 'label' => 'Posição'))
                 ->add('parent', 'sonata_category_selector', array(
                     'category'      => $this->getSubject() ?: null,
                     'model_manager' => $this->getModelManager(),

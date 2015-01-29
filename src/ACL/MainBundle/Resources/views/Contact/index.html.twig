@@ -1,0 +1,46 @@
+<div class="col-sm-4 invisible-sm">
+    <img src="{{ asset('img/contact-bg.gif') }}" alt="" class="img-responsive"/>
+</div>
+<div class="col-sm-8">
+    {{ sonata_page_render_container('container') }}
+    <div role="tabpanel" class="acl-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#contact-general" aria-controls="contact-general" role="tab" data-toggle="tab">Contato geral</a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#contact-trainning" aria-controls="contact-trainning" role="tab" data-toggle="tab">Contato técnico</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="contact-general">
+                <div class="">
+                    <form class="" action="{{ path('acl.main.contact.general') }}" method="post">
+                            <label for="input-general-email" class="sr-only">Email</label>
+                            <input id="input-general-email" type="text" placeholder="Email" name="email"/>
+                            <label for="input-general-subject" class="sr-only">Assunto</label>
+                            <input id="input-general-subject" type="text" placeholder="Assunto" name="subject"/>
+                            <label for="input-general-message" class="sr-only">Nome</label>
+                            <textarea id="input-general-message" placeholder="Mensagem" name="message"></textarea>
+                            <button type="submit" class="contact-button">Enviar</button>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('contact') }}">
+                    </form>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="contact-tecnical">
+                <div class="">
+                    <form class="" action="{{ path('acl.main.contact.tecnical') }}" method="post">
+                        <label for="input-tecnical-email" class="sr-only">Email</label>
+                        <input id="input-tecnical-email" type="text" placeholder="Email" name="email"/>
+                        <label for="input-tecnical-subject" class="sr-only">Assunto</label>
+                        <input id="input-tecnical-subject" type="text" placeholder="Assunto" name="subject"/>
+                        <label for="input-tecnical-message" class="sr-only">Nome</label>
+                        <textarea id="input-tecnical-message" placeholder="Mensagem" name="message"></textarea>
+                        <button type="submit" class="contact-button">Enviar</button>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('contact') }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

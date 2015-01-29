@@ -126,7 +126,7 @@
 {% endif %}
 <br/>
 {# render tabs #}
-<div role="tabpanel">
+<div role="tabpanel" class="acl-tabs">
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -182,12 +182,70 @@
         {% endif %}
         {% if product.softwares %}
         <div role="tabpanel" class="tab-pane" id="product-software">
-            {% set softwares = product.softwares.getGalleryHasMedias %}
-            {% for software in softwares %}
+            {% if is_granted('ROLE_DOWNLOAD') %}
+                {% set softwares = product.softwares.getGalleryHasMedias %}
+                {% for software in softwares %}
+                    <div>
+                        <a href="{% path software.media, 'reference' %}">{{ software.media.name }}</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>
+                    Para acessar os downloads, faça login:
+                </p>
                 <div>
-                    <a href="{% path software.media, 'reference' %}">{{ software.media.name }}</a>
+                    <form action="{{ path("fos_user_security_check") }}" method="post" role="form"
+                          class="form-horizontal">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <input type="hidden" name="_target_path"
+                               value="{{ url(app.request.attributes.get('_route'),
+                               app.request.attributes.get('_route_params')) }}"
+                        />
+                        <div class="form-group">
+                            <label for="username"
+                                   class="col-lg-3 col-sm-3 control-label">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+
+                            <div class="col-lg-9 col-sm-9"><input type="text" class="form-control" id="username"
+                                                                  name="_username" value=""
+                                                                  required="required"/></div>
+                        </div>
+
+
+                        <div class="form-group control-group">
+                            <label for="password"
+                                   class="col-lg-3 col-sm-3 control-label">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+
+                            <div class="col-lg-9 col-sm-9"><input type="password" class="form-control" id="password"
+                                                                  name="_password" required="required"/></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <div class="checkbox control-group">
+                                    <label for="remember_me">
+                                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                        {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group control-group">
+                            <div class="controls col-sm-offset-3 col-sm-9">
+                                <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                                       value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-            {% endfor %}
+            {% endif %}
         </div>
         {% endif %}
         {% if product.videos %}
