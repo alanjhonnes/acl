@@ -39,7 +39,7 @@ class CatalogController extends Controller
 
 		$page        = $this->request->get('page', 1);
 		$product_name = $this->request->get('title', 1);
-		$displayMax  = $this->request->get('max', 9);
+		$displayMax  = $this->request->get('max', 100);
 		$displayMode = $this->request->get('mode', 'grid');
 
 
@@ -65,7 +65,7 @@ class CatalogController extends Controller
 	public function searchResultAction(Request $request, $product_name){
 		$this->request = $request;
 		$page        = $this->request->get('page', 1);
-		$displayMax  = $this->request->get('max', 9);
+		$displayMax  = $this->request->get('max', 100);
 		$displayMode = $this->request->get('mode', 'grid');
 
 		$this->get('sonata.seo.page')->setTitle('Catálogo');
@@ -97,10 +97,20 @@ class CatalogController extends Controller
 	 */
 	public function indexAction(Request $request, $category_slug = 'all', $category_id = 0)
 	{
-
 		$this->request = $request;
+
+        $category = $this->retrieveCategoryFromQueryString();
+        $categoryIcons = $this->getCategoryIcons();
+
+        if($category){
+            $displayMax  = $this->request->get('max', 9999);
+        }
+        else {
+            $displayMax  = $this->request->get('max', 18);
+        }
+
 		$page        = $this->request->get('page', 1);
-		$displayMax  = $this->request->get('max', 9);
+
 		$displayMode = $this->request->get('mode', 'grid');
 		$filter      = $this->request->get('filter');
 		$option      = $this->request->get('option');
@@ -109,8 +119,7 @@ class CatalogController extends Controller
 			throw new NotFoundHttpException(sprintf('Given display_mode "%s" doesn\'t exist.', $displayMode));
 		}
 
-		$category = $this->retrieveCategoryFromQueryString();
-		$categoryIcons = $this->getCategoryIcons();
+
 
 		$this->get('sonata.seo.page')->setTitle($category ? $category->getName() : 'Catálogo');
 

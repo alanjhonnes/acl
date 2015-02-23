@@ -73,30 +73,25 @@ class Builder extends ContainerAware
 
 
 
-        $shop = $menu->addChild('Produtos', array('label' => 'Produtos', 'route' => 'catalog_index'));
+        $shop = $menu->addChild('Produtos', array('label' => 'Produtos', 'route' => 'catalog_index',
+            'extras' => array(
+                'routes' => array('catalog_category', 'catalog_product', 'catalog_search')
+            )));
 
-        $menu->addChild('Parceiros', array( 'route' => 'page_slug',
-                                            'routeParameters' => array(
-                                                'path' => '/parceiros',
-                                            )));
+        $menu->addChild('Parceiros', array( 'route' => 'partners_index'));
 
+        $menu->addChild('Notícias', array('route' => 'sonata_news_archive',
+            'extras' => array(
+                'routes' => array('sonata_news_view', 'sonata_news_tag')
+            )));
 
+        $menu->addChild('Cases', array( 'route' => 'acl.main.project.index'));
 
-        $menu->addChild('Notícias', array('route' => 'sonata_news_archive'));
+        $menu->addChild('Treinamento', array( 'route' => 'acl.main.trainning.index',
+            'extras' => array('routes' => array('acl.main.trainning.search'))
+        ));
 
-        $menu->addChild('Cases', array( 'route' => 'page_slug',
-                                            'routeParameters' => array(
-                                                'path' => '/cases',
-                                            )));
-
-        $menu->addChild('Treinamento', array( 'route' => 'page_slug',
-                                        'routeParameters' => array(
-                                            'path' => '/treinamento',
-                                        )));
-        $menu->addChild('Contato', array( 'route' => 'page_slug',
-                                              'routeParameters' => array(
-                                                  'path' => '/contato',
-                                              )));
+        $menu->addChild('Contato', array( 'route' => 'acl.main.contact.index'));
 
 //        foreach ($shopCategories as $category) {
 //            $shop->addChild($category->getName(), array(

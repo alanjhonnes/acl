@@ -90,14 +90,14 @@ class PostAdmin extends Admin
                 ->add('enabled', null, array('required' => false))
                 ->add('image', 'sonata_type_model_list', array('required' => false), array(
                     'link_parameters' => array(
-                        'context' => 'news'
+                        'context' => 'Posts'
                     )
                 ))
 
                 ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
                 //->add('commentsCloseAt', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
                 //->add('commentsEnabled', null, array('required' => false))
-                //->add('commentsDefaultStatus', 'sonata_news_comment_status', array('expanded' => true))
+                ->add('commentsDefaultStatus', 'hidden', array('data' => 0))
             ->end()
 
             ->with('Classification', array(
@@ -168,10 +168,10 @@ class PostAdmin extends Admin
             array('uri' => $admin->generateUrl('edit', array('id' => $id)))
         );
 
-        $menu->addChild(
-            $this->trans('sidemenu.link_view_comments'),
-            array('uri' => $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id)))
-        );
+//        $menu->addChild(
+//            $this->trans('sidemenu.link_view_comments'),
+//            array('uri' => $admin->generateUrl('sonata.news.admin.comment.list', array('id' => $id)))
+//        );
 
         if ($this->hasSubject() && $this->getSubject()->getId() !== null) {
             $menu->addChild(

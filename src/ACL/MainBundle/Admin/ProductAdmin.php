@@ -90,7 +90,7 @@ class ProductAdmin extends Admin
             ->with( 'Geral', array( 'class' => 'col-md-8' ) )
             ->add( 'name', null, array('label' => 'Nome do Produto') )
             ->add( 'subname', null, array('label' => 'Subtítulo do Produto') )
-            ->add( 'description', 'ckeditor', array( 'required' => true, 'label' => 'Descrição' ) )
+            ->add( 'description', 'ckeditor', array( 'required' => false, 'label' => 'Descrição' ) )
             ->add(
                 'content',
                 'sonata_formatter_type',
@@ -110,6 +110,7 @@ class ProductAdmin extends Admin
             ->with( 'Opções', array( 'class' => 'col-md-4' ) )
             ->add( 'position', 'integer', array( 'required' => false, 'data' => 0, 'label' => 'Posição' ) )
 	        ->add('enabled', null, array('required' => false, 'label' => 'Ativo'))
+	        ->add('hideDescription', null, array('required' => false, 'label' => 'Ocultar descrição'))
 	        ->add( 'brand', 'sonata_type_model_list', array('label' => 'Marca') )
             ->add( 'category', 'sonata_type_model_list', array('label' => 'Categoria') )
             ->add(
@@ -126,6 +127,16 @@ class ProductAdmin extends Admin
                 'gallery',
                 'sonata_type_model_list',
                 array( 'required' => false, 'label' => 'Galeria de Fotos' ),
+                array(
+                    'link_parameters' => array(
+                        'context' => 'Produtos'
+                    )
+                )
+            )
+            ->add(
+                'images',
+                'sonata_type_model_list',
+                array( 'required' => false, 'label' => 'Imagens adicionais' ),
                 array(
                     'link_parameters' => array(
                         'context' => 'Produtos'

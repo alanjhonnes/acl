@@ -9,6 +9,14 @@ body {
   background-size: cover;
   background-attachment: fixed;
   color: #111111;
+  padding-bottom: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.block-center {
+  margin-left: auto;
+  margin-right: auto;
 }
 .site-header {
   background-color: rgba(179, 179, 179, 0.8);
@@ -28,10 +36,16 @@ body {
   height: 96px;
   vertical-align: middle;
 }
-.nav-top > li.active a {
+.nav-top > li.current a {
   background-color: transparent;
   border-bottom-color: #a72527;
   font-weight: bold;
+}
+.nav-top > li.current span {
+  padding-bottom: 4px;
+  border-bottom-color: #a72527;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
 }
 .nav-top > li a {
   padding: 0 10px;
@@ -49,12 +63,10 @@ body {
   border-bottom-color: #a72527;
 }
 .nav-top > li a:hover span {
-  border-bottom-color: transparent;
-  border-style: solid;
-  border-top-width: 0px;
-  border-left-width: 0px;
-  border-right-width: 0px;
+  padding-bottom: 4px;
+  border-bottom-color: #a72527;
   border-bottom-width: 4px;
+  border-bottom-style: solid;
 }
 .nav-left {
   background-color: #9a1e20;
@@ -167,6 +179,9 @@ body {
 .categories-list p {
   text-align: left;
 }
+.product-item-panel {
+  margin-bottom: 10px;
+}
 .product-item {
   /*min-height: 400px;*/
   text-decoration: none;
@@ -179,6 +194,8 @@ body {
 .product-item-description {
   font-size: 0.8em;
   padding: 5px 10px;
+  max-height: 158px;
+  overflow: hidden;
 }
 .product-item-description ul {
   padding-left: 0;
@@ -189,6 +206,7 @@ body {
 }
 .panel-footer {
   /*min-height: 200px;*/
+  padding-bottom: 10px;
 }
 .product-block .product-name {
   color: #9a1e20;
@@ -250,6 +268,8 @@ body {
   border-width: 0;
   margin-right: 0;
   border-radius: 0;
+  font-size: 12px;
+  line-height: 20px;
 }
 .acl-tabs .tab-content {
   background-color: #dcd9d9;
@@ -257,6 +277,7 @@ body {
 }
 .acl-tabs .tab-content ul {
   padding-left: 10px;
+  list-style-position: inside;
 }
 .acl-tabs .tab-content table {
   font-size: 0.9em;
@@ -373,6 +394,7 @@ strong {
   font-size: 18px;
 }
 .trainning-search label {
+  line-height: 34px;
   display: block;
 }
 .trainning-search input {
@@ -384,6 +406,7 @@ strong {
   border-color: #a31a1d;
   border-style: solid;
   margin-bottom: 6px;
+  padding: 4px;
 }
 .trainning-search button {
   display: block;
@@ -393,9 +416,38 @@ strong {
   border-width: 1px;
   border-style: solid;
   border-color: #a31a1d;
+  padding: 4px;
+}
+.question-title {
+  cursor: pointer;
 }
 .question-answer {
   color: #a31a1d;
+  display: none;
+}
+.question-arrow {
+  margin-left: 10px;
+  display: inline-block;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  border-color: transparent;
+  border-left-color: #a31a1d;
+  border-width: 8px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  transform-origin: left center;
+}
+.question-open {
+  -webkit-transform: rotate(90deg) translate(0px, -4px);
+  -moz-transform: rotate(90deg) translate(0px, -4px);
+  -ms-transform: rotate(90deg) translate(0px, -4px);
+  -o-transform: rotate(90deg) translate(0px, -4px);
+  transform: rotate(90deg) translate(0px, -4px);
 }
 .pagination > li > a,
 .pagination > li > span {
@@ -415,4 +467,70 @@ strong {
 .pagination > .active > span:focus {
   background-color: #a31a1d;
   border-color: #a31a1d;
+}
+.post-container {
+  color: #58595b;
+}
+.post-title a {
+  color: #58595b;
+  font-weight: 700;
+}
+.post-title a:hover,
+.post-title a:active,
+.post-title a:focus {
+  color: #3f4041;
+}
+.post-date {
+  font-style: italic;
+  font-weight: 700;
+}
+.post-content img {
+  max-width: 100%;
+}
+/* jssor slider thumbnail navigator skin 06 css */
+/*
+.jssort06 .p            (normal)
+.jssort06 .p:hover      (normal mouseover)
+.jssort06 .pav          (active)
+.jssort06 .pav:hover    (active mouseover)
+.jssort06 .pdn          (mousedown)
+*/
+.jssort06 .f {
+  clip: rect(8px 91px 52px 8px);
+}
+.jssort06 .pav .f {
+  clip: rect(2px 97px 58px 2px);
+}
+.jssort06 .i {
+  position: absolute;
+  background: #a31a1d;
+  filter: alpha(opacity=30);
+  opacity: .3;
+  width: 100px;
+  height: 60px;
+  top: 0;
+  left: 0;
+  transition: background-color 0.6s;
+  -moz-transition: background-color 0.6s;
+  -webkit-transition: background-color 0.6s;
+  -o-transition: background-color 0.6s;
+}
+.jssort06 .pav .i {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.jssort06 .pdn .i {
+  background: none;
+}
+.jssort06 .p:hover .i,
+.jssort06 .pav:hover .i {
+  background: #fff;
+  filter: alpha(opacity=30);
+  opacity: .3;
+}
+.jssort06 .p:hover .i {
+  transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: none;
 }

@@ -7,115 +7,59 @@
 </h4>
 {% if product.gallery %}
     {# Rendering image gallery #}
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles to css file or css block. -->
     <div id="{{ product.slug }}" class="jssor-gallery"
-         style="position: relative; top: 0px; left: 0px; width: 750px; height: 300px;">
-        <!-- Slides Container -->
-        <div u="slides"
-             style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 750px; height: 300px;">
-            {% set images = product.gallery.getGalleryHasMedias %}
-            {% for image in images %}
-                <div>
-                    {% media image.getMedia, 'view' with {'u': 'image'} %}
-                    {% media image.getMedia, 'thumbnail' with {'u': 'thumb'} %}
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+         style="position: relative; width: 600px; height: 300px;">
 
-    <!-- Arrow Navigator Skin Begin -->
-    <style>
-        /* jssor slider arrow navigator skin 05 css */
-        /*
-        .jssora05l              (normal)
-        .jssora05r              (normal)
-        .jssora05l:hover        (normal mouseover)
-        .jssora05r:hover        (normal mouseover)
-        .jssora05ldn            (mousedown)
-        .jssora05rdn            (mousedown)
-        */
-        .jssora05l, .jssora05r, .jssora05ldn, .jssora05rdn
-        {
-            position: absolute;
-            cursor: pointer;
-            display: block;
-            background: url(../img/a17.png) no-repeat;
-            overflow:hidden;
-        }
-        .jssora05l { background-position: -10px -40px; }
-        .jssora05r { background-position: -70px -40px; }
-        .jssora05l:hover { background-position: -130px -40px; }
-        .jssora05r:hover { background-position: -190px -40px; }
-        .jssora05ldn { background-position: -250px -40px; }
-        .jssora05rdn { background-position: -310px -40px; }
-    </style>
-    <!-- Arrow Left
-    <span u="arrowleft" class="jssora05l" style="width: 40px; height: 40px; top: 158px; left: 248px;">
-        </span>-->
-    <!-- Arrow Right
-    <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 158px; right: 8px">
-        </span>-->
-    <!-- Arrow Navigator Skin End -->
-
-    <!-- Thumbnail Navigator Skin 02 Begin
-    <div u="thumbnavigator" class="jssort02" style="position: absolute; width: 240px; height: 480px; left:0px; bottom: 0px;">
--->
-        <!-- Thumbnail Item Skin Begin -->
-        <style>
-            /* jssor slider thumbnail navigator skin 02 css */
-            /*
-            .jssort02 .p            (normal)
-            .jssort02 .p:hover      (normal mouseover)
-            .jssort02 .pav          (active)
-            .jssort02 .pav:hover    (active mouseover)
-            .jssort02 .pdn          (mousedown)
-            */
-            .jssort02 .w
-            {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-            }
-            .jssort02 .c
-            {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 95px;
-                height: 62px;
-                border: #000 2px solid;
-            }
-            .jssort02 .p:hover .c, .jssort02 .pav:hover .c, .jssort02 .pav .c
-            {
-                background: url(../img/t01.png) center center;
-                border-width: 0px;
-                top: 2px;
-                left: 2px;
-                width: 95px;
-                height: 62px;
-            }
-            .jssort02 .p:hover .c, .jssort02 .pav:hover .c
-            {
-                top: 0px;
-                left: 0px;
-                width: 97px;
-                height: 64px;
-                border: #fff 1px solid;
-            }
-        </style>
-        <!--
-        <div u="slides" style="cursor: move;">
-            <div u="prototype" class="p" style="position: absolute; width: 99px; height: 66px; top: 0; left: 0;">
-                <div class="w"><thumbnailtemplate style=" width: 100%; height: 100%; border: none;position:absolute; top: 0; left: 0;"></thumbnailtemplate></div>
-                <div class="c">
-                </div>
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
             </div>
         </div>
-        -->
-        <!-- Thumbnail Item Skin End
-    </div> -->
-    <!-- Thumbnail Navigator Skin End -->
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+            overflow: hidden;">
+            {% set images = product.gallery.getGalleryHasMedias %}
+            {% for image in images %}
+                {% if image.getMedia %}
+                <div>
+                    {% media image.getMedia, 'view' with {'u': 'image'} %}
+                    {% media image.getMedia, 'thumbnail' with { 'class': 'i', 'u': 'thumb'} %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Thumbnail Navigator Skin Begin -->
+        <div u="thumbnavigator" class="jssort06" style="position: absolute; width: 100px; height: 300px; right:0px; bottom: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: move;">
+                <div u="prototype" class="p" style="position: absolute; width: 100px; height: 60px; top: 0; left: 0;">
+                    <div class="o" style="position:absolute;top:0px;left:0px;width:100px;height:60px;overflow:hidden;">
+                        <div u="thumbnailtemplate" class="b" style="width:100px;height:60px; border: none;position:absolute; top: 0; left: 0;"></div>
+                        <div class="i"></div>
+                        <div u="thumbnailtemplate" class="f" style="width:100px;height:60px;border: none;position:absolute; top: 0; left: 0;"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!-- Thumbnail Navigator Skin End -->
+
+    </div>
+    <!-- Jssor Slider End -->
+
+
+
+
+
+
 
 
 {% else %}
@@ -127,12 +71,13 @@
 <br/>
 {# render tabs #}
 <div role="tabpanel" class="acl-tabs">
-
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
+        {% if product.description %}
         <li role="presentation" class="active">
             <a href="#product-description" aria-controls="product-description" role="tab" data-toggle="tab">Descriçao Geral</a>
         </li>
+        {% endif %}
         {% if product.content %}
         <li role="presentation">
             <a href="#product-content" aria-controls="product-content" role="tab" data-toggle="tab">Especificações
@@ -149,6 +94,11 @@
                 <a href="#product-software" aria-controls="product-software" role="tab" data-toggle="tab">Software</a>
             </li>
         {% endif %}
+        {% if product.images %}
+            <li role="presentation">
+                <a href="#product-images" aria-controls="product-images" role="tab" data-toggle="tab">Imagens</a>
+            </li>
+        {% endif %}
         {% if product.videos %}
         <li role="presentation">
             <a href="#product-videos" aria-controls="product-videos" role="tab" data-toggle="tab">Vídeos</a>
@@ -158,11 +108,13 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
+        {% if product.description %}
         <div role="tabpanel" class="tab-pane active" id="product-description">
             <div class="product-description">
                 {{ product.description|raw }}
             </div>
         </div>
+        {% endif %}
         {% if product.content %}
         <div role="tabpanel" class="tab-pane" id="product-content">
             <div class="product-content">
@@ -175,7 +127,7 @@
             {% set downloads = product.downloads.getGalleryHasMedias %}
             {% for download in downloads %}
                 <div>
-                    <a href="{% path download.media, 'reference' %}">{{ download.media.name }}</a>
+                    <a target="_blank" href="{% path download.media, 'reference' %}">{{ download.media.name }}</a>
                 </div>
             {% endfor %}
         </div>
@@ -248,8 +200,20 @@
             {% endif %}
         </div>
         {% endif %}
+        {% if product.images %}
+        <div role="tabpanel" class="tab-pane text-center" id="product-images">
+            {% set images = product.images.getGalleryHasMedias %}
+            {% for image in images %}
+                {% if image.media %}
+                    <div>
+                        {% media image.media, 'view' %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
         {% if product.videos %}
-        <div role="tabpanel" class="tab-pane" id="product-videos">
+        <div role="tabpanel" class="tab-pane text-center" id="product-videos">
             {% set videos = product.videos.getGalleryHasMedias %}
             {% for video in videos %}
                 <div>

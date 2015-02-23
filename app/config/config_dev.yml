@@ -9,6 +9,9 @@ web_profiler:
     toolbar:             true
     intercept_redirects: false
 
+swiftmailer:
+    delivery_address: aj@alanjhonnes.com
+
 monolog:
     handlers:
         main:

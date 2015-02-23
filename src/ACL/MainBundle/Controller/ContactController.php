@@ -32,7 +32,23 @@ class ContactController extends Controller {
      * @Route(path="/contato/general", name="acl.main.contact.general" )
      */
     public function contactAction(){
+        $email = 'akjsdhjkasdh';
+        $message = 'kasdhkjashdjkahsd';
+        $name = 'alan';
 
+        $emailMessage = $this->createEmail()
+            ->setSubject('Contato Comercial - Site ACL Security')
+            ->setFrom('site@aclsecurity.com.br')
+            ->setTo('comercial@aclsecurity.com.br')
+            ->setBody(
+                $this->renderView('ACLMainBundle:Contact:email.html.twig',
+                    array('email' => $email,
+                          'message' => $message,
+                          'name' => $name
+                        )),
+                'text/html'
+            );
+            $this->getMailer()->send($emailMessage);
         $this->redirectToRoute('acl.main.contact.index');
     }
 
@@ -41,6 +57,20 @@ class ContactController extends Controller {
      */
     public function tecnicalAction(){
         $this->redirectToRoute('acl.main.contact.index');
+    }
+
+    /**
+     * @return \Swift_Message
+     */
+    protected function createEmail(){
+        return \Swift_Message::newInstance();
+    }
+
+    /**
+     * @return \Swift_Mailer
+     */
+    protected function getMailer(){
+        return $this->get('mailer');
     }
 
 } 

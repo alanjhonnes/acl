@@ -43,8 +43,8 @@ class ProductManager extends BaseEntityManager {
 	protected function getCategoryProductsQueryBuilder(CategoryInterface $category = null)
 	{
 		$queryBuilder = $this->getRepository()->createQueryBuilder('p')
+                             ->select('p, i')
 		                     ->leftJoin('p.image', 'i')
-		                     ->leftJoin('p.gallery', 'g')
 							 ->orderBy('p.position');
 
 		if ($category) {
@@ -68,8 +68,8 @@ class ProductManager extends BaseEntityManager {
 
 		$queryBuilder = $this->getRepository()->createQueryBuilder('p');
 		/* @var $queryBuilder QueryBuilder */
-		$queryBuilder->leftJoin('p.image', 'i')
-			->leftJoin('p.gallery', 'g')
+		$queryBuilder->select('p, i')
+            ->leftJoin('p.image', 'i')
 			->andWhere('p.name LIKE :productName')
 			->orWhere('p.subname LIKE :productName')
 			->orderBy('p.position')
@@ -98,7 +98,7 @@ class ProductManager extends BaseEntityManager {
 
 	public function findFullDetails($id){
 		$queryBuilder = $this->getRepository()->createQueryBuilder('p')
-			->select('p, b, i, pd, ps, pv, g, gm, pdm, psm, pvm, gmm, pdmm, psmm, pvmm')
+			->select('p, b, i, pd, ps, pv, g, imgs, pdm, psm, pvm, gm, imgsm, gmm, pdmm, psmm, pvmm, imgsmm')
 			->leftJoin('p.brand', 'b')
 	        ->leftJoin('p.image', 'i')
 
@@ -106,16 +106,20 @@ class ProductManager extends BaseEntityManager {
 			->leftJoin('p.softwares', 'ps')
 			->leftJoin('p.videos', 'pv')
 			->leftJoin('p.gallery', 'g')
+			->leftJoin('p.images', 'imgs')
 
-			->leftJoin('g.galleryHasMedias', 'gm')
+
 			->leftJoin('pd.galleryHasMedias', 'pdm')
 			->leftJoin('ps.galleryHasMedias', 'psm')
 			->leftJoin('pv.galleryHasMedias', 'pvm')
+            ->leftJoin('g.galleryHasMedias', 'gm')
+            ->leftJoin('imgs.galleryHasMedias', 'imgsm')
 
 			->leftJoin('gm.media', 'gmm')
 			->leftJoin('pdm.media', 'pdmm')
 			->leftJoin('psm.media', 'psmm')
 			->leftJoin('pvm.media', 'pvmm')
+			->leftJoin('imgsm.media', 'imgsmm')
 
 			->andWhere('p.id = :id')
 			->setParameter('id', $id)

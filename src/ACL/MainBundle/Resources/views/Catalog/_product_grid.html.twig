@@ -26,7 +26,9 @@ file that was distributed with this source code.
         {% endif %}
     </div>
     <div class="panel-footer">
-        <div itemprop="name" class="panel-title truncate product-item-description">{{ product.description|raw }}</div>
+        {% if not product.hideDescription %}
+         <div itemprop="name" class="panel-title truncate product-item-description">{{ product.description|raw }}</div>
+        {% endif %}
     </div>
 </div>
 </a>

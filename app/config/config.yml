@@ -120,6 +120,10 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
+    port: 587
+    auth_mode: login
+    encryption: null
+
 
 jms_security_extra:
     secure_all_services: false

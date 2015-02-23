@@ -42,6 +42,7 @@ file that was distributed with this source code.
     <div class="container">
         <div class="content">
             <div class="row">
+                <div class="col-xs-12">
                 {% block page_content %}
                     {% if content is defined %}
                         {{ content|raw }}
@@ -54,15 +55,18 @@ file that was distributed with this source code.
                         {% endif %}
                     {% endif %}
                 {% endblock %}
+                </div>
             </div>
 
             {% if page is defined %}
                 <div class="row">
+                    <div class="col-xs-12">
                     {{ sonata_page_render_container('content_bottom', page) }}
 
                     {% if page.name != 'global'%}
                         {{ sonata_page_render_container('content_bottom', 'global') }}
                     {% endif %}
+                    </div>
                 </div>
             {% endif %}
         </div>

@@ -11,6 +11,7 @@
 
 namespace ACL\MainBundle\Block;
 
+use ACL\MainBundle\Entity\PartnerManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
@@ -39,7 +40,7 @@ class PartnersBlockService extends BaseBlockService
     protected $partnerManager;
 
     /**
-     * @return ManagerInterface
+     * @return PartnerManager
      */
     public function getPartnerManager()
     {

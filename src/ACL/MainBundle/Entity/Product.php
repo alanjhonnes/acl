@@ -136,6 +136,22 @@ class Product {
      */
     protected $videos;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
+     * @ORM\JoinTable(name="product_images",
+     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="images_id", referencedColumnName="id")}
+     * )
+     */
+    protected $images;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    protected $hideDescription;
+
 	/**
 	 * source : http://snipplr.com/view/22741/slugify-a-string-in-php/
 	 *
@@ -570,5 +586,37 @@ class Product {
     public function getSoftwares()
     {
         return $this->softwares;
+    }
+
+    /**
+     * Set images
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $images
+     * @return Product
+     */
+    public function setImages(\Application\Sonata\MediaBundle\Entity\Gallery $images = null)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function getHideDescription(){
+        return $this->hideDescription;
+    }
+
+    public function setHideDescription($hideDescription){
+        $this->hideDescription = $hideDescription;
+        return $this;
     }
 }

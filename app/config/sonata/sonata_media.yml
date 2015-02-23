@@ -23,8 +23,8 @@ sonata_media:
             providers:
                 - sonata.media.provider.image
             formats:
-                thumbnail: { width: 300, quality: 100}
-                wide:     { width: 1170, quality: 100}
+                thumbnail: { width: 300, height: 300, quality: 100}
+                wide:     { width: 1170, height: 300, quality: 100}
 
 
         Categorias:
@@ -39,7 +39,6 @@ sonata_media:
         Produtos:
             providers:
                 - sonata.media.provider.image
-
             formats:
                 thumbnail:     { width: 100, height: 60, quality: 100}
                 main:     { width: 250, height: 250, quality: 100}
@@ -147,11 +146,11 @@ sonata_media:
                 - 'appl/text'
                 - 'application/vnd.msword'
                 - 'application/vnd.ms-word'
+                - 'application/vnd.ms-excel'
                 - 'application/winword'
                 - 'application/word'
                 - 'application/x-msw6'
                 - 'application/x-msword'
-                - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
                 - 'application/zip'
                 - 'application/x-zip'
                 - 'application/x-zip-compressed'
@@ -160,6 +159,17 @@ sonata_media:
                 - 'application/x-compressed'
                 - 'multipart/x-zip'
                 - 'application/x-7z-compressed'
+                - 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                - 'application/vnd.openxmlformats-officedocument.spreadsheetml.template'
+                - 'application/vnd.openxmlformats-officedocument.presentationml.template'
+                - 'application/vnd.openxmlformats-officedocument.presentationml.slideshow'
+                - 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+                - 'application/vnd.openxmlformats-officedocument.presentationml.slide'
+                - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                - 'application/vnd.openxmlformats-officedocument.wordprocessingml.template'
+                - 'application/vnd.ms-excel.addin.macroEnabled.12'
+                - 'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
            resizer: sonata.media.resizer.custom

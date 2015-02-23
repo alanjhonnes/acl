@@ -42,7 +42,24 @@ class TrainningController extends Controller {
      * @Route("/treinamento/busca", name="acl.main.trainning.search")
      */
     public function searchAction(Request $request){
+        $this->get('sonata.seo.page')->setTitle('Treinamento');
 
+        $pager = $this->get('knp_paginator');
+        $page  = $request->get('page', 1);
+
+        $question = $request->get('question', '');
+
+        $qb = $this->getRepository()->createQueryBuilder('t')
+            ->where('t.question LIKE :question')
+            ->setParameter('question', '%'.$question.'%');
+
+        $pagination = $pager->paginate($qb, $page, 10);
+
+
+        return $this->render('ACLMainBundle:Trainning:index.html.twig', array(
+            'pager'        => $pagination,
+            'search' => $question,
+        ));
     }
 
 
