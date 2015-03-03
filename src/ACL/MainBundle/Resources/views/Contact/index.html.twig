@@ -6,6 +6,28 @@
         <div>
             {{ sonata_page_render_container('content') }}
         </div>
+
+
+        <div role="tabpanel" class="acl-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Fale Conosco</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                {% if message %}
+                    <div class="alert alert-success" role="alert">{{ message }}</div>
+                {% endif %}
+                <div role="tabpanel" class="tab-pane active" id="contact">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Enviar" class="btn btn-default" />
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+        {#
         <div role="tabpanel" class="acl-tabs">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
@@ -62,5 +84,6 @@
                 </div>
             </div>
         </div>
+        #}
     </div>
 </div>

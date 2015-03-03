@@ -8,6 +8,7 @@
 
 namespace ACL\MainBundle\Controller;
 
+use ACL\MainBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,38 +26,38 @@ class ContactController extends Controller {
      * @Route(path="/contato", name="acl.main.contact.index" )
      */
     public function indexAction(Request $request){
-        return $this->render('ACLMainBundle:Contact:index.html.twig');
-    }
 
-    /**
-     * @Route(path="/contato/general", name="acl.main.contact.general" )
-     */
-    public function contactAction(){
-        $email = 'akjsdhjkasdh';
-        $message = 'kasdhkjashdjkahsd';
-        $name = 'alan';
+        $message = null;
 
-        $emailMessage = $this->createEmail()
-            ->setSubject('Contato Comercial - Site ACL Security')
-            ->setFrom('site@aclsecurity.com.br')
-            ->setTo('comercial@aclsecurity.com.br')
-            ->setBody(
-                $this->renderView('ACLMainBundle:Contact:email.html.twig',
-                    array('email' => $email,
-                          'message' => $message,
-                          'name' => $name
+        $form = $this->createForm(new ContactType());
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $emailMessage = $this->createEmail()
+                ->setSubject('Contato - Site ACL Security')
+                ->setFrom('site@aclsecurity.com.br')
+                ->setTo($data->getType() . '@aclsecurity.com.br')
+                ->setBody(
+                    $this->renderView('ACLMainBundle:Contact:email.html.twig',
+                        array('email' => $data->getEmail(),
+                            'message' => $data->getMessage(),
+                            'subject' => $data->getSubject(),
+                            'type' => $data->getType()
                         )),
-                'text/html'
-            );
-            $this->getMailer()->send($emailMessage);
-        $this->redirectToRoute('acl.main.contact.index');
-    }
+                    'text/html'
+                );
+            if($this->getMailer()->send($emailMessage)){
+               $message = 'Mensagem enviada com sucesso!';
+            }
+        }
 
-    /**
-     * @Route(path="/contato/tecnical", name="acl.main.contact.tecnical" )
-     */
-    public function tecnicalAction(){
-        $this->redirectToRoute('acl.main.contact.index');
+        return $this->render('ACLMainBundle:Contact:index.html.twig',
+            array(
+                'form' => $form->createView(),
+                'message' => $message
+            )
+        );
     }
 
     /**

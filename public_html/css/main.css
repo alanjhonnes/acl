@@ -26,6 +26,11 @@ body {
   padding-bottom: 44px;
   padding-top: 60px;
 }
+.logo .img-responsive {
+  width: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
 .nav-top {
   position: relative;
   background-color: #8a1618;
@@ -50,7 +55,6 @@ body {
 .nav-top > li a {
   padding: 0 10px;
   color: #ffffff;
-  height: 96px;
   line-height: 96px;
   border-radius: 0;
   -webkit-transition-property: background-position;
@@ -533,4 +537,68 @@ strong {
   -moz-transition: none;
   -webkit-transition: none;
   -o-transition: none;
+}
+#product-images img {
+  max-width: 48%;
+  height: auto;
+  margin-bottom: 5px;
+}
+#product-videos > object,
+#product-videos embed {
+  width: 100%;
+  max-width: 48%;
+  margin-bottom: 5px;
+}
+.navbar-toggle {
+  background-color: #a31a1d;
+}
+.navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+@media only screen and (max-width: 767px) {
+  .navbar-collapse {
+    padding: 0;
+  }
+  .nav-top {
+    height: auto;
+    font-size: 16px;
+  }
+  .nav-top > li {
+    height: 40px;
+    vertical-align: middle;
+  }
+  .nav-top > li:hover,
+  .nav-top > li:active,
+  .nav-top > li:focus,
+  .nav-top > li.current {
+    background-color: #741214;
+  }
+  .nav-top > li:hover a span,
+  .nav-top > li:active a span,
+  .nav-top > li:focus a span,
+  .nav-top > li.current a span {
+    padding-bottom: 0;
+    border-bottom-width: 0;
+  }
+  .nav-top > li a {
+    line-height: 40px;
+  }
+  .nav-top > li a:hover span,
+  .nav-top > li a:active span,
+  .nav-top > li a:focus span {
+    padding-bottom: 0;
+    border-bottom-width: 0;
+  }
+}
+.navbar-toggle {
+  float: left;
+}
+#contact label {
+  display: none;
+}
+#contact .radio {
+  display: inline-block;
+}
+#contact .radio label {
+  display: inline-block;
 }

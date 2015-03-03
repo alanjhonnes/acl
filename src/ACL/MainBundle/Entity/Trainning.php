@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Trainning
  * @package ACL\MainBundle\Entity
  * @ORM\Entity(repositoryClass="TrainningRepository")
- * @ORM\Table(name="Trainning")
+ * @ORM\Table(name="trainning")
  */
 class Trainning {
 
