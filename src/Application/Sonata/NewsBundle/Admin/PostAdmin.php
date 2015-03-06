@@ -87,7 +87,7 @@ class PostAdmin extends Admin
             ->with('Status', array(
                     'class' => 'col-md-4'
                 ))
-                ->add('enabled', null, array('required' => false))
+                ->add('enabled', null, array('required' => false, 'label' => 'Habilitado'))
                 ->add('image', 'sonata_type_model_list', array('required' => false), array(
                     'link_parameters' => array(
                         'context' => 'Posts'

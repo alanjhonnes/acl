@@ -1,5 +1,7 @@
 <h2 class="page-title">Treinamento e Suporte</h2>
-<img src="{{ asset('img/banner-trainning.jpg') }}" alt="" class="img-responsive"/>
+{% block trainningcategories %}
+    {{ sonata_block_render({ 'type': 'acl.block.service.trainning_categories' }) }}
+{% endblock %}
 <div class="trainning-search row">
     <form action="{{ path('acl.main.trainning.search') }}">
         <div class="col-sm-4">

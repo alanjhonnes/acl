@@ -379,8 +379,12 @@ a {
   color: #a31a1d;
 }
 a:hover,
-a:active {
+a:active,
+a:focus {
   color: #771315;
+}
+a:visited {
+  color: inherit;
 }
 strong {
   color: #a31a1d;
@@ -601,4 +605,22 @@ strong {
 }
 #contact .radio label {
   display: inline-block;
+}
+.trainning-banner {
+  background-image: url(../img/trainning-banner.png);
+  background-repeat: repeat-x;
+  background-position: center;
+  background-color: #a31a1d;
+}
+.trainning-tab {
+  padding: 10px;
+  border-top-color: #a31a1d;
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+.trainning-tab:first-child {
+  border-top-width: 0px;
+}
+.content {
+  margin-bottom: 16px;
 }

@@ -28,6 +28,12 @@ services:
         tags:
             - { name: sonata.block }
 
+    acl.block.service.trainning_categories:
+            class: ACL\MainBundle\Block\TrainningCategoriesBlockService
+            arguments: [acl.block.service.trainning_categories, @templating, @sonata.classification.manager.category]
+            tags:
+                - { name: sonata.block }
+
     acl.menu.menu.product_menu_builder:
         class: ACL\MainBundle\Menu\ProductMenuBuilder
         arguments: [@knp_menu.factory, @acl.main.category.manager, @router]
@@ -62,7 +68,13 @@ services:
                 class: ACL\MainBundle\Admin\TrainningAdmin
                 arguments: [~, ACL\MainBundle\Entity\Trainning, ACLMainBundle:TrainningAdmin]
                 tags:
-                    - {name: sonata.admin, manager_type: orm, group: admin, label: Treinamento}
+                    - {name: sonata.admin, manager_type: orm, group: admin, label: Perguntas e Respostas}
+
+    acl_main.admin.trainningsession:
+                    class: ACL\MainBundle\Admin\TrainningSessionAdmin
+                    arguments: [~, ACL\MainBundle\Entity\TrainningSession, ACLMainBundle:TrainningSessionAdmin]
+                    tags:
+                        - {name: sonata.admin, manager_type: orm, group: admin, label: Treinamentos }
 
 
     acl.block.service.partners:

@@ -461,8 +461,12 @@ body {
 a {
   color: @brand-color;
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     color: darken(@brand-color, 10%);
+  }
+  &:visited {
+    color: inherit;
   }
 }
 
@@ -718,4 +722,25 @@ strong {
       display: inline-block;
     }
   }
+}
+
+.trainning-banner {
+  background-image: url(../img/trainning-banner.png);
+  background-repeat: repeat-x;
+  background-position: center;
+  background-color: @brand-color;
+}
+
+.trainning-tab {
+  padding: 10px;
+  border-top-color: @brand-color;
+  border-top-width: 1px;
+  border-top-style: solid;
+  &:first-child {
+    border-top-width: 0px;
+  }
+}
+
+.content {
+  margin-bottom: 16px;
 }

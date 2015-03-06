@@ -47,10 +47,12 @@
                                 {% endfor %}
                             </ul>
                             {% endif %}
+                            <div class="catalog-search-form">
                             {{ form_start(searchForm) }}
                             {{ form_widget(searchForm.title, { 'attr': {'placeholder': 'Buscar'} }) }}
                             {{ form_end(searchForm) }}
-                            {#% include 'ACLMainBundle:Catalog:_pager.html.twig' %#}
+                            </div>
+                            {# % include 'ACLMainBundle:Catalog:_pager.html.twig' % #}
                         </div>
                     </div>
                 </div>

@@ -97,3 +97,4 @@ sonata_block:
         acl.block.service.categories:
         acl.block.service.categories_menu:
         acl.block.service.product:
+        acl.block.service.trainning_categories:

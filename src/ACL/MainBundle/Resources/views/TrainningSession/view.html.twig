@@ -1,0 +1,109 @@
+{% extends '@ACLMain/TrainningSession/index.html.twig' %}
+
+{% block trainningtitle %}
+Treinamento
+{% endblock %}
+
+{% block trainningsearch %}
+    {% if category %}
+        <h4>Treinamento em: <strong>{{ category.name }}</strong></h4>
+    {% endif %}
+{% endblock %}
+
+{% block trainningcontents %}
+    <h3 class="trainning-name"><strong>{{ trainning.name }}</strong></h3>
+    <div>
+        {{ trainning.content|raw }}
+    </div>
+    <h5><strong>Detalhes do Treinamento</strong></h5>
+    <div>
+        {{ trainning.details|raw }}
+    </div>
+    {# render tabs #}
+    <div role="tabpanel" class="acl-tabs">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            {% if trainning.requirements %}
+                <li role="presentation" class="active">
+                    <a href="#trainning-requirements" aria-controls="trainning-requirements" role="tab"
+                       data-toggle="tab">Pré-Requisitos</a>
+                </li>
+            {% endif %}
+            {% if trainning.subscription %}
+                <li role="presentation" class="">
+                    <a href="#trainning-subscription" aria-controls="trainning-subscription" role="tab"
+                       data-toggle="tab">Inscrições</a>
+                </li>
+            {% endif %}
+            {% if trainning.review %}
+                <li role="presentation" class="">
+                    <a href="#trainning-review" aria-controls="trainning-review" role="tab" data-toggle="tab">Avaliações</a>
+                </li>
+            {% endif %}
+            {% if trainning.equipment %}
+                <li role="presentation" class="">
+                    <a href="#trainning-equipment" aria-controls="trainning-equipment" role="tab"
+                       data-toggle="tab">Material</a>
+                </li>
+            {% endif %}
+            {% if trainning.transport %}
+                <li role="presentation" class="">
+                    <a href="#trainning-transport" aria-controls="trainning-transport" role="tab" data-toggle="tab">Transporte</a>
+                </li>
+            {% endif %}
+            {% if trainning.rules %}
+                <li role="presentation" class="">
+                    <a href="#trainning-rules" aria-controls="trainning-rules" role="tab" data-toggle="tab">Regras de
+                        Conduta</a>
+                </li>
+            {% endif %}
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            {% if trainning.requirements %}
+                <div role="tabpanel" class="tab-pane active" id="trainning-requirements">
+                    <div class="trainning-requirements">
+                        {{ trainning.requirements|raw }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if trainning.subscription %}
+                <div role="tabpanel" class="tab-pane" id="trainning-subscription">
+                    <div class="trainning-subscription">
+                        {{ trainning.subscription|raw }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if trainning.review %}
+                <div role="tabpanel" class="tab-pane" id="trainning-review">
+                    <div class="trainning-review">
+                        {{ trainning.review|raw }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if trainning.equipment %}
+                <div role="tabpanel" class="tab-pane" id="trainning-equipment">
+                    <div class="trainning-equipment">
+                        {{ trainning.equipment|raw }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if trainning.transport %}
+                <div role="tabpanel" class="tab-pane" id="trainning-transport">
+                    <div class="trainning-transport">
+                        {{ trainning.transport|raw }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if trainning.rules %}
+                <div role="tabpanel" class="tab-pane" id="trainning-rules">
+                    <div class="trainning-rules">
+                        {{ trainning.rules|raw }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+

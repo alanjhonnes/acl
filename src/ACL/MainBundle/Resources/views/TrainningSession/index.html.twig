@@ -1,0 +1,53 @@
+<h2 class="page-title">{% block trainningtitle %}<a href="{{ path('acl.main.trainningsession.index') }}">Agenda de Treinamentos</a>{% endblock %}</h2>
+
+{% block trainningcategories %}
+    {{ sonata_block_render({ 'type': 'acl.block.service.trainning_categories' }) }}
+{% endblock %}
+
+{% block trainningsearch %}
+    {% if category %}
+        <h4>Buscando treinamentos de: <strong>{{ category.name }}</strong></h4>
+    {% endif %}
+{% endblock %}
+
+{% block trainningcontents %}
+
+    {% if months and months|length > 0 %}
+        {# render tabs #}
+        <div role="tabpanel" class="acl-tabs month-tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                {% for key, month in months %}
+                    <li role="presentation" class="{% if loop.first %}active{% endif %}">
+                        <a href="#month-{{ loop.index }}" aria-controls="month-{{ loop.index }}" role="tab" data-toggle="tab">{{ key }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                {% for key, month in months %}
+                <div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="month-{{ loop.index }}">
+                    <div>
+                        {% for trainning in month %}
+                            <div class="trainning-tab">
+                                <h4>
+                                    <a href="{{ path('acl.main.trainningsession.view', { 'id': trainning.id }) }}">{{ trainning.name }}</a>
+                                </h4>
+                                <div>
+                                    {{ trainning.content|raw }}
+                                </div>
+                                <a href="{{ path('acl.main.trainningsession.view', { 'id': trainning.id }) }}">Ver detalhes</a>
+                            </div>
+                        {% else %}
+                            <h4>Não foram encontrados treinamentos neste mês.</h4>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <p>Não foram encontrados treinamentos.</p>
+    {% endif %}
+{% endblock %}
